@@ -24,7 +24,7 @@ public class SwiftyGifManager {
     
     public func addImageView(imageView: UIImageView) {
         self.totalGifSize += imageView.gifImage!.imageSize!
-        if(self.totalGifSize>memoryLimit&&self.haveCache==true){
+        if self.totalGifSize > memoryLimit && self.haveCache {
             self.haveCache = false
             for imageView in self.displayViews{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
@@ -39,7 +39,7 @@ public class SwiftyGifManager {
         if let index = self.displayViews.indexOf(imageView){
             self.displayViews.removeAtIndex(index)
             self.totalGifSize -= imageView.gifImage!.imageSize!
-            if self.totalGifSize < memoryLimit && self.haveCache == false {
+            if self.totalGifSize < memoryLimit && !self.haveCache {
                 self.haveCache = true
                 for imageView in self.displayViews{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){

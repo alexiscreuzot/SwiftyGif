@@ -95,10 +95,10 @@ public extension UIImageView {
 
                 updateIndex()
 
-                if loopTime == 0 || !isDisplayedInScreen() { stopDisplay() }
+                if loopTime == 0 { stopDisplay() }
 
             } else {
-                if isDisplayedInScreen() { startDisplay() }
+                startDisplay()
             }
         }
     }
@@ -109,23 +109,6 @@ public extension UIImageView {
             return true
         }
         return false
-    }
-
-    public func isDisplayedInScreen() ->Bool{
-        if self.hidden ||
-            self.alpha == 0 {
-            return false
-        }
-
-        let screenRect = UIScreen.mainScreen().bounds
-        let viewRect =  self.convertRect(self.frame, fromView: UIApplication.sharedApplication().keyWindow)
-
-        let intersectionRect = CGRectIntersection(viewRect, screenRect);
-        if (CGRectIsEmpty(intersectionRect)) {
-            return false
-        }
-
-        return true
     }
 
     private func updateIndex(){

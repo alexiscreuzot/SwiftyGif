@@ -5,7 +5,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
+
+    let gifManager = SwiftyGifManager(memoryLimit:60)
+    let images = ["img1", "img2", "img3", "img4", "img5", "img6"]
     
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -14,32 +19,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Inits
-        let images = ["img1", "img2", "img3"]
-        let nbImages = images.count
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let screenHeight = UIScreen.mainScreen().bounds.height  - 40
-        
-        // Manager
-        let gifmanager = SwiftyGifManager(memoryLimit:40)
-        
-        for index in 0...nbImages-1 {
+    }
 
-            // Create animated image
-            let image = UIImage(gifName:images[index])
+    // MARK: - TableView Datasource
 
-            // Create ImageView and add animated image
-            let imageview = UIImageView(gifImage: image, manager:gifmanager,loopTime: -1)
-            imageview.contentMode = .ScaleAspectFill
-            imageview.clipsToBounds = true
-            let imageHeight = (screenHeight / CGFloat(nbImages))
-            imageview.frame = CGRect(x: 0.0, y: 40 + CGFloat(index) * imageHeight, width: screenWidth, height: imageHeight)
-            self.view.addSubview(imageview)
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! Cell
+        let gifImage = UIImage(gifName: images[indexPath.row % self.images.count])
+        cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopTime: -1)
+        return cell
+    }
+
+    // MARK: - TableView Delegate
+
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 200
+    }
+
+
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let gifCell =  cell as? Cell {
+            gifCell.gifImageView.startDisplay()
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let gifCell =  cell as? Cell {
+            gifCell.gifImageView.stopDisplay()
+        }
     }
     
 }

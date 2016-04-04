@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -34,9 +35,58 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ots-ht-8cc">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="200" id="ahP-yI-ba8" customClass="Cell" customModule="SwiftyGif" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="328" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahP-yI-ba8" id="GSM-S7-AM0">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="200"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="heG-fX-LmI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="328" height="200"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="heG-fX-LmI" secondAttribute="bottom" id="4o6-lZ-F6H"/>
+                                            <constraint firstItem="heG-fX-LmI" firstAttribute="top" secondItem="ahP-yI-ba8" secondAttribute="top" id="Dzt-db-nGj"/>
+                                            <constraint firstAttribute="trailing" secondItem="heG-fX-LmI" secondAttribute="trailing" id="L12-oN-8PZ"/>
+                                            <constraint firstItem="heG-fX-LmI" firstAttribute="leading" secondItem="ahP-yI-ba8" secondAttribute="leading" id="X1s-fH-Mcb"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="gifImageView" destination="heG-fX-LmI" id="A3n-Q6-sXV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="9JU-AJ-dA0"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="4Kn-b4-X4W"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ots-ht-8cc" secondAttribute="trailing" constant="-20" id="5rU-0f-j2H"/>
+                            <constraint firstItem="ots-ht-8cc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="IrM-Qk-ahj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ots-ht-8cc" secondAttribute="bottom" id="NeQ-PE-F2C"/>
+                            <constraint firstItem="ots-ht-8cc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="RCc-z7-lJl"/>
+                            <constraint firstItem="ots-ht-8cc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="tBC-3G-IJf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="RCc-z7-lJl"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="SwiftyGif" id="iTB-SH-MjT"/>
+                    <connections>
+                        <outlet property="tableView" destination="ots-ht-8cc" id="NJQ-eY-dMe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,7 +10,6 @@
 		FA29E9361CA9340E00E579D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29E9351CA9340E00E579D5 /* AppDelegate.swift */; };
 		FA29E9381CA9340E00E579D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29E9371CA9340E00E579D5 /* ViewController.swift */; };
 		FA29E93B1CA9340E00E579D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA29E9391CA9340E00E579D5 /* Main.storyboard */; };
-		FA29E93D1CA9340E00E579D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA29E93C1CA9340E00E579D5 /* Assets.xcassets */; };
 		FA29E9401CA9340E00E579D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA29E93E1CA9340E00E579D5 /* LaunchScreen.storyboard */; };
 		FA29E94B1CA9340F00E579D5 /* SwiftyGifTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */; };
 		FA42B0E11CA947A2004CA6CF /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA42B0DE1CA947A2004CA6CF /* img1.gif */; };
@@ -19,6 +18,11 @@
 		FAE121E41CB2A3DD00960D00 /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
 		FAE121E51CB2A3DD00960D00 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
 		FAE121E61CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
+		FAE121E81CB2A66500960D00 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E71CB2A66500960D00 /* Cell.swift */; };
+		FAE121EA1CB2AA0300960D00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE121E91CB2AA0300960D00 /* Assets.xcassets */; };
+		FAE121EE1CB2AA0D00960D00 /* img6.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121EB1CB2AA0D00960D00 /* img6.gif */; };
+		FAE121EF1CB2AA0D00960D00 /* img5.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121EC1CB2AA0D00960D00 /* img5.gif */; };
+		FAE121F01CB2AA0D00960D00 /* img4.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121ED1CB2AA0D00960D00 /* img4.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 		FA29E9351CA9340E00E579D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA29E9371CA9340E00E579D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA29E93A1CA9340E00E579D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FA29E93C1CA9340E00E579D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA29E93F1CA9340E00E579D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA29E9411CA9340E00E579D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyGifTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +51,11 @@
 		FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGifManager.swift; sourceTree = "<group>"; };
 		FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
 		FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
+		FAE121E71CB2A66500960D00 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		FAE121E91CB2AA0300960D00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAE121EB1CB2AA0D00960D00 /* img6.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img6.gif; sourceTree = "<group>"; };
+		FAE121EC1CB2AA0D00960D00 /* img5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img5.gif; sourceTree = "<group>"; };
+		FAE121ED1CB2AA0D00960D00 /* img4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img4.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 				FA29E9351CA9340E00E579D5 /* AppDelegate.swift */,
 				FA29E9371CA9340E00E579D5 /* ViewController.swift */,
 				FADD14CC1CA938B500FBBED2 /* Resources */,
+				FAE121E71CB2A66500960D00 /* Cell.swift */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
@@ -122,8 +131,11 @@
 				FA42B0DE1CA947A2004CA6CF /* img1.gif */,
 				FA42B0DF1CA947A2004CA6CF /* img2.gif */,
 				FA42B0E01CA947A2004CA6CF /* img3.gif */,
+				FAE121EB1CB2AA0D00960D00 /* img6.gif */,
+				FAE121EC1CB2AA0D00960D00 /* img5.gif */,
+				FAE121ED1CB2AA0D00960D00 /* img4.gif */,
+				FAE121E91CB2AA0300960D00 /* Assets.xcassets */,
 				FA29E9391CA9340E00E579D5 /* Main.storyboard */,
-				FA29E93C1CA9340E00E579D5 /* Assets.xcassets */,
 				FA29E93E1CA9340E00E579D5 /* LaunchScreen.storyboard */,
 				FA29E9411CA9340E00E579D5 /* Info.plist */,
 			);
@@ -212,11 +224,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA29E9401CA9340E00E579D5 /* LaunchScreen.storyboard in Resources */,
-				FA29E93D1CA9340E00E579D5 /* Assets.xcassets in Resources */,
 				FA42B0E21CA947A2004CA6CF /* img2.gif in Resources */,
 				FA42B0E11CA947A2004CA6CF /* img1.gif in Resources */,
 				FA42B0E31CA947A2004CA6CF /* img3.gif in Resources */,
+				FAE121EA1CB2AA0300960D00 /* Assets.xcassets in Resources */,
 				FA29E93B1CA9340E00E579D5 /* Main.storyboard in Resources */,
+				FAE121EF1CB2AA0D00960D00 /* img5.gif in Resources */,
+				FAE121F01CB2AA0D00960D00 /* img4.gif in Resources */,
+				FAE121EE1CB2AA0D00960D00 /* img6.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +254,7 @@
 				FAE121E51CB2A3DD00960D00 /* UIImage+SwiftyGif.swift in Sources */,
 				FA29E9361CA9340E00E579D5 /* AppDelegate.swift in Sources */,
 				FAE121E61CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift in Sources */,
+				FAE121E81CB2A66500960D00 /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
