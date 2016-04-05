@@ -23,6 +23,7 @@
 		FAE121EE1CB2AA0D00960D00 /* img6.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121EB1CB2AA0D00960D00 /* img6.gif */; };
 		FAE121EF1CB2AA0D00960D00 /* img5.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121EC1CB2AA0D00960D00 /* img5.gif */; };
 		FAE121F01CB2AA0D00960D00 /* img4.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAE121ED1CB2AA0D00960D00 /* img4.gif */; };
+		FAE121F21CB2BF1000960D00 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121F11CB2BF1000960D00 /* DetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		FAE121EB1CB2AA0D00960D00 /* img6.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img6.gif; sourceTree = "<group>"; };
 		FAE121EC1CB2AA0D00960D00 /* img5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img5.gif; sourceTree = "<group>"; };
 		FAE121ED1CB2AA0D00960D00 /* img4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img4.gif; sourceTree = "<group>"; };
+		FAE121F11CB2BF1000960D00 /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +102,9 @@
 				FA29E9551CA9342F00E579D5 /* SwiftyGif */,
 				FA29E9351CA9340E00E579D5 /* AppDelegate.swift */,
 				FA29E9371CA9340E00E579D5 /* ViewController.swift */,
-				FADD14CC1CA938B500FBBED2 /* Resources */,
 				FAE121E71CB2A66500960D00 /* Cell.swift */,
+				FAE121F11CB2BF1000960D00 /* DetailController.swift */,
+				FADD14CC1CA938B500FBBED2 /* Resources */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE121E41CB2A3DD00960D00 /* SwiftyGifManager.swift in Sources */,
+				FAE121F21CB2BF1000960D00 /* DetailController.swift in Sources */,
 				FA29E9381CA9340E00E579D5 /* ViewController.swift in Sources */,
 				FAE121E51CB2A3DD00960D00 /* UIImage+SwiftyGif.swift in Sources */,
 				FA29E9361CA9340E00E579D5 /* AppDelegate.swift in Sources */,

@@ -29,6 +29,10 @@ public extension UIImageView {
         setGifImage(gifImage,manager: manager,loopTime: loopTime);
     }
 
+    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager) {
+        setGifImage(gifImage, manager: manager, loopTime: -1)
+    }
+
     public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager, loopTime:Int) {
 
         self.loopTime = loopTime
@@ -75,40 +79,51 @@ public extension UIImageView {
     }
 
     public func updateCurrentImage(){
-
-        if discardIfNeeded() {
-            return
-        }
-
-        if let gif = self.gifImage {
-            if self.displaying {
-
-                if !self.haveCache {
-                    self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(gif.imageSource!,gif.displayOrder![self.displayOrderIndex],nil)!)
-                } else {
-                    if let image = cache.objectForKey(self.displayOrderIndex) as? UIImage {
-                        self.currentImage = image
-                    }else{
-                        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(gif.imageSource!,gif.displayOrder![self.displayOrderIndex],nil)!)
-                    }
-                }
-
-                updateIndex()
-
-                if loopTime == 0 { stopDisplay() }
-
-            } else {
+        if(self.displaying == true){
+            if(self.haveCache==false){
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+            }else{
+                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
+                    self.currentImage = image
+                }else{
+                    self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+                }//prevent case that cache is not ready
+            }
+            updateIndex()
+            if(loopTime == 0 || isDisplayedInScreen(self)==false){
+                stopDisplay()
+            }
+        }else{
+            if(isDisplayedInScreen(self) == true){
                 startDisplay()
+            }
+            if(isDiscarded(self)==true){
+                self.animationManager.deleteImageView(self)
             }
         }
     }
 
-    public func discardIfNeeded() -> Bool {
-        if self.window == nil {
-            self.animationManager.deleteImageView(self)
+    public func isDiscarded(imageView:UIView?) -> Bool{
+        if(imageView == nil || imageView!.superview == nil){
             return true
         }
         return false
+    }
+
+
+    public func isDisplayedInScreen(imageView:UIView?) ->Bool{
+        if (self.hidden) {
+            return false
+        }
+
+        let screenRect = UIScreen.mainScreen().bounds
+        let viewRect = imageView!.convertRect(self.frame,toView:UIApplication.sharedApplication().keyWindow)
+
+        let intersectionRect = CGRectIntersection(viewRect, screenRect);
+        if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
+            return false
+        }
+        return (self.window != nil)
     }
 
     private func updateIndex(){

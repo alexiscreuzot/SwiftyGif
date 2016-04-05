@@ -36,14 +36,16 @@ public class SwiftyGifManager {
     }
     
     public func deleteImageView(imageView: UIImageView){
-        if let index = self.displayViews.indexOf(imageView){
-            self.displayViews.removeAtIndex(index)
-            self.totalGifSize -= imageView.gifImage!.imageSize!
-            if self.totalGifSize < memoryLimit && !self.haveCache {
-                self.haveCache = true
-                for imageView in self.displayViews{
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                        imageView.checkCache()
+        if let index = self.displayViews.indexOf(imageView) {
+            if index >= 0 && index < self.displayViews.count-1 {
+                self.displayViews.removeAtIndex(index)
+                self.totalGifSize -= imageView.gifImage!.imageSize!
+                if self.totalGifSize < memoryLimit && !self.haveCache {
+                    self.haveCache = true
+                    for imageView in self.displayViews{
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
+                            imageView.checkCache()
+                        }
                     }
                 }
             }
