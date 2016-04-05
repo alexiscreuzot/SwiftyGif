@@ -1,5 +1,5 @@
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftyGif.svg)](https://img.shields.io/cocoapods/v/SwiftyGif.svg)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjwchn/JWAnimatedImage)
