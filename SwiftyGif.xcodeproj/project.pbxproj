@@ -106,6 +106,7 @@
 				FA57CC891CB3EDAA000F3476 /* Base.lproj */,
 				FA57CC8E1CB3EDAA000F3476 /* Cell.swift */,
 				FA57CC8F1CB3EDAA000F3476 /* DetailController.swift */,
+				FA57CC971CB3EDAA000F3476 /* ViewController.swift */,
 				FA57CC901CB3EDAA000F3476 /* img1.gif */,
 				FA57CC911CB3EDAA000F3476 /* img2.gif */,
 				FA57CC921CB3EDAA000F3476 /* img3.gif */,
@@ -113,7 +114,6 @@
 				FA57CC941CB3EDAA000F3476 /* img5.gif */,
 				FA57CC951CB3EDAA000F3476 /* img6.gif */,
 				FA57CC961CB3EDAA000F3476 /* Info.plist */,
-				FA57CC971CB3EDAA000F3476 /* ViewController.swift */,
 			);
 			path = SwiftyGifExample;
 			sourceTree = "<group>";
