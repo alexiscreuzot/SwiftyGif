@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftyGif'
-  s.version          =  '1.0'
+  s.version          =  '1.0.0'
   s.summary          = 'A animated GIF engine for iOS in Swift'
   s.homepage         = 'https://github.com/kirualex/SwiftyGif'
   s.license          = { :type => "MIT", :file => "LICENSE" }
