@@ -49,6 +49,7 @@
 		FA42B0DE1CA947A2004CA6CF /* img1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img1.gif; sourceTree = "<group>"; };
 		FA42B0DF1CA947A2004CA6CF /* img2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img2.gif; sourceTree = "<group>"; };
 		FA42B0E01CA947A2004CA6CF /* img3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img3.gif; sourceTree = "<group>"; };
+		FA57CC621CB3E92E000F3476 /* SwiftyGif.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SwiftyGif.xcodeproj; sourceTree = "<group>"; };
 		FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGifManager.swift; sourceTree = "<group>"; };
 		FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+SwiftyGif.swift"; sourceTree = "<group>"; };
 		FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+SwiftyGif.swift"; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		FA29E9291CA9340E00E579D5 = {
 			isa = PBXGroup;
 			children = (
+				FA57CC621CB3E92E000F3476 /* SwiftyGif.xcodeproj */,
 				FA29E9341CA9340E00E579D5 /* SwiftyGif */,
 				FA29E9491CA9340F00E579D5 /* SwiftyGifTests */,
 				FA29E9331CA9340E00E579D5 /* Products */,
@@ -100,11 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				FA29E9551CA9342F00E579D5 /* SwiftyGif */,
-				FA29E9351CA9340E00E579D5 /* AppDelegate.swift */,
-				FA29E9371CA9340E00E579D5 /* ViewController.swift */,
-				FAE121E71CB2A66500960D00 /* Cell.swift */,
-				FAE121F11CB2BF1000960D00 /* DetailController.swift */,
-				FADD14CC1CA938B500FBBED2 /* Resources */,
+				FA57CC651CB3E993000F3476 /* Example */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
@@ -126,6 +124,23 @@
 				FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */,
 			);
 			name = SwiftyGif;
+			sourceTree = "<group>";
+		};
+		FA57CC631CB3E92E000F3476 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FA57CC651CB3E993000F3476 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				FA29E9351CA9340E00E579D5 /* AppDelegate.swift */,
+				FA29E9371CA9340E00E579D5 /* ViewController.swift */,
+				FAE121E71CB2A66500960D00 /* Cell.swift */,
+				FAE121F11CB2BF1000960D00 /* DetailController.swift */,
+				FADD14CC1CA938B500FBBED2 /* Resources */,
+			);
+			name = Example;
 			sourceTree = "<group>";
 		};
 		FADD14CC1CA938B500FBBED2 /* Resources */ = {
@@ -213,6 +228,12 @@
 			mainGroup = FA29E9291CA9340E00E579D5;
 			productRefGroup = FA29E9331CA9340E00E579D5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA57CC631CB3E92E000F3476 /* Products */;
+					ProjectRef = FA57CC621CB3E92E000F3476 /* SwiftyGif.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FA29E9311CA9340E00E579D5 /* SwiftyGif */,
