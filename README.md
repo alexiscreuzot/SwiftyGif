@@ -4,7 +4,7 @@
 
 High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjwchn/JWAnimatedImage)
 
-![video](http://i.imgur.com/v9EHNrK.gifv)
+![video](http://i.imgur.com/v9EHNrK.gif)
 
 ##Features
 - [x] UIImage and UIImageView extension based
