@@ -9,7 +9,7 @@ High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjw
 ##Features
 - [x] UIImage and UIImageView extension based
 - [x] Great CPU/Memory performances
-- [x] Allow controlof  display quality by using factor 'level of Integrity'
+- [x] Allow control of  display quality by using factor 'level of Integrity'
 - [x] Allow control CPU/memory tradeoff via 'memoryLimit' 
 
 ##Installation
@@ -28,6 +28,23 @@ let imageview = UIImageView(gifImage: gif, manager: gifManager, loopTime: -1) //
 imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
+
+##Benchmark
+###Display 1 Image
+|               |CPU Usage(average) |Memory Usage(average) |
+|:-------------:|:-----------------:|:-----------------------:|
+|FLAnimatedImage|35%                |9,5Mb                    |
+|SwiftyGif      |2%                 |18,4Mb                   |
+|SwiftyGif(memoryLimit:10)|34%      |9,5Mb                    |
+
+###Display 6 Images
+|               |CPU Usage(average) |Memory Usage(average) |
+|:-------------:|:-----------------:|:-----------------------:|
+|FLAnimatedImage|65%                |25,1Mb                   |
+|SwiftyGif      |22%                |105Mb                    |
+|SwiftyGif(memoryLimit:20)|45%      |26Mb                     |
+
+Measured on an iPhone 6S, iOS 9.3.1 and Xcode 7.3.
 
 ##Licence
 SwiftyGif is released under the MIT license. See [LICENSE](https://github.com/kirualex/SwiftyGif/raw/master/LICENSE) for details.
