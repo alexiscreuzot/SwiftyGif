@@ -1,5 +1,6 @@
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftyGif.svg)](https://img.shields.io/cocoapods/v/SwiftyGif.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjwchn/JWAnimatedImage)
@@ -21,13 +22,28 @@ pod 'SwiftGif'
 ```
 
 ##How to Use
+###Init
+You can create an `UIImageView` with a Gif likeso :
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 let gif = UIImage(gifName: "MyImage.gif")
-let imageview = UIImageView(gifImage: gif, manager: gifManager, loopTime: -1) // -1 means infinite
+let imageview = UIImageView(gifImage: gif, manager: gifManager)
 imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
+###Setter
+In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can also set its Gif.
+```swift
+let gifmanager = SwiftyGifManager(memoryLimit:20)
+self.myImageView.setGifImage(gif, manager: gifManager) 
+```
+###LoopTime
+You can furthermore set a specific number of loops to your gif via `loopTime`. Default is `-1`, which translate to infinite.
+```swift
+self.myImageView.setGifImage(gif, manager: gifManager, loopTime:2)// The gif will loop 2 times
+```
+
+###Create a Gif image
 
 ##Benchmark
 ###Display 1 Image
