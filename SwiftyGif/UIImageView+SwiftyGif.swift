@@ -48,7 +48,7 @@ public extension UIImageView {
             if let source = gif.imageSource {
                 self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(source, 0, nil)!)
 
-                if !manager.containsImageView(self){
+                if !manager.containsImageView(self) {
                     manager.addImageView(self)
                     startDisplay()
                 }
@@ -58,17 +58,17 @@ public extension UIImageView {
 
     // PRAGMA - Logic
 
-    public func startDisplay(){
+    public func startDisplay() {
         self.displaying = true
         checkCache()
     }
 
-    public func stopDisplay(){
+    public func stopDisplay() {
         self.displaying = false
         checkCache()
     }
 
-    public func checkCache(){
+    public func checkCache() {
         if self.animationManager.hasCache(self) && !self.haveCache {
             prepareCache()
             self.haveCache = true
@@ -78,33 +78,33 @@ public extension UIImageView {
         }
     }
 
-    public func updateCurrentImage(){
-        if(self.displaying == true){
-            if(self.haveCache==false){
+    public func updateCurrentImage() {
+        if self.displaying {
+            if !self.haveCache {
                 self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
             }else{
-                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
+                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage) {
                     self.currentImage = image
                 }else{
                     self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
                 }//prevent case that cache is not ready
             }
             updateIndex()
-            if(loopTime == 0 || isDisplayedInScreen(self)==false){
+            if loopTime == 0 || !isDisplayedInScreen(self) {
                 stopDisplay()
             }
         }else{
-            if(isDisplayedInScreen(self) == true){
+            if(isDisplayedInScreen(self) && loopTime != 0) {
                 startDisplay()
             }
-            if(isDiscarded(self)==true){
+            if isDiscarded(self) {
                 self.animationManager.deleteImageView(self)
             }
         }
     }
 
     public func isDiscarded(imageView:UIView?) -> Bool{
-        if(imageView == nil || imageView!.superview == nil){
+        if(imageView == nil || imageView!.superview == nil) {
             return true
         }
         return false
@@ -126,19 +126,19 @@ public extension UIImageView {
         return (self.window != nil)
     }
 
-    private func updateIndex(){
+    private func updateIndex() {
         if let gif = self.gifImage {
             self.syncFactor = (self.syncFactor+1) % gif.displayRefreshFactor!
-            if(self.syncFactor==0){
+            if self.syncFactor == 0 {
                 self.displayOrderIndex = (self.displayOrderIndex+1) % gif.imageCount!
-                if(displayOrderIndex==0){
+                if displayOrderIndex == 0 && self.loopTime > 0 {
                     self.loopTime -= 1;
                 }
             }
         }
     }
 
-    private func prepareCache(){
+    private func prepareCache() {
         self.cache.removeAllObjects()
 
         if let gif = self.gifImage {
