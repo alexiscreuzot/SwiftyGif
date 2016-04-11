@@ -22,7 +22,7 @@ pod 'SwiftGif'
 ```
 
 ##How to Use
-###Init
+######Init
 You can create an `UIImageView` with a Gif likeso :
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
@@ -31,19 +31,17 @@ let imageview = UIImageView(gifImage: gif, manager: gifManager)
 imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
-###Setter
+######Setter
 In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can also set its Gif.
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 self.myImageView.setGifImage(gif, manager: gifManager) 
 ```
-###LoopTime
+######LoopTime
 You can furthermore set a specific number of loops to your gif via `loopTime`. Default is `-1`, which translate to infinite.
 ```swift
 self.myImageView.setGifImage(gif, manager: gifManager, loopTime:2)// The gif will loop 2 times
 ```
-
-###Create a Gif image
 
 ##Benchmark
 ###Display 1 Image
