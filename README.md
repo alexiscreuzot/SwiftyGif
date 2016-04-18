@@ -22,6 +22,8 @@ pod 'SwiftGif'
 ```
 
 ##How to Use
+######Project files
+As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
 ######Init
 You can create an `UIImageView` with a Gif likeso :
 ```swift
