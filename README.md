@@ -45,6 +45,10 @@ You can furthermore set a specific number of loops to your gif via `loopTime`. D
 self.myImageView.setGifImage(gif, manager: gifManager, loopTime:2)// The gif will loop 2 times
 ```
 
+######Default Manager	
+If you want, you can ommit the `manager` parameter `UIImageView` methods. By default, it will use the `SwiftyGifManager.defaultManager`. 
+
+
 ##Benchmark
 ###Display 1 Image
 |               |CPU Usage(average) |Memory Usage(average) |

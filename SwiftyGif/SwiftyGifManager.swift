@@ -8,6 +8,8 @@ import Foundation
 
 public class SwiftyGifManager {
 
+    static var defaultManager = SwiftyGifManager(memoryLimit: 20)
+    
     private var timer: CADisplayLink?
     private var displayViews: [UIImageView] = []
     private var totalGifSize: Int
