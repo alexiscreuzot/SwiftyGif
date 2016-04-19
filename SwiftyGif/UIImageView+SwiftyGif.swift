@@ -19,21 +19,21 @@ public extension UIImageView {
 
     // PRAGMA - Inits
 
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager) {
+    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         self.init()
         setGifImage(gifImage,manager: manager,loopTime: -1);
     }
 
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager, loopTime:Int) {
+    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopTime:Int) {
         self.init()
         setGifImage(gifImage,manager: manager,loopTime: loopTime);
     }
 
-    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager) {
+    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         setGifImage(gifImage, manager: manager, loopTime: -1)
     }
 
-    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager, loopTime:Int) {
+    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopTime:Int) {
 
         self.loopTime = loopTime
         self.gifImage = gifImage
