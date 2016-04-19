@@ -10,7 +10,7 @@ High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjw
 ##Features
 - [x] UIImage and UIImageView extension based
 - [x] Great CPU/Memory performances
-- [x] Allow control of  display quality by using factor 'level of Integrity'
+- [x] Allow control of  display quality by using 'levelOfIntegrity'
 - [x] Allow control CPU/memory tradeoff via 'memoryLimit' 
 
 ##Installation
@@ -25,7 +25,12 @@ pod 'SwiftyGif'
 ######Project files
 As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
 ######Init
-You can create an `UIImageView` with a Gif likeso :
+To use SwiftyGif you need 3 components:
+- An `UIImage` which backs the gif data and cache it for efficient use.
+- An `UIImageView` which hold to the `UIImage` gif and provide utility methods, .
+- A `SwiftyGifManager` which can hold one or several `UIImageView` using the same memory pool.
+
+*Example*
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 let gif = UIImage(gifName: "MyImage.gif")
@@ -33,21 +38,30 @@ let imageview = UIImageView(gifImage: gif, manager: gifManager)
 imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
-######Setter
+######Set
 In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can also set its Gif.
+You can do this multiple times, new parameters overwrite old ones.
+
+*Example*
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 self.myImageView.setGifImage(gif, manager: gifManager) 
 ```
-######LoopTime
-You can furthermore set a specific number of loops to your gif via `loopTime`. Default is `-1`, which translate to infinite.
+######Level of integrity
+Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a godd option if you need to preview a lot of gifs at the same time.
 ```swift
-self.myImageView.setGifImage(gif, manager: gifManager, loopTime:2)// The gif will loop 2 times
+let gif = UIImage(gifName: "MyImage.gif", levelOfIntegrity:0.5)
+```
+######LoopCount
+You can furthermore set a specific number of loops to your gif via `loopCount`. Default is `-1`, which translate to infinite.
+
+*Example*
+```swift
+self.myImageView.setGifImage(gif, manager: gifManager, loopCount:2)// The gif will loop 2 times
 ```
 
 ######Default Manager	
-If you want, you can ommit the `manager` parameter `UIImageView` methods. By default, it will use the `SwiftyGifManager.defaultManager`. 
-
+If you only need to display one gif here and there, you can omit the `manager` parameter on `UIImageView` methods. By default, it will use the `SwiftyGifManager.defaultManager` with a default memory pool of 20Mb. 
 
 ##Benchmark
 ###Display 1 Image
