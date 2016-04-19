@@ -11,17 +11,6 @@ class ViewController: UIViewController, UITableViewDelegate {
 
     let gifManager = SwiftyGifManager(memoryLimit:120)
     let images = ["img1", "img2", "img3", "img4", "img5", "img6"]
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
@@ -40,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! Cell
         let gifImage = UIImage(gifName: images[indexPath.row])
-        cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopTime: -1)
+        cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
         return cell
     }
 

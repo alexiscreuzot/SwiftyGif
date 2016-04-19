@@ -63,7 +63,7 @@ public class SwiftyGifManager {
             return false
         }
 
-        if imageView.loopTime == -1 || imageView.loopTime >= 5 {
+        if imageView.loopCount == -1 || imageView.loopCount >= 5 {
             return self.haveCache
         }else{
             return false

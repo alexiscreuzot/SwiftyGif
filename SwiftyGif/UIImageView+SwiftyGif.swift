@@ -11,7 +11,7 @@ let _currentImageKey = malloc(4)
 let _displayOrderIndexKey = malloc(4)
 let _syncFactorKey = malloc(4)
 let _haveCacheKey = malloc(4)
-let _loopTimeKey = malloc(4)
+let _loopCountKey = malloc(4)
 let _displayingKey = malloc(4)
 let _animationManagerKey = malloc(4)
 
@@ -21,21 +21,21 @@ public extension UIImageView {
 
     public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         self.init()
-        setGifImage(gifImage,manager: manager,loopTime: -1);
+        setGifImage(gifImage,manager: manager, loopCount: -1);
     }
 
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopTime:Int) {
+    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
         self.init()
-        setGifImage(gifImage,manager: manager,loopTime: loopTime);
+        setGifImage(gifImage,manager: manager, loopCount: loopCount);
     }
 
     public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
-        setGifImage(gifImage, manager: manager, loopTime: -1)
+        setGifImage(gifImage, manager: manager, loopCount: -1)
     }
 
-    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopTime:Int) {
+    public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
 
-        self.loopTime = loopTime
+        self.loopCount = loopCount
         self.gifImage = gifImage
         self.animationManager = manager
         self.syncFactor = 0
@@ -90,11 +90,11 @@ public extension UIImageView {
                 }//prevent case that cache is not ready
             }
             updateIndex()
-            if loopTime == 0 || !isDisplayedInScreen(self) {
+            if loopCount == 0 || !isDisplayedInScreen(self) {
                 stopDisplay()
             }
         }else{
-            if(isDisplayedInScreen(self) && loopTime != 0) {
+            if(isDisplayedInScreen(self) && loopCount != 0) {
                 startDisplay()
             }
             if isDiscarded(self) {
@@ -131,8 +131,8 @@ public extension UIImageView {
             self.syncFactor = (self.syncFactor+1) % gif.displayRefreshFactor!
             if self.syncFactor == 0 {
                 self.displayOrderIndex = (self.displayOrderIndex+1) % gif.imageCount!
-                if displayOrderIndex == 0 && self.loopTime > 0 {
-                    self.loopTime -= 1;
+                if displayOrderIndex == 0 && self.loopCount > 0 {
+                    self.loopCount -= 1;
                 }
             }
         }
@@ -186,12 +186,12 @@ public extension UIImageView {
         }
     }
 
-    public var loopTime: Int {
+    public var loopCount: Int {
         get {
-            return (objc_getAssociatedObject(self, _loopTimeKey) as! Int)
+            return (objc_getAssociatedObject(self, _loopCountKey) as! Int)
         }
         set {
-            objc_setAssociatedObject(self, _loopTimeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _loopCountKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 

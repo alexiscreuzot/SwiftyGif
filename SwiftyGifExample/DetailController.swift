@@ -19,7 +19,7 @@ class DetailController: UIViewController {
 
         if let imgName = self.gifName {
             let gifImage = UIImage(gifName: imgName)
-            self.imageView.setGifImage(gifImage, manager: SwiftyGifManager.defaultManager, loopTime: -1)
+            self.imageView.setGifImage(gifImage, manager: SwiftyGifManager.defaultManager, loopCount: -1)
         }
 
     }
