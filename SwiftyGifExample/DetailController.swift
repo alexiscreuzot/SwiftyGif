@@ -12,14 +12,16 @@ class DetailController: UIViewController {
 
     @IBOutlet private weak var imageView: UIImageView!
 
-    let gifManager = SwiftyGifManager(memoryLimit:30)
-    var gifName = ""
+    var gifName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let gifImage = UIImage(gifName: self.gifName)
-        self.imageView.setGifImage(gifImage, manager: gifManager, loopTime: -1)
+        if let imgName = self.gifName {
+            let gifImage = UIImage(gifName: imgName)
+            self.imageView.setGifImage(gifImage, manager: SwiftyGifManager.defaultManager, loopTime: -1)
+        }
+
     }
 
 }
