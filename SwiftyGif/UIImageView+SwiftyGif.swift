@@ -19,20 +19,44 @@ public extension UIImageView {
 
     // PRAGMA - Inits
 
+    /**
+     Convenience initializer. The created gif will default to infinite loop.
+     - Parameter gifImage: The UIImage containing the gif backing data
+     - Parameter manager: The manager to handle the gif display
+     */
     public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         self.init()
         setGifImage(gifImage,manager: manager, loopCount: -1);
     }
 
+    /**
+     Convenience initializer.
+     - Parameter gifImage: The UIImage containing the gif backing data
+     - Parameter manager: The manager to handle the gif display
+     - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
+     */
     public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
         self.init()
         setGifImage(gifImage,manager: manager, loopCount: loopCount);
     }
 
+    /**
+     Set a gif image and a manager to an existing UIImageView. The gif will default to infinite loop.
+     WARNING : this overwrite any previous gif.
+     - Parameter gifImage: The UIImage containing the gif backing data
+     - Parameter manager: The manager to handle the gif display
+     */
     public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         setGifImage(gifImage, manager: manager, loopCount: -1)
     }
 
+    /**
+     Set a gif image and a manager to an existing UIImageView. 
+     WARNING : this overwrite any previous gif.
+     - Parameter gifImage: The UIImage containing the gif backing data
+     - Parameter manager: The manager to handle the gif display
+     - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
+     */
     public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
 
         self.loopCount = loopCount
@@ -58,11 +82,17 @@ public extension UIImageView {
 
     // PRAGMA - Logic
 
+    /**
+     Start displaying the gif for this UIImageView.
+     */
     public func startDisplay() {
         self.displaying = true
         checkCache()
     }
 
+    /**
+     Stop displaying the gif for this UIImageView.
+     */
     public func stopDisplay() {
         self.displaying = false
         checkCache()
