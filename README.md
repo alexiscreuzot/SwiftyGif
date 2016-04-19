@@ -18,7 +18,7 @@ High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjw
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
-pod 'SwiftGif'
+pod 'SwiftyGif'
 ```
 
 ##How to Use
