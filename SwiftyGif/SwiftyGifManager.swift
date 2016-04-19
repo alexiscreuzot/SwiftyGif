@@ -41,7 +41,7 @@ public class SwiftyGifManager {
             self.haveCache = false
             for imageView in self.displayViews{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                    imageView.checkCache()
+                    imageView.updateCache()
                 }
             }
         }
@@ -61,7 +61,7 @@ public class SwiftyGifManager {
                     self.haveCache = true
                     for imageView in self.displayViews{
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                            imageView.checkCache()
+                            imageView.updateCache()
                         }
                     }
                 }

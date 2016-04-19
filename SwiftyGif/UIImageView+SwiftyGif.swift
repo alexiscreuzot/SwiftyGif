@@ -87,7 +87,7 @@ public extension UIImageView {
      */
     public func startDisplay() {
         self.displaying = true
-        checkCache()
+        updateCache()
     }
 
     /**
@@ -95,10 +95,13 @@ public extension UIImageView {
      */
     public func stopDisplay() {
         self.displaying = false
-        checkCache()
+        updateCache()
     }
 
-    public func checkCache() {
+    /**
+     Update cache for the current imageView.
+     */
+    public func updateCache() {
         if self.animationManager.hasCache(self) && !self.haveCache {
             prepareCache()
             self.haveCache = true
@@ -108,6 +111,9 @@ public extension UIImageView {
         }
     }
 
+    /**
+     Update current image displayed. This method is called by the manager.
+     */
     public func updateCurrentImage() {
         if self.displaying {
             if !self.haveCache {
@@ -133,6 +139,10 @@ public extension UIImageView {
         }
     }
 
+    /**
+     Check if the imageView has been discarded and is not in the view hierarchy anymore.
+     - Returns : A boolean for weather the imageView was discarded
+     */
     public func isDiscarded(imageView:UIView?) -> Bool{
         if(imageView == nil || imageView!.superview == nil) {
             return true
@@ -140,7 +150,10 @@ public extension UIImageView {
         return false
     }
 
-
+    /**
+     Check if the imageView is displayed.
+     - Returns : A boolean for weather the imageView is displayed
+     */
     public func isDisplayedInScreen(imageView:UIView?) ->Bool{
         if (self.hidden) {
             return false
@@ -156,6 +169,9 @@ public extension UIImageView {
         return (self.window != nil)
     }
 
+    /**
+     Update index.
+     */
     private func updateIndex() {
         if let gif = self.gifImage {
             self.syncFactor = (self.syncFactor+1) % gif.displayRefreshFactor!
@@ -168,6 +184,9 @@ public extension UIImageView {
         }
     }
 
+    /**
+     Prepare the cache by adding every images of the gif to an NSCache object.
+     */
     private func prepareCache() {
         self.cache.removeAllObjects()
 
