@@ -20,7 +20,7 @@ public extension UIImageView {
     // PRAGMA - Inits
 
     /**
-     Convenience initializer. The created gif will default to infinite loop.
+     Convenience initializer. Creates a gif holder (defaulted to infinite loop).
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
@@ -30,7 +30,7 @@ public extension UIImageView {
     }
 
     /**
-     Convenience initializer.
+     Convenience initializer. Creates a gif holder.
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.

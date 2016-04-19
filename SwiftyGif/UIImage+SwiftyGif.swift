@@ -17,36 +17,68 @@ public extension UIImage{
 
     // PRAGMA - Inits
 
+    /**
+     Convenience initializer. Creates a gif with its backing data. Defaulted level of integrity.
+     - Parameter gifData: The actual gif data
+     */
     public convenience init(gifData:NSData) {
         self.init()
         setGifFromData(gifData,levelOfIntegrity: defaultLevelOfIntegrity)
     }
 
+    /**
+     Convenience initializer. Creates a gif with its backing data.
+     - Parameter gifData: The actual gif data
+     - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+     */
     public convenience init(gifData:NSData, levelOfIntegrity:Float) {
         self.init()
         setGifFromData(gifData,levelOfIntegrity: levelOfIntegrity)
     }
 
+    /**
+     Convenience initializer. Creates a gif with its backing data. Defaulted level of integrity.
+     - Parameter gifName: Filename
+     */
     public convenience init(gifName: String) {
         self.init()
         setGif(gifName, levelOfIntegrity: defaultLevelOfIntegrity)
     }
 
+    /**
+     Convenience initializer. Creates a gif with its backing data.
+     - Parameter gifName: Filename
+     - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+     */
     public convenience init(gifName: String, levelOfIntegrity: Float) {
         self.init()
         setGif(gifName, levelOfIntegrity: levelOfIntegrity)
     }
 
+    /**
+     Set backing data for this gif. Overwrites any existing data.
+     - Parameter data: The actual gif data
+     - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+     */
     public func setGifFromData(data:NSData,levelOfIntegrity:Float) {
         imageSource = CGImageSourceCreateWithData(data, nil)
         calculateFrameDelay(delayTimes(imageSource), levelOfIntegrity: levelOfIntegrity)
         calculateFrameSize()
     }
 
+    /**
+     Set backing data for this gif. Overwrites any existing data.
+     - Parameter name: Filename
+     */
     public func setGif(name: String) {
         setGif(name, levelOfIntegrity: defaultLevelOfIntegrity)
     }
 
+    /**
+     Set backing data for this gif. Overwrites any existing data.
+     - Parameter name: Filename
+     - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+     */
     public func setGif(name: String, levelOfIntegrity: Float) {
         if let url = NSBundle.mainBundle().URLForResource(name, withExtension: "gif") {
             if let data = NSData(contentsOfURL:url) {
@@ -60,7 +92,12 @@ public extension UIImage{
     }
 
     // PRAGMA - Logic
-    
+
+    /**
+     Get delay times for each frames
+     - Parameter imageSource: reference to the gif image source
+     - Returns array of delays
+     */
     private func delayTimes(imageSource:CGImageSourceRef?)->[Float]{
         
         let imageCount = CGImageSourceGetCount(imageSource!)
@@ -90,7 +127,12 @@ public extension UIImage{
         }
         return frameDelays
     }
-    
+
+    /**
+     Compute backing data for this gif
+     - Parameter delaysArray: decoded delay times for this gif
+     - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+     */
     private func calculateFrameDelay(delaysArray:[Float],levelOfIntegrity:Float){
         
         var delays = delaysArray
@@ -107,8 +149,8 @@ public extension UIImage{
         //time interval per frame
         let displayRefreshDelayTime = displayRefreshRates.map{1.0/Float($0)}
         
-        //caclulate the time when eash frame should be displayed at(start at 0)
-        for i in 1..<delays.count{ delays[i]+=delays[i-1] }
+        //caclulate the time when each frame should be displayed at(start at 0)
+        for i in 1..<delays.count{ delays[i] += delays[i-1] }
         
         //find the appropriate Factors then BREAK
         for i in 0..<displayRefreshDelayTime.count{
@@ -128,18 +170,24 @@ public extension UIImage{
                 self.imageCount = displayPosition.last!
                 self.displayRefreshFactor = displayRefreshFactors[i]
                 self.displayOrder = [Int]()
-                var indexOfold = 0, indexOfnew = 1
-                while(indexOfnew<=imageCount){
-                    if(indexOfnew <= displayPosition[indexOfold]){
+                var indexOfold = 0
+                var indexOfnew = 1
+                while indexOfnew <= imageCount {
+                    if indexOfnew <= displayPosition[indexOfold] {
                         self.displayOrder!.append(indexOfold)
                         indexOfnew += 1
-                    }else{indexOfold += 1}
+                    }else{
+                        indexOfold += 1
+                    }
                 }
                 break
             }
         }
     }
 
+    /**
+     Compute frame size for this gif
+     */
     private func calculateFrameSize(){
         let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,0,nil)!)
         self.imageSize = Int(image.size.height*image.size.width*4)*self.imageCount!/1000000
