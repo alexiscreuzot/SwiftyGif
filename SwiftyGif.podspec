@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftyGif'
-  s.version          =  '1.0.2'
-  s.summary          = 'High performance Gif engine in Swift'
+  s.version          =  '1.1.0'
+  s.summary          = 'High performance Gif engine in Swift. Add Gif images to your projects and tune their CPU/Memory consumption easily!'
   s.homepage         = 'https://github.com/kirualex/SwiftyGif'
   s.license          = { :type => "MIT", :file => "LICENSE" }
   s.author           = { "Alexis Creuzot" => "alexis.creuzot@gmail.com" }
