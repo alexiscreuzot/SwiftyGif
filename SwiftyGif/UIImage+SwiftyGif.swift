@@ -75,6 +75,17 @@ public extension UIImage{
     }
 
     /**
+     Check the number of frame for this gif
+     - Return number of frames
+     */
+    public func framesCount() -> Int{
+        if let orders = self.displayOrder{
+            return orders.count
+        }
+        return 0
+    }
+
+    /**
      Set backing data for this gif. Overwrites any existing data.
      - Parameter name: Filename
      - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping

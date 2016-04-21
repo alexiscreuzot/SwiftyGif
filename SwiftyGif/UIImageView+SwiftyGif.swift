@@ -13,6 +13,7 @@ let _syncFactorKey = malloc(4)
 let _haveCacheKey = malloc(4)
 let _loopCountKey = malloc(4)
 let _displayingKey = malloc(4)
+let _isPlayingKey = malloc(4)
 let _animationManagerKey = malloc(4)
 
 public extension UIImageView {
@@ -75,6 +76,7 @@ public extension UIImageView {
                 if !manager.containsImageView(self) {
                     manager.addImageView(self)
                     startDisplay()
+                    startAnimatingGif()
                 }
             }
         }
@@ -85,7 +87,7 @@ public extension UIImageView {
     /**
      Start displaying the gif for this UIImageView.
      */
-    public func startDisplay() {
+    private func startDisplay() {
         self.displaying = true
         updateCache()
     }
@@ -93,9 +95,59 @@ public extension UIImageView {
     /**
      Stop displaying the gif for this UIImageView.
      */
-    public func stopDisplay() {
+    private func stopDisplay() {
         self.displaying = false
         updateCache()
+    }
+
+    /**
+     Start displaying the gif for this UIImageView.
+     */
+    public func startAnimatingGif() {
+        self.isPlaying = true
+    }
+
+    /**
+     Stop displaying the gif for this UIImageView.
+     */
+    public func stopAnimatingGif() {
+        self.isPlaying = false
+    }
+
+    /**
+     Check if this imageView is currently playing a gif
+     - Returns wether the gif is currently playing
+     */
+    public func isAnimatingGif() -> Bool{
+        return self.isPlaying
+    }
+
+    /**
+     Show a specific frame based on a delta from current frame
+      - Parameter delta: The delsta from current frame we want
+     */
+    public func showFrameForIndexDelta(delta: Int) {
+
+        var nextIndex = self.displayOrderIndex + delta
+
+        while nextIndex >= self.gifImage!.framesCount(){
+            nextIndex -= self.gifImage!.framesCount()
+        }
+
+        while nextIndex < 0 {
+            nextIndex += self.gifImage!.framesCount()
+        }
+
+        showFrameAtIndex(nextIndex)
+    }
+
+    /**
+     Show a specific frame
+      - Parameter index: The index of frame to show
+     */
+    public func showFrameAtIndex(index: Int) {
+        self.displayOrderIndex = index
+        updateFrame()
     }
 
     /**
@@ -115,22 +167,15 @@ public extension UIImageView {
      Update current image displayed. This method is called by the manager.
      */
     public func updateCurrentImage() {
-        if self.displaying {
-            if !self.haveCache {
-                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
-            }else{
-                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage) {
-                    self.currentImage = image
-                }else{
-                    self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
-                }//prevent case that cache is not ready
-            }
+
+        if self.displaying{
+            updateFrame()
             updateIndex()
-            if loopCount == 0 || !isDisplayedInScreen(self) {
+            if loopCount == 0 || !isDisplayedInScreen(self)  || !self.isPlaying {
                 stopDisplay()
             }
         }else{
-            if(isDisplayedInScreen(self) && loopCount != 0) {
+            if(isDisplayedInScreen(self) && loopCount != 0 && self.isPlaying) {
                 startDisplay()
             }
             if isDiscarded(self) {
@@ -140,11 +185,28 @@ public extension UIImageView {
     }
 
     /**
+     Force update frame
+     */
+    private func updateFrame() {
+        if !self.haveCache {
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+        }else{
+            if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage) {
+                self.currentImage = image
+            }else{
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+            }//prevent case that cache is not ready
+        }
+    }
+
+    /**
      Check if the imageView has been discarded and is not in the view hierarchy anymore.
      - Returns : A boolean for weather the imageView was discarded
      */
     public func isDiscarded(imageView:UIView?) -> Bool{
+
         if(imageView == nil || imageView!.superview == nil) {
+            print("discarded")
             return true
         }
         return false
@@ -170,7 +232,7 @@ public extension UIImageView {
     }
 
     /**
-     Update index.
+     Update loop count and sync factor.
      */
     private func updateIndex() {
         if let gif = self.gifImage {
@@ -268,6 +330,15 @@ public extension UIImageView {
         }
         set {
             objc_setAssociatedObject(self, _displayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+
+    private var isPlaying: Bool {
+        get {
+            return (objc_getAssociatedObject(self, _isPlayingKey) as! Bool)
+        }
+        set {
+            objc_setAssociatedObject(self, _isPlayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 

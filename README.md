@@ -3,13 +3,14 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-High performance Gif engine based on [JWAnimatedImage](https://github.com/wangjwchn/JWAnimatedImage)
+High performance & easy to use Gif engine
 
-![video](http://i.imgur.com/v9EHNrK.gif)
+<img src="http://i.imgur.com/p8A6jJh.gif" width="280" /> <img src="http://i.imgur.com/0hJ8MzW.gifv" width="280"  />
 
 ##Features
 - [x] UIImage and UIImageView extension based
 - [x] Great CPU/Memory performances
+- [x] Control playback
 - [x] Allow control of  display quality by using 'levelOfIntegrity'
 - [x] Allow control CPU/memory tradeoff via 'memoryLimit' 
 
@@ -22,6 +23,7 @@ pod 'SwiftyGif'
 ```
 
 ##How to Use
+
 ####Project files
 As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
 
@@ -59,8 +61,25 @@ You can furthermore set a specific number of loops to your gif via `loopCount`. 
 self.myImageView.setGifImage(gif, manager: gifManager, loopCount:2)// The gif will loop 2 times
 ```
 
+####Controls
+SwiftyGif offer various controls on the current `UIImageView` playing your gif file. 
+
+```swift
+self.myImageView.startAnimatingGif()
+self.myImageView.stopAnimatingGif()
+self.myImageView.showFrameAtIndexDelta(delta: Int)
+self.myImageView.showFrameAtIndex(index: Int)
+```
+
+To allow easy use of those controls, some utility methods are provided :
+
+```swift
+self.myImageView.isAnimatingGif() // Returns wether the gif is currently playing
+self.myImageView.gifImage!.framesCount() // Returns number of frames for this gif
+```
+
 ####Default Manager	
-If you only need to display one gif here and there, you can omit the `manager` parameter on `UIImageView` methods. By default, it will use the `SwiftyGifManager.defaultManager` with a default memory pool of 20Mb. 
+If you only need to display one gif here and there, you can use the `SwiftyGifManager.defaultManager` which will use a SwiftyGifManager singleton with a default memory pool of 50Mb. 
 
 ##Benchmark
 ####Display 1 Image

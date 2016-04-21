@@ -9,7 +9,7 @@ import Foundation
 public class SwiftyGifManager {
 
     // A convenient default manager if we only have one gif to display here and there
-    static var defaultManager = SwiftyGifManager(memoryLimit: 20)
+    static var defaultManager = SwiftyGifManager(memoryLimit: 50)
     
     private var timer: CADisplayLink?
     private var displayViews: [UIImageView] = []
@@ -53,8 +53,10 @@ public class SwiftyGifManager {
      - Parameter imageView: The UIImageView we want to delete
      */
     public func deleteImageView(imageView: UIImageView){
+
         if let index = self.displayViews.indexOf(imageView) {
-            if index >= 0 && index < self.displayViews.count-1 {
+
+
                 self.displayViews.removeAtIndex(index)
                 self.totalGifSize -= imageView.gifImage!.imageSize!
                 if self.totalGifSize < memoryLimit && !self.haveCache {
@@ -65,7 +67,7 @@ public class SwiftyGifManager {
                         }
                     }
                 }
-            }
+            
         }
     }
 
@@ -100,13 +102,18 @@ public class SwiftyGifManager {
      This is what create the animation.
      */
     @objc func updateImageView(){
+
         for imageView in self.displayViews {
+
             dispatch_async(dispatch_get_main_queue()){
                 imageView.image = imageView.currentImage
             }
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                imageView.updateCurrentImage()
+            if imageView.isAnimatingGif() {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
+                    imageView.updateCurrentImage()
+                }
             }
+
         }
     }
     
