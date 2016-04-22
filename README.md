@@ -5,7 +5,7 @@
 
 High performance & easy to use Gif engine
 
-<img src="http://i.imgur.com/p8A6jJh.gif" width="280" /> <img src="http://i.imgur.com/0hJ8MzW.gifv" width="280"  />
+<img src="http://i.imgur.com/p8A6jJh.gif" width="280" /> <img src="http://i.imgur.com/0hJ8MzW.gif" width="280"  />
 
 ##Features
 - [x] UIImage and UIImageView extension based
