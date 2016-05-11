@@ -10,6 +10,7 @@ let _displayRefreshFactorKey = malloc(4)
 let _imageCountKey = malloc(4)
 let _displayOrderKey = malloc(4)
 let _imageSizeKey = malloc(4)
+let _imageDataKey = malloc(4)
 
 let defaultLevelOfIntegrity: Float = 0.8
 
@@ -61,7 +62,11 @@ public extension UIImage{
      - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
      */
     public func setGifFromData(data:NSData,levelOfIntegrity:Float) {
+        self.imageData = data
         imageSource = CGImageSourceCreateWithData(data, nil)
+
+        print(imageSource)
+
         calculateFrameDelay(delayTimes(imageSource), levelOfIntegrity: levelOfIntegrity)
         calculateFrameSize()
     }
@@ -248,6 +253,15 @@ public extension UIImage{
         }
         set {
             objc_setAssociatedObject(self, _displayOrderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+
+    public var imageData: NSData {
+        get {
+            return (objc_getAssociatedObject(self, _imageDataKey) as! NSData)
+        }
+        set {
+            objc_setAssociatedObject(self, _imageDataKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 }
