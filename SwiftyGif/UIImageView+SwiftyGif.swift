@@ -60,7 +60,7 @@ public extension UIImageView {
      */
     public func setGifImage(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
 
-        if gifImage.imageCount <= 1 {
+        if gifImage.imageCount < 1 {
             self.image = UIImage(data: gifImage.imageData)
             return
         }
