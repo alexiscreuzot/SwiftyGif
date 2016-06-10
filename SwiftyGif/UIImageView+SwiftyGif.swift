@@ -211,7 +211,6 @@ public extension UIImageView {
     public func isDiscarded(imageView:UIView?) -> Bool{
 
         if(imageView == nil || imageView!.superview == nil) {
-            print("discarded")
             return true
         }
         return false

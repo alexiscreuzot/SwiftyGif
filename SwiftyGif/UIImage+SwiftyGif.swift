@@ -65,8 +65,6 @@ public extension UIImage{
         self.imageData = data
         imageSource = CGImageSourceCreateWithData(data, nil)
 
-        print(imageSource)
-
         calculateFrameDelay(delayTimes(imageSource), levelOfIntegrity: levelOfIntegrity)
         calculateFrameSize()
     }
