@@ -16,7 +16,9 @@ public class SwiftyGifManager {
     private var totalGifSize: Int
     private var memoryLimit: Int
     public var  haveCache: Bool
-
+    
+    let serialQueue: dispatch_queue_t = dispatch_queue_create("com.SwiftyGifManager.queue", dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL, QOS_CLASS_USER_INITIATED, 0))
+    
     /**
      Initialize a manager
      - Parameter memoryLimit: The number of Mb max for this manager
@@ -109,7 +111,7 @@ public class SwiftyGifManager {
                 imageView.image = imageView.currentImage
             }
             if imageView.isAnimatingGif() {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
+                dispatch_async(serialQueue) {
                     imageView.updateCurrentImage()
                 }
             }
