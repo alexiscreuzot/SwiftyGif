@@ -1,0 +1,9 @@
+language: objective-c #Even if it's swift...
+
+branches:
+ only:
+ - master
+
+xcode_project: SwiftyGif.xcproject
+xcode_scheme: SwiftyGif
+xcode_sdk: iphonesimulator9.3
