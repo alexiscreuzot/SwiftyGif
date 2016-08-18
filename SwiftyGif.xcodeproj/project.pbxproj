@@ -15,7 +15,6 @@
 		FA57CC9C1CB3EDAA000F3476 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC8E1CB3EDAA000F3476 /* Cell.swift */; };
 		FA57CC9D1CB3EDAA000F3476 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC8F1CB3EDAA000F3476 /* DetailController.swift */; };
 		FA57CCA31CB3EDAA000F3476 /* 5.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC951CB3EDAA000F3476 /* 5.gif */; };
-		FA57CCA41CB3EDAA000F3476 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC961CB3EDAA000F3476 /* Info.plist */; };
 		FA57CCA51CB3EDAA000F3476 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC971CB3EDAA000F3476 /* ViewController.swift */; };
 		FAC7163C1CCA26AE0018A0CF /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163A1CCA26AE0018A0CF /* 2.gif */; };
 		FAC7163D1CCA26AE0018A0CF /* 4.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163B1CCA26AE0018A0CF /* 4.gif */; };
@@ -188,14 +187,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = alexiscreuzot;
 				TargetAttributes = {
 					FA29E9311CA9340E00E579D5 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 					};
 					FA29E9451CA9340F00E579D5 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = FA29E9311CA9340E00E579D5;
 					};
 				};
@@ -230,7 +231,6 @@
 				FAC7163C1CCA26AE0018A0CF /* 2.gif in Resources */,
 				FAF19DE11CC90F9200454324 /* 3.gif in Resources */,
 				FA57CCA31CB3EDAA000F3476 /* 5.gif in Resources */,
-				FA57CCA41CB3EDAA000F3476 /* Info.plist in Resources */,
 				FAC7163D1CCA26AE0018A0CF /* 4.gif in Resources */,
 				FA57CC9A1CB3EDAA000F3476 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -312,8 +312,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -358,8 +360,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -378,6 +382,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -391,6 +396,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -402,6 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -413,6 +420,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGifTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyGif.app/SwiftyGif";
 			};
 			name = Debug;
@@ -425,6 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGifTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyGif.app/SwiftyGif";
 			};
 			name = Release;
