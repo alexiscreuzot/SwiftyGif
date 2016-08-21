@@ -5,6 +5,9 @@
 
 High performance & easy to use Gif engine
 
+###Current version is Swift 3 compatible
+###Use version 1.2.2 for Swift 2
+
 <img src="http://i.imgur.com/p8A6jJh.gif" width="280" /> <img src="http://i.imgur.com/0hJ8MzW.gif" width="280"  />
 
 ##Features
