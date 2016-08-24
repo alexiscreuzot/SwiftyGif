@@ -6,4 +6,4 @@ branches:
  - master
 
 script:
- - xcodebuild test -project SwiftyGif.xcodeproj -scheme SwiftyGif -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' | xcpretty
+ - xcodebuild build -project SwiftyGif.xcodeproj -scheme SwiftyGif -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' | xcpretty
