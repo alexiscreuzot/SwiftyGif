@@ -1,9 +1,9 @@
 language: objective-c #Even if it's swift...
+osx_image: xcode8
 
 branches:
  only:
  - master
 
-xcode_project: SwiftyGif.xcproject
-xcode_scheme: SwiftyGif
-xcode_sdk: iphonesimulator9.3
+script:
+ - xcodebuild build -project SwiftyGif.xcodeproj -scheme SwiftyGif -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.0' | xcpretty
