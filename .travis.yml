@@ -4,6 +4,6 @@ branches:
  only:
  - master
 
+osx_image: xcode8
 xcode_project: SwiftyGif.xcproject
 xcode_scheme: SwiftyGif
-xcode_sdk: iphonesimulator9.3
