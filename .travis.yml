@@ -6,4 +6,4 @@ branches:
  - master
 
 script:
- - xcodebuild -project SwiftyGif.xcodeproj -target SwiftyGif -sdk iphonesimulator10.0
+ - xcodebuild test -project SwiftyGif.xcodeproj -target SwiftyGif -sdk iphonesimulator10.0
