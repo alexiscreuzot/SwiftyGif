@@ -78,6 +78,35 @@ self.myImageView.isAnimatingGif() // Returns wether the gif is currently playing
 self.myImageView.gifImage!.framesCount() // Returns number of frames for this gif
 ```
 
+####Delegate
+You can declare a SwiftyGifDelegate to receive updates on the gif lifecycle.
+For instance, if you want your controller `MyController` to act as the delegate:
+```swift
+override func viewDidLoad() {
+        super.viewDidLoad()
+        self.imageView.delegate = self
+}
+```
+
+Then simply add an extension:
+
+```swift
+extension MyController : SwiftyGifDelegate {
+
+    func gifDidStart() {
+        print("gifDidStart")
+    }
+    
+    func gifDidLoop() {
+        print("gifDidLoop")
+    }
+    
+    func gifDidStop() {
+        print("gifDidStop")
+    }
+}
+```
+
 ####Default Manager	
 If you only need to display one gif here and there, you can use the `SwiftyGifManager.defaultManager` which will use a SwiftyGifManager singleton with a default memory pool of 50Mb. 
 

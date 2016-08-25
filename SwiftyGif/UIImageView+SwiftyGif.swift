@@ -26,6 +26,13 @@ let _loopCountKey = malloc(4)
 let _displayingKey = malloc(4)
 let _isPlayingKey = malloc(4)
 let _animationManagerKey = malloc(4)
+let _delegateKey = malloc(4)
+
+@objc public protocol SwiftyGifDelegate {
+    @objc optional func gifDidStart()
+    @objc optional func gifDidLoop()
+    @objc optional func gifDidStop()
+}
 
 public extension UIImageView {
     
@@ -97,7 +104,7 @@ public extension UIImageView {
             }
         }
     }
-    
+
     // PRAGMA - Logic
     
     /**
@@ -114,6 +121,7 @@ public extension UIImageView {
     fileprivate func stopDisplay() {
         self.displaying = false
         updateCache()
+        
     }
     
     /**
@@ -205,14 +213,28 @@ public extension UIImageView {
      */
     fileprivate func updateFrame() {
         if !self.haveCache {
-            self.currentImage = UIImage(cgImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+            self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
         }else{
             if let image = (cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage) {
                 self.currentImage = image
             }else{
-                self.currentImage = UIImage(cgImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![self.displayOrderIndex],nil)!)
+                self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
             }//prevent case that cache is not ready
         }
+    }
+    
+    /**
+     Get current frame index
+     */
+    public func currentFrameIndex() -> Int{
+        return self.displayOrderIndex
+    }
+
+    /**
+     Get frame at specifi index
+     */
+    public func frameAtIndex(index: Int) -> UIImage {
+        return UIImage(cgImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![index],nil)!)
     }
     
     /**
@@ -254,8 +276,12 @@ public extension UIImageView {
             self.syncFactor = (self.syncFactor+1) % gif.displayRefreshFactor!
             if self.syncFactor == 0 {
                 self.displayOrderIndex = (self.displayOrderIndex+1) % gif.imageCount!
-                if displayOrderIndex == 0 && self.loopCount > 0 {
-                    self.loopCount -= 1;
+                
+                if displayOrderIndex == 0 {
+                    if self.loopCount > 0 {
+                        self.loopCount -= 1
+                    }
+                    self.delegate?.gifDidLoop?()
                 }
             }
         }
@@ -330,6 +356,15 @@ public extension UIImageView {
         }
     }
     
+    public var delegate: SwiftyGifDelegate? {
+        get {
+            return (objc_getAssociatedObject(self, _delegateKey) as! SwiftyGifDelegate?)
+        }
+        set {
+            objc_setAssociatedObject(self, _delegateKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
     fileprivate var haveCache: Bool {
         get {
             return (objc_getAssociatedObject(self, _haveCacheKey) as! Bool)
@@ -353,7 +388,14 @@ public extension UIImageView {
             return (objc_getAssociatedObject(self, _isPlayingKey) as! Bool)
         }
         set {
+            
             objc_setAssociatedObject(self, _isPlayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            
+            if newValue {
+                self.delegate?.gifDidStart?()
+            } else {
+                self.delegate?.gifDidStop?()
+            }
         }
     }
     

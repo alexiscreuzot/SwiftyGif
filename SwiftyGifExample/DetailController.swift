@@ -23,6 +23,8 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imageView.delegate = self
+        
         if let imgName = self.gifName {
             let gifImage = UIImage(gifName: imgName)
             self.imageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
@@ -108,6 +110,19 @@ class DetailController: UIViewController {
             break
         }
     }
+}
 
+extension DetailController : SwiftyGifDelegate {
 
+    func gifDidStart() {
+        print("gifDidStart")
+    }
+    
+    func gifDidLoop() {
+        print("gifDidLoop")
+    }
+    
+    func gifDidStop() {
+        print("gifDidStop")
+    }
 }
