@@ -40,7 +40,7 @@ open class SwiftyGifManager {
         if self.totalGifSize > memoryLimit && self.haveCache {
             self.haveCache = false
             for imageView in self.displayViews{
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async{
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
                     imageView.updateCache()
                 }
             }
@@ -61,7 +61,7 @@ open class SwiftyGifManager {
                 if self.totalGifSize < memoryLimit && !self.haveCache {
                     self.haveCache = true
                     for imageView in self.displayViews{
-                        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async{
+                        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
                             imageView.updateCache()
                         }
                     }
@@ -101,18 +101,17 @@ open class SwiftyGifManager {
      This is what create the animation.
      */
     @objc func updateImageView(){
-        
         for imageView in self.displayViews {
-            
+
             DispatchQueue.main.async{
                 imageView.image = imageView.currentImage
             }
             if imageView.isAnimatingGif() {
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async{
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
                     imageView.updateCurrentImage()
                 }
             }
-            
+
         }
     }
     
