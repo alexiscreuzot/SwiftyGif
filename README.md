@@ -1,4 +1,4 @@
-[![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-3-orange.svg)](http://swift.org)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftyGif.svg)](https://img.shields.io/cocoapods/v/SwiftyGif.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
@@ -76,6 +76,35 @@ To allow easy use of those controls, some utility methods are provided :
 ```swift
 self.myImageView.isAnimatingGif() // Returns wether the gif is currently playing
 self.myImageView.gifImage!.framesCount() // Returns number of frames for this gif
+```
+
+####Delegate
+You can declare a SwiftyGifDelegate to receive updates on the gif lifecycle.
+For instance, if you want your controller `MyController` to act as the delegate:
+```swift
+override func viewDidLoad() {
+        super.viewDidLoad()
+        self.imageView.delegate = self
+}
+```
+
+Then simply add an extension:
+
+```swift
+extension MyController : SwiftyGifDelegate {
+
+    func gifDidStart() {
+        print("gifDidStart")
+    }
+    
+    func gifDidLoop() {
+        print("gifDidLoop")
+    }
+    
+    func gifDidStop() {
+        print("gifDidStop")
+    }
+}
 ```
 
 ####Default Manager	

@@ -17,12 +17,14 @@ class DetailController: UIViewController {
 
     var gifName: String?
     let gifManager = SwiftyGifManager(memoryLimit:60)
-    var _rewindTimer: NSTimer?
-    var _forwardTimer: NSTimer?
+    var _rewindTimer: Timer?
+    var _forwardTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.imageView.delegate = self
+        
         if let imgName = self.gifName {
             let gifImage = UIImage(gifName: imgName)
             self.imageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
@@ -31,7 +33,7 @@ class DetailController: UIViewController {
         // Gestures for gif control
         let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.panGesture))
         self.imageView.addGestureRecognizer(panGesture)
-        self.imageView.userInteractionEnabled = true
+        self.imageView.isUserInteractionEnabled = true
 
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(self.togglePlay))
         self.imageView.addGestureRecognizer(tapGesture)
@@ -49,12 +51,12 @@ class DetailController: UIViewController {
 
     func stop(){
         self.imageView.stopAnimatingGif()
-        self.playPauseButton.setTitle("►", forState: .Normal)
+        self.playPauseButton.setTitle("►", for: .normal)
     }
 
     func play(){
         self.imageView.startAnimatingGif()
-        self.playPauseButton.setTitle("❚❚", forState: .Normal)
+        self.playPauseButton.setTitle("❚❚", for: .normal)
     }
 
     // PRAGMA - Actions
@@ -69,7 +71,7 @@ class DetailController: UIViewController {
 
     @IBAction func rewindDown(){
         stop()
-        _rewindTimer = NSTimer.scheduledTimerWithTimeInterval(1.0/30.0, target: self, selector: #selector(self.rewind), userInfo: nil, repeats: true)
+        _rewindTimer = Timer.scheduledTimer(timeInterval: 1.0/30.0, target: self, selector: #selector(self.rewind), userInfo: nil, repeats: true)
     }
 
     @IBAction func rewindUp(){
@@ -79,7 +81,7 @@ class DetailController: UIViewController {
 
     @IBAction func forwardDown(){
         stop()
-        _forwardTimer = NSTimer.scheduledTimerWithTimeInterval(1.0/30.0, target: self, selector: #selector(self.forward), userInfo: nil, repeats: true)
+        _forwardTimer = Timer.scheduledTimer(timeInterval: 1.0/30.0, target: self, selector: #selector(self.forward), userInfo: nil, repeats: true)
     }
 
     @IBAction func forwardUp(){
@@ -92,12 +94,12 @@ class DetailController: UIViewController {
     func panGesture(sender:UIPanGestureRecognizer){
 
         switch sender.state {
-        case .Began:
+        case .began:
             stop()
             break
 
-        case .Changed:
-            if sender.velocityInView(sender.view).x > 0 {
+        case .changed:
+            if sender.velocity(in: sender.view).x > 0 {
                 forward()
             } else{
                 rewind()
@@ -108,6 +110,19 @@ class DetailController: UIViewController {
             break
         }
     }
+}
 
+extension DetailController : SwiftyGifDelegate {
 
+    func gifDidStart() {
+        print("gifDidStart")
+    }
+    
+    func gifDidLoop() {
+        print("gifDidLoop")
+    }
+    
+    func gifDidStop() {
+        print("gifDidStop")
+    }
 }
