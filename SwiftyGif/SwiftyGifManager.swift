@@ -111,7 +111,7 @@ public class SwiftyGifManager {
                 imageView.image = imageView.currentImage
             }
             if imageView.isAnimatingGif() {
-                dispatch_async(serialQueue) {
+                dispatch_sync(serialQueue) {
                     imageView.updateCurrentImage()
                 }
             }
