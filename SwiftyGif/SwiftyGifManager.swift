@@ -9,7 +9,7 @@ import Foundation
 open class SwiftyGifManager {
     
     // A convenient default manager if we only have one gif to display here and there
-    static var defaultManager = SwiftyGifManager(memoryLimit: 50)
+    public static var defaultManager = SwiftyGifManager(memoryLimit: 50)
     
     fileprivate var timer: CADisplayLink?
     fileprivate var displayViews: [UIImageView] = []

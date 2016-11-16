@@ -114,7 +114,8 @@ public extension UIImage{
      - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
      */
     public func setGif(_ name: String, levelOfIntegrity: Float) {
-        if let url = Bundle.main.url(forResource: name, withExtension: "gif") {
+        if let url = Bundle.main.url(forResource: name,
+                                     withExtension: name.getPathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
                 setGifFromData(data,levelOfIntegrity: levelOfIntegrity)
             } else {
@@ -281,5 +282,11 @@ public extension UIImage{
         set {
             objc_setAssociatedObject(self, _imageDataKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
+    }
+}
+
+extension String {
+    func getPathExtension() -> String {
+        return (self as NSString).pathExtension
     }
 }
