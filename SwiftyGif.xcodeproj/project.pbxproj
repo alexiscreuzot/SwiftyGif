@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B18BAF81E289899009C125A /* SwiftyGif.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B18BAF61E289899009C125A /* SwiftyGif.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3B18BAFB1E289899009C125A /* SwiftyGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18BAF41E289899009C125A /* SwiftyGif.framework */; };
+		3B18BAFC1E289899009C125A /* SwiftyGif.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18BAF41E289899009C125A /* SwiftyGif.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
+		3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
+		3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
 		FA29E94B1CA9340F00E579D5 /* SwiftyGifTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */; };
 		FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */; };
 		FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC881CB3EDAA000F3476 /* Assets.xcassets */; };
@@ -18,14 +24,18 @@
 		FA57CCA51CB3EDAA000F3476 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC971CB3EDAA000F3476 /* ViewController.swift */; };
 		FAC7163C1CCA26AE0018A0CF /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163A1CCA26AE0018A0CF /* 2.gif */; };
 		FAC7163D1CCA26AE0018A0CF /* 4.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163B1CCA26AE0018A0CF /* 4.gif */; };
-		FAE121E41CB2A3DD00960D00 /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
-		FAE121E51CB2A3DD00960D00 /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
-		FAE121E61CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
 		FAF19DDF1CC90F9200454324 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF19DDA1CC90F9200454324 /* 1.gif */; };
 		FAF19DE11CC90F9200454324 /* 3.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF19DDC1CC90F9200454324 /* 3.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3B18BAF91E289899009C125A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA29E92A1CA9340E00E579D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B18BAF31E289899009C125A;
+			remoteInfo = SwiftyGif;
+		};
 		FA29E9471CA9340F00E579D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA29E92A1CA9340E00E579D5 /* Project object */;
@@ -35,8 +45,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3B18BB001E289899009C125A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3B18BAFC1E289899009C125A /* SwiftyGif.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		FA29E9321CA9340E00E579D5 /* SwiftyGif.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyGif.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B18BAF41E289899009C125A /* SwiftyGif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
+		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyGifExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyGifTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifTests.swift; sourceTree = "<group>"; };
 		FA29E94C1CA9340F00E579D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,10 +86,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3B18BAF01E289899009C125A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA29E92F1CA9340E00E579D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B18BAFB1E289899009C125A /* SwiftyGif.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +111,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B18BAF51E289899009C125A /* SwiftyGif */ = {
+			isa = PBXGroup;
+			children = (
+				3B18BAF61E289899009C125A /* SwiftyGif.h */,
+				3B18BAF71E289899009C125A /* Info.plist */,
+			);
+			path = SwiftyGif;
+			sourceTree = "<group>";
+		};
 		FA29E9291CA9340E00E579D5 = {
 			isa = PBXGroup;
 			children = (
 				FA29E9551CA9342F00E579D5 /* SwiftyGif */,
 				FA29E9341CA9340E00E579D5 /* SwiftyGifExample */,
 				FA29E9491CA9340F00E579D5 /* SwiftyGifTests */,
+				3B18BAF51E289899009C125A /* SwiftyGif */,
 				FA29E9331CA9340E00E579D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,8 +134,9 @@
 		FA29E9331CA9340E00E579D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA29E9321CA9340E00E579D5 /* SwiftyGif.app */,
+				FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */,
 				FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */,
+				3B18BAF41E289899009C125A /* SwiftyGif.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -144,14 +190,26 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		3B18BAF11E289899009C125A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B18BAF81E289899009C125A /* SwiftyGif.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		FA29E9311CA9340E00E579D5 /* SwiftyGif */ = {
+		3B18BAF31E289899009C125A /* SwiftyGif */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA29E94F1CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGif" */;
+			buildConfigurationList = 3B18BAFD1E289899009C125A /* Build configuration list for PBXNativeTarget "SwiftyGif" */;
 			buildPhases = (
-				FA29E92E1CA9340E00E579D5 /* Sources */,
-				FA29E92F1CA9340E00E579D5 /* Frameworks */,
-				FA29E9301CA9340E00E579D5 /* Resources */,
+				3B18BAEF1E289899009C125A /* Sources */,
+				3B18BAF01E289899009C125A /* Frameworks */,
+				3B18BAF11E289899009C125A /* Headers */,
+				3B18BAF21E289899009C125A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -159,7 +217,26 @@
 			);
 			name = SwiftyGif;
 			productName = SwiftyGif;
-			productReference = FA29E9321CA9340E00E579D5 /* SwiftyGif.app */;
+			productReference = 3B18BAF41E289899009C125A /* SwiftyGif.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA29E9311CA9340E00E579D5 /* SwiftyGifExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA29E94F1CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGifExample" */;
+			buildPhases = (
+				FA29E92E1CA9340E00E579D5 /* Sources */,
+				FA29E92F1CA9340E00E579D5 /* Frameworks */,
+				FA29E9301CA9340E00E579D5 /* Resources */,
+				3B18BB001E289899009C125A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B18BAFA1E289899009C125A /* PBXTargetDependency */,
+			);
+			name = SwiftyGifExample;
+			productName = SwiftyGif;
+			productReference = FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 		FA29E9451CA9340F00E579D5 /* SwiftyGifTests */ = {
@@ -190,6 +267,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = alexiscreuzot;
 				TargetAttributes = {
+					3B18BAF31E289899009C125A = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 					FA29E9311CA9340E00E579D5 = {
 						CreatedOnToolsVersion = 7.3;
 						LastSwiftMigration = 0800;
@@ -214,13 +295,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA29E9311CA9340E00E579D5 /* SwiftyGif */,
+				FA29E9311CA9340E00E579D5 /* SwiftyGifExample */,
 				FA29E9451CA9340F00E579D5 /* SwiftyGifTests */,
+				3B18BAF31E289899009C125A /* SwiftyGif */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3B18BAF21E289899009C125A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA29E9301CA9340E00E579D5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,17 +335,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3B18BAEF1E289899009C125A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */,
+				3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */,
+				3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA29E92E1CA9340E00E579D5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */,
-				FAE121E41CB2A3DD00960D00 /* SwiftyGifManager.swift in Sources */,
 				FA57CC9C1CB3EDAA000F3476 /* Cell.swift in Sources */,
-				FAE121E51CB2A3DD00960D00 /* UIImage+SwiftyGif.swift in Sources */,
 				FA57CCA51CB3EDAA000F3476 /* ViewController.swift in Sources */,
 				FA57CC9D1CB3EDAA000F3476 /* DetailController.swift in Sources */,
-				FAE121E61CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,9 +367,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3B18BAFA1E289899009C125A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B18BAF31E289899009C125A /* SwiftyGif */;
+			targetProxy = 3B18BAF91E289899009C125A /* PBXContainerItemProxy */;
+		};
 		FA29E9481CA9340F00E579D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FA29E9311CA9340E00E579D5 /* SwiftyGif */;
+			target = FA29E9311CA9340E00E579D5 /* SwiftyGifExample */;
 			targetProxy = FA29E9471CA9340F00E579D5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -298,6 +399,53 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3B18BAFE1E289899009C125A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftyGif/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif.SwiftyGif;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3B18BAFF1E289899009C125A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SwiftyGif/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif.SwiftyGif;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FA29E94D1CA9340F00E579D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,6 +539,7 @@
 		FA29E9501CA9340F00E579D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftyGifExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -403,6 +552,7 @@
 		FA29E9511CA9340F00E579D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "$(SRCROOT)/SwiftyGifExample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -441,6 +591,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3B18BAFD1E289899009C125A /* Build configuration list for PBXNativeTarget "SwiftyGif" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B18BAFE1E289899009C125A /* Debug */,
+				3B18BAFF1E289899009C125A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		FA29E92D1CA9340E00E579D5 /* Build configuration list for PBXProject "SwiftyGif" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -450,7 +608,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA29E94F1CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGif" */ = {
+		FA29E94F1CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGifExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA29E9501CA9340F00E579D5 /* Debug */,

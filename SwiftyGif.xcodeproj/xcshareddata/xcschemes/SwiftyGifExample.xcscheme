@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0800"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B18BAF31E289899009C125A"
-               BuildableName = "SwiftyGif.framework"
-               BlueprintName = "SwiftyGif"
+               BlueprintIdentifier = "FA29E9311CA9340E00E579D5"
+               BuildableName = "SwiftyGifExample.app"
+               BlueprintName = "SwiftyGifExample"
                ReferencedContainer = "container:SwiftyGif.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA29E9451CA9340F00E579D5"
+               BuildableName = "SwiftyGifTests.xctest"
+               BlueprintName = "SwiftyGifTests"
+               ReferencedContainer = "container:SwiftyGif.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FA29E9311CA9340E00E579D5"
+            BuildableName = "SwiftyGifExample.app"
+            BlueprintName = "SwiftyGifExample"
+            ReferencedContainer = "container:SwiftyGif.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B18BAF31E289899009C125A"
-            BuildableName = "SwiftyGif.framework"
-            BlueprintName = "SwiftyGif"
+            BlueprintIdentifier = "FA29E9311CA9340E00E579D5"
+            BuildableName = "SwiftyGifExample.app"
+            BlueprintName = "SwiftyGifExample"
             ReferencedContainer = "container:SwiftyGif.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +80,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B18BAF31E289899009C125A"
-            BuildableName = "SwiftyGif.framework"
-            BlueprintName = "SwiftyGif"
+            BlueprintIdentifier = "FA29E9311CA9340E00E579D5"
+            BuildableName = "SwiftyGifExample.app"
+            BlueprintName = "SwiftyGifExample"
             ReferencedContainer = "container:SwiftyGif.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
