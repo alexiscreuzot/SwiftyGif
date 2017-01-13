@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftyGif
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
