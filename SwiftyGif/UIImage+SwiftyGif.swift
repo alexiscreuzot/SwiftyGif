@@ -199,10 +199,6 @@ public extension UIImage{
                 }
             }
             
-            if(displayPosition[0] == 0){
-                framelosecount += 1
-            }
-            
             if framelosecount <= Float(displayPosition.count) * (1.0 - levelOfIntegrity) ||
                 i == displayRefreshDelayTime.count-1 {
                 
