@@ -362,7 +362,7 @@ public extension UIImageView {
             return (objc_getAssociatedObject(self, _delegateKey) as! SwiftyGifDelegate?)
         }
         set {
-            objc_setAssociatedObject(self, _delegateKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _delegateKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN);
         }
     }
     
