@@ -253,13 +253,14 @@ public extension UIImageView {
      Check if the imageView is displayed.
      - Returns : A boolean for weather the imageView is displayed
      */
+    
     public func isDisplayedInScreen(_ imageView:UIView?) ->Bool{
         if (self.isHidden) {
             return false
         }
         
         let screenRect = UIScreen.main.bounds
-        let viewRect = imageView!.convert(self.frame,to:UIApplication.shared.keyWindow)
+        let viewRect = imageView!.convert(self.frame, to:nil)
         
         let intersectionRect = viewRect.intersection(screenRect);
         if (intersectionRect.isEmpty || intersectionRect.isNull) {
