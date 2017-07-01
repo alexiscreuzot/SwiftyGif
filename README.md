@@ -35,6 +35,8 @@ To use SwiftyGif you need 3 components:
 - A `SwiftyGifManager` which can hold one or several `UIImageView` using the same memory pool.
 
 ```swift
+import SwiftyGif
+
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 let gif = UIImage(gifName: "MyImage.gif")
 let imageview = UIImageView(gifImage: gif, manager: gifManager)
