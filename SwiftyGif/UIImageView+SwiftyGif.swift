@@ -209,14 +209,10 @@ public extension UIImageView {
      Force update frame
      */
     fileprivate func updateFrame() {
-        if !self.haveCache {
-            self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
-        }else{
-            if let image = (cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage) {
-                self.currentImage = image
-            }else{
-                self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
-            }//prevent case that cache is not ready
+        if haveCache, let image = cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage {
+            currentImage = image
+        } else {
+            currentImage = frameAtIndex(index: currentFrameIndex())
         }
     }
     

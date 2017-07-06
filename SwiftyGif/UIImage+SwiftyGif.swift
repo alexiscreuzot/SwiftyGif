@@ -237,16 +237,16 @@ public extension UIImage {
             if framelosecount <= Float(displayPosition.count) * (1.0 - levelOfIntegrity) ||
                 i == displayRefreshDelayTime.count-1 {
                 
-                self.imageCount = displayPosition.last!
-                self.displayRefreshFactor = displayRefreshFactors[i]
-                self.displayOrder = [Int]()
+                imageCount = displayPosition.last!
+                displayRefreshFactor = displayRefreshFactors[i]
+                displayOrder = [Int]()
                 var indexOfold = 0
                 var indexOfnew = 1
                 while indexOfnew <= imageCount {
                     if indexOfnew <= displayPosition[indexOfold] {
-                        self.displayOrder!.append(indexOfold)
+                        displayOrder!.append(indexOfold)
                         indexOfnew += 1
-                    }else{
+                    } else {
                         indexOfold += 1
                     }
                 }
@@ -269,7 +269,7 @@ public extension UIImage {
             return
         }
         let image = UIImage(cgImage:cgImage)
-        self.imageSize = Int(image.size.height*image.size.width*4)*imageCount/1000000
+        imageSize = Int(image.size.height * image.size.width * 4) * imageCount / 1000000
     }
     
     // MARK: get / set associated values
