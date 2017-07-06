@@ -262,6 +262,18 @@ public extension UIImageView {
         return (self.window != nil)
     }
     
+    public func clear() {
+        if let gifImage = gifImage {
+            gifImage.clear()
+            
+        }
+        gifImage = nil
+        currentImage = nil
+        cache.removeAllObjects()
+        animationManager = nil
+        image = nil
+    }
+    
     /**
      Update loop count and sync factor.
      */

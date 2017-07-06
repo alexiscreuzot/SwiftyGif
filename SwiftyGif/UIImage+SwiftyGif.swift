@@ -140,6 +140,15 @@ public extension UIImage {
         }
     }
     
+    public func clear() {
+        imageData = nil
+        imageSource = nil
+        displayOrder = nil
+        imageCount = nil
+        imageSize = nil
+        displayRefreshFactor = nil
+    }
+    
     // MARK: Logic
 
     fileprivate func convertToDelay(_ pointer:UnsafeRawPointer?) -> Float? {

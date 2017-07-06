@@ -52,6 +52,12 @@ open class SwiftyGifManager {
         return true
     }
     
+    open func clear() {
+        while !displayViews.isEmpty {
+            displayViews.removeFirst().clear()
+        }
+    }
+    
     /**
      Delete an imageView from this manager if it exists
      - Parameter imageView: The UIImageView we want to delete
