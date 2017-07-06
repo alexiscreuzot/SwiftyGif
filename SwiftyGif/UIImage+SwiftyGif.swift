@@ -42,7 +42,7 @@ fileprivate enum GifParseError:Error {
 }
 
 
-public extension UIImage{
+public extension UIImage {
     
     // MARK: Inits
     

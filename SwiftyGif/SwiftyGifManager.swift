@@ -23,29 +23,33 @@ open class SwiftyGifManager {
      */
     public init(memoryLimit: Int) {
         self.memoryLimit = memoryLimit
-        self.totalGifSize = 0
-        self.haveCache = true
-        self.timer = CADisplayLink(target: self, selector: #selector(self.updateImageView))
-        self.timer!.add(to: .main, forMode: RunLoopMode.commonModes)
+        totalGifSize = 0
+        haveCache = true
+        timer = CADisplayLink(target: self, selector: #selector(updateImageView))
+        timer!.add(to: .main, forMode: RunLoopMode.commonModes)
     }
     
     /**
      Add a new imageView to this manager if it doesn't exist
      - Parameter imageView: The UIImageView we're adding to this manager
      */
-    open func addImageView(_ imageView: UIImageView) {
-        if self.containsImageView(imageView) { return }
+    open func addImageView(_ imageView: UIImageView) -> Bool {
+        if containsImageView(imageView) {
+            return false
+        }
         
-        self.totalGifSize += imageView.gifImage!.imageSize!
-        if self.totalGifSize > memoryLimit && self.haveCache {
-            self.haveCache = false
-            for imageView in self.displayViews{
+        totalGifSize += imageView.gifImage!.imageSize!
+        
+        if totalGifSize > memoryLimit && haveCache {
+            haveCache = false
+            for imageView in displayViews{
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
                     imageView.updateCache()
                 }
             }
         }
-        self.displayViews.append(imageView)
+        displayViews.append(imageView)
+        return true
     }
     
     /**
@@ -56,11 +60,11 @@ open class SwiftyGifManager {
         
         if let index = self.displayViews.index(of: imageView){
             if index >= 0 && index < self.displayViews.count {
-                self.displayViews.remove(at: index)
-                self.totalGifSize -= imageView.gifImage!.imageSize!
-                if self.totalGifSize < memoryLimit && !self.haveCache {
-                    self.haveCache = true
-                    for imageView in self.displayViews{
+                displayViews.remove(at: index)
+                totalGifSize -= imageView.gifImage!.imageSize!
+                if totalGifSize < memoryLimit && !haveCache {
+                    haveCache = true
+                    for imageView in displayViews {
                         DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
                             imageView.updateCache()
                         }
@@ -76,7 +80,7 @@ open class SwiftyGifManager {
      - Returns : a boolean for wether the imageView was found
      */
     open func containsImageView(_ imageView: UIImageView) -> Bool{
-        return self.displayViews.contains(imageView)
+        return displayViews.contains(imageView)
     }
     
     /**
@@ -90,7 +94,7 @@ open class SwiftyGifManager {
         }
         
         if imageView.loopCount == -1 || imageView.loopCount >= 5 {
-            return self.haveCache
+            return haveCache
         }else{
             return false
         }
@@ -101,7 +105,7 @@ open class SwiftyGifManager {
      This is what create the animation.
      */
     @objc func updateImageView(){
-        for imageView in self.displayViews {
+        for imageView in displayViews {
 
             DispatchQueue.main.async{
                 imageView.image = imageView.currentImage
