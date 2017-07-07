@@ -29,9 +29,9 @@ let _animationManagerKey = malloc(4)
 let _delegateKey = malloc(4)
 
 @objc public protocol SwiftyGifDelegate {
-    @objc optional func gifDidStart()
-    @objc optional func gifDidLoop()
-    @objc optional func gifDidStop()
+    @objc optional func gifDidStart(sender: UIImageView)
+    @objc optional func gifDidLoop(sender: UIImageView)
+    @objc optional func gifDidStop(sender: UIImageView)
 }
 
 public extension UIImageView {
@@ -279,7 +279,7 @@ public extension UIImageView {
                     if self.loopCount > 0 {
                         self.loopCount -= 1
                     }
-                    self.delegate?.gifDidLoop?()
+                    self.delegate?.gifDidLoop?(sender: self)
                 }
             }
         }
@@ -402,9 +402,9 @@ public extension UIImageView {
             objc_setAssociatedObject(self, _isPlayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
             
             if newValue {
-                self.delegate?.gifDidStart?()
+                self.delegate?.gifDidStart?(sender: self)
             } else {
-                self.delegate?.gifDidStop?()
+                self.delegate?.gifDidStop?(sender: self)
             }
         }
     }
