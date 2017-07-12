@@ -54,7 +54,7 @@ public extension UIImageView {
      - Parameter manager: The manager to handle the gif display
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      */
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
+    public convenience init(gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
         self.init()
         setGifImage(gifImage,manager: manager, loopCount: loopCount);
     }
@@ -65,7 +65,7 @@ public extension UIImageView {
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
-    public func setGifImage(_ gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
+    public func setGifImage(_ gifImage: UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
         setGifImage(gifImage, manager: manager, loopCount: -1)
     }
     
@@ -76,9 +76,9 @@ public extension UIImageView {
      - Parameter manager: The manager to handle the gif display
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      */
-    public func setGifImage(_ gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
+    public func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int) {
         if let imageData = gifImage.imageData, gifImage.imageCount < 1 {
-            self.image = UIImage(data: imageData as Data)
+            image = UIImage(data: imageData as Data)
             return
         }
         
@@ -90,11 +90,11 @@ public extension UIImageView {
         self.cache = NSCache()
         self.haveCache = false
 
-        if let source = self.gifImage?.imageSource, let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) {
-            self.currentImage = UIImage(cgImage:cgImage)
+        if let source = gifImage.imageSource,
+            let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) {
+            self.currentImage = UIImage(cgImage: cgImage)
             
-            if !manager.containsImageView(self) {
-                manager.addImageView(self)
+            if manager.addImageView(self) {
                 startDisplay()
                 startAnimatingGif()
             }
@@ -166,7 +166,7 @@ public extension UIImageView {
      - Parameter index: The index of frame to show
      */
     public func showFrameAtIndex(_ index: Int) {
-        self.displayOrderIndex = index
+        displayOrderIndex = index
         updateFrame()
     }
     
@@ -177,10 +177,10 @@ public extension UIImageView {
         guard let animationManager = animationManager else { return }
         if animationManager.hasCache(self) && !self.haveCache {
             prepareCache()
-            self.haveCache = true
+            haveCache = true
         }else if !animationManager.hasCache(self) && self.haveCache {
-            self.cache.removeAllObjects()
-            self.haveCache = false
+            cache.removeAllObjects()
+            haveCache = false
         }
     }
     
@@ -189,18 +189,18 @@ public extension UIImageView {
      */
     public func updateCurrentImage() {
         
-        if self.displaying{
+        if displaying {
             updateFrame()
             updateIndex()
-            if loopCount == 0 || !isDisplayedInScreen(self)  || !self.isPlaying {
+            if loopCount == 0 || !isDisplayedInScreen(self)  || !isPlaying {
                 stopDisplay()
             }
-        }else{
-            if(isDisplayedInScreen(self) && loopCount != 0 && self.isPlaying) {
+        } else {
+            if isDisplayedInScreen(self) && loopCount != 0 && isPlaying {
                 startDisplay()
             }
             if isDiscarded(self) {
-                self.animationManager?.deleteImageView(self)
+                animationManager?.deleteImageView(self)
             }
         }
     }
@@ -209,14 +209,10 @@ public extension UIImageView {
      Force update frame
      */
     fileprivate func updateFrame() {
-        if !self.haveCache {
-            self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
-        }else{
-            if let image = (cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage) {
-                self.currentImage = image
-            }else{
-                self.currentImage = self.frameAtIndex(index: self.currentFrameIndex())
-            }//prevent case that cache is not ready
+        if haveCache, let image = cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage {
+            currentImage = image
+        } else {
+            currentImage = frameAtIndex(index: currentFrameIndex())
         }
     }
     
@@ -224,14 +220,14 @@ public extension UIImageView {
      Get current frame index
      */
     public func currentFrameIndex() -> Int{
-        return self.displayOrderIndex
+        return displayOrderIndex
     }
 
     /**
      Get frame at specifi index
      */
     public func frameAtIndex(index: Int) -> UIImage {
-        return UIImage(cgImage: CGImageSourceCreateImageAtIndex(self.gifImage!.imageSource!,self.gifImage!.displayOrder![index],nil)!)
+        return UIImage(cgImage: CGImageSourceCreateImageAtIndex(gifImage!.imageSource!, gifImage!.displayOrder![index], nil)!)
     }
     
     /**
@@ -266,6 +262,18 @@ public extension UIImageView {
         return (self.window != nil)
     }
     
+    public func clear() {
+        if let gifImage = gifImage {
+            gifImage.clear()
+            
+        }
+        gifImage = nil
+        currentImage = nil
+        cache.removeAllObjects()
+        animationManager = nil
+        image = nil
+    }
+    
     /**
      Update loop count and sync factor.
      */
@@ -289,7 +297,7 @@ public extension UIImageView {
      Prepare the cache by adding every images of the gif to an NSCache object.
      */
     fileprivate func prepareCache() {
-        self.cache.removeAllObjects()
+        cache.removeAllObjects()
         
         if let gif = self.gifImage {
             for i in 0 ..< gif.displayOrder!.count {
