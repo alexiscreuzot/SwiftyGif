@@ -37,7 +37,7 @@ To use SwiftyGif you need 3 components:
 ```swift
 import SwiftyGif
 
-let gifmanager = SwiftyGifManager(memoryLimit:20)
+let gifManager = SwiftyGifManager(memoryLimit:20)
 let gif = UIImage(gifName: "MyImage.gif")
 let imageview = UIImageView(gifImage: gif, manager: gifManager)
 imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
