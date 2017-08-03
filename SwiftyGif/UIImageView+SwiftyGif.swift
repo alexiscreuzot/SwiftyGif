@@ -253,7 +253,7 @@ public extension UIImageView {
         }
         
         let screenRect = UIScreen.main.bounds
-        let viewRect = imageView!.convert(self.frame, to:nil)
+        let viewRect = imageView!.convert(self.bounds, to:nil)
         
         let intersectionRect = viewRect.intersection(screenRect);
         if (intersectionRect.isEmpty || intersectionRect.isNull) {
