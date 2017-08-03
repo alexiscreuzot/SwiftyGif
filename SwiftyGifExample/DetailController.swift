@@ -23,8 +23,6 @@ class DetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.imageView.delegate = self
         
         if let imgName = self.gifName {
             let gifImage = UIImage(gifName: imgName)
@@ -32,11 +30,12 @@ class DetailController: UIViewController {
         }
 
         // Gestures for gif control
-        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.panGesture))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.panGesture))
         self.imageView.addGestureRecognizer(panGesture)
         self.imageView.isUserInteractionEnabled = true
+        self.imageView.delegate = self
 
-        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(self.togglePlay))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.togglePlay))
         self.imageView.addGestureRecognizer(tapGesture)
     }
 
@@ -115,15 +114,15 @@ class DetailController: UIViewController {
 
 extension DetailController : SwiftyGifDelegate {
 
-    func gifDidStart() {
+    func gifDidStart(sender: UIImageView) {
         print("gifDidStart")
     }
     
-    func gifDidLoop() {
+    func gifDidLoop(sender: UIImageView) {
         print("gifDidLoop")
     }
     
-    func gifDidStop() {
+    func gifDidStop(sender: UIImageView) {
         print("gifDidStop")
     }
 }
