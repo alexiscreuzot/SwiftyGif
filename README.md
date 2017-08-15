@@ -96,15 +96,15 @@ Then simply add an extension:
 ```swift
 extension MyController : SwiftyGifDelegate {
 
-    func gifDidStart() {
+    func gifDidStart(sender: UIImageView) {
         print("gifDidStart")
     }
     
-    func gifDidLoop() {
+    func gifDidLoop(sender: UIImageView) {
         print("gifDidLoop")
     }
     
-    func gifDidStop() {
+    func gifDidStop(sender: UIImageView) {
         print("gifDidStop")
     }
 }
