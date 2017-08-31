@@ -26,7 +26,7 @@ open class SwiftyGifManager {
         totalGifSize = 0
         haveCache = true
         timer = CADisplayLink(target: self, selector: #selector(updateImageView))
-        timer!.add(to: .main, forMode: RunLoopMode.commonModes)
+        timer?.add(to: .main, forMode: RunLoopMode.commonModes)
     }
     
     /**
@@ -38,12 +38,12 @@ open class SwiftyGifManager {
             return false
         }
         
-        totalGifSize += imageView.gifImage!.imageSize!
+        totalGifSize += imageView.gifImage?.imageSize ?? 0
         
         if totalGifSize > memoryLimit && haveCache {
             haveCache = false
             for imageView in displayViews{
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
+                DispatchQueue.global(qos: .userInteractive).sync{
                     imageView.updateCache()
                 }
             }
@@ -67,7 +67,7 @@ open class SwiftyGifManager {
         if let index = self.displayViews.index(of: imageView){
             if index >= 0 && index < self.displayViews.count {
                 displayViews.remove(at: index)
-                totalGifSize -= imageView.gifImage!.imageSize!
+                totalGifSize -= imageView.gifImage?.imageSize ?? 0
                 if totalGifSize < memoryLimit && !haveCache {
                     haveCache = true
                     for imageView in displayViews {
