@@ -216,44 +216,45 @@ public extension UIImage {
         let displayRefreshFactors = [60,30,20,15,12,10,6,5,4,3,2,1]
         
         //maxFramePerSecond,default is 60
-        let maxFramePerSecond = displayRefreshFactors.first
+        let maxFramePerSecond = displayRefreshFactors[0]
         
         //frame numbers per second
-        let displayRefreshRates = displayRefreshFactors.map{maxFramePerSecond!/$0}
+        let displayRefreshRates = displayRefreshFactors.map{ maxFramePerSecond/$0 }
         
         //time interval per frame
-        let displayRefreshDelayTime = displayRefreshRates.map{1.0/Float($0)}
+        let displayRefreshDelayTime = displayRefreshRates.map{ 1.0/Float($0) }
         
         //caclulate the time when each frame should be displayed at(start at 0)
-        for i in 1..<delays.count{ delays[i] += delays[i-1] }
+        for i in delays.indices.dropFirst() { delays[i] += delays[i-1] }
         
         //find the appropriate Factors then BREAK
-        for i in 0..<displayRefreshDelayTime.count{
+        for (i, delayTime) in displayRefreshDelayTime.enumerated() {
             
-            let displayPosition = delays.map{Int($0/displayRefreshDelayTime[i])}
+            let displayPosition = delays.map { Int($0/delayTime) }
             
             var framelosecount: Float = 0
-            for j in 1..<displayPosition.count{
+            for j in displayPosition.indices.dropFirst() {
                 if displayPosition[j] == displayPosition[j-1] {
                     framelosecount += 1
                 }
             }
             
-            if(displayPosition[0] == 0){
+            if displayPosition.first == 0 {
                 framelosecount += 1
             }
             
-            if framelosecount <= Float(displayPosition.count) * (1.0 - levelOfIntegrity) ||
-                i == displayRefreshDelayTime.count-1 {
+            if framelosecount <= Float(displayPosition.count) * (1.0 - levelOfIntegrity)
+                || i == displayRefreshDelayTime.count-1 {
                 
-                imageCount = displayPosition.last!
+                imageCount = displayPosition.last
                 displayRefreshFactor = displayRefreshFactors[i]
-                displayOrder = [Int]()
+                displayOrder = []
                 var indexOfold = 0
                 var indexOfnew = 1
-                while indexOfnew <= imageCount {
+                while indexOfnew <= imageCount
+                    && indexOfold < displayPosition.count {
                     if indexOfnew <= displayPosition[indexOfold] {
-                        displayOrder!.append(indexOfold)
+                        displayOrder?.append(indexOfold)
                         indexOfnew += 1
                     } else {
                         indexOfold += 1
@@ -338,7 +339,7 @@ public extension UIImage {
             if result == nil {
                 return nil
             }
-            return (result as! Data)
+            return (result as? Data)
         }
         set {
             objc_setAssociatedObject(self, _imageDataKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
