@@ -285,63 +285,63 @@ public extension UIImage {
     
     public var imageSource: CGImageSource? {
         get {
-            let result = objc_getAssociatedObject(self, _imageSourceKey)
+            let result = objc_getAssociatedObject(self, _imageSourceKey!)
             if result == nil {
                 return nil
             }
             return (result as! CGImageSource)
         }
         set {
-            objc_setAssociatedObject(self, _imageSourceKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageSourceKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
     public var displayRefreshFactor: Int?{
         get {
-            return objc_getAssociatedObject(self, _displayRefreshFactorKey) as? Int
+            return objc_getAssociatedObject(self, _displayRefreshFactorKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _displayRefreshFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayRefreshFactorKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
     public var imageSize: Int?{
         get {
-            return objc_getAssociatedObject(self, _imageSizeKey) as? Int
+            return objc_getAssociatedObject(self, _imageSizeKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _imageSizeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageSizeKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
     public var imageCount: Int?{
         get {
-            return objc_getAssociatedObject(self, _imageCountKey) as? Int
+            return objc_getAssociatedObject(self, _imageCountKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _imageCountKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageCountKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
     public var displayOrder: [Int]?{
         get {
-            return objc_getAssociatedObject(self, _displayOrderKey) as? [Int]
+            return objc_getAssociatedObject(self, _displayOrderKey!) as? [Int]
         }
         set {
-            objc_setAssociatedObject(self, _displayOrderKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayOrderKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
     public var imageData:Data? {
         get {
-            let result = objc_getAssociatedObject(self, _imageDataKey)
+            let result = objc_getAssociatedObject(self, _imageDataKey!)
             if result == nil {
                 return nil
             }
             return (result as! Data)
         }
         set {
-            objc_setAssociatedObject(self, _imageDataKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageDataKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 }
