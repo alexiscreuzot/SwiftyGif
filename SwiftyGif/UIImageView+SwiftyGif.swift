@@ -179,7 +179,7 @@ public extension UIImageView {
             prepareCache()
             haveCache = true
         }else if !animationManager.hasCache(self) && self.haveCache {
-            cache.removeAllObjects()
+            cache?.removeAllObjects()
             haveCache = false
         }
     }
@@ -209,7 +209,7 @@ public extension UIImageView {
      Force update frame
      */
     fileprivate func updateFrame() {
-        if haveCache, let image = cache.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage {
+        if haveCache, let image = cache?.object(forKey: self.displayOrderIndex as AnyObject) as? UIImage {
             currentImage = image
         } else {
             currentImage = frameAtIndex(index: currentFrameIndex())
@@ -227,19 +227,21 @@ public extension UIImageView {
      Get frame at specifi index
      */
     public func frameAtIndex(index: Int) -> UIImage {
-        return UIImage(cgImage: CGImageSourceCreateImageAtIndex(gifImage!.imageSource!, gifImage!.displayOrder![index], nil)!)
+        guard let gifImage = gifImage,
+            let imageSource = gifImage.imageSource,
+            let displayOrder = gifImage.displayOrder, index < displayOrder.count,
+            let cgImage = CGImageSourceCreateImageAtIndex(imageSource, displayOrder[index], nil) else {
+                return UIImage()
+        }
+        return UIImage(cgImage: cgImage)
     }
     
     /**
      Check if the imageView has been discarded and is not in the view hierarchy anymore.
      - Returns : A boolean for weather the imageView was discarded
      */
-    public func isDiscarded(_ imageView:UIView?) -> Bool{
-        
-        if(imageView == nil || imageView!.superview == nil) {
-            return true
-        }
-        return false
+    public func isDiscarded(_ imageView: UIView?) -> Bool{
+        return imageView?.superview == nil
     }
     
     /**
@@ -247,13 +249,13 @@ public extension UIImageView {
      - Returns : A boolean for weather the imageView is displayed
      */
     
-    public func isDisplayedInScreen(_ imageView:UIView?) ->Bool{
-        if (self.isHidden) {
+    public func isDisplayedInScreen(_ imageView: UIView?) ->Bool{
+        guard !self.isHidden, let imageView = imageView else  {
             return false
         }
         
         let screenRect = UIScreen.main.bounds
-        let viewRect = imageView!.convert(self.bounds, to:nil)
+        let viewRect = imageView.convert(self.bounds, to:nil)
         
         let intersectionRect = viewRect.intersection(screenRect);
         if (intersectionRect.isEmpty || intersectionRect.isNull) {
@@ -269,7 +271,7 @@ public extension UIImageView {
         }
         gifImage = nil
         currentImage = nil
-        cache.removeAllObjects()
+        cache?.removeAllObjects()
         animationManager = nil
         image = nil
     }
@@ -278,17 +280,23 @@ public extension UIImageView {
      Update loop count and sync factor.
      */
     fileprivate func updateIndex() {
-        if let gif = self.gifImage {
-            self.syncFactor = (self.syncFactor+1) % gif.displayRefreshFactor!
-            if self.syncFactor == 0 {
-                self.displayOrderIndex = (self.displayOrderIndex+1) % gif.imageCount!
-                
-                if displayOrderIndex == 0 {
-                    if self.loopCount > 0 {
-                        self.loopCount -= 1
-                    }
-                    self.delegate?.gifDidLoop?(sender: self)
+        guard let gif = self.gifImage,
+            let displayRefreshFactor = gif.displayRefreshFactor,
+            displayRefreshFactor > 0 else {
+                return
+        }
+        
+        syncFactor = (syncFactor+1) % displayRefreshFactor
+        if syncFactor == 0,
+            let imageCount = gif.imageCount,
+            imageCount > 0 {
+            
+            displayOrderIndex = (displayOrderIndex+1) % imageCount
+            if displayOrderIndex == 0 {
+                if loopCount > 0 {
+                    loopCount -= 1
                 }
+                delegate?.gifDidLoop?(sender: self)
             }
         }
     }
@@ -297,13 +305,18 @@ public extension UIImageView {
      Prepare the cache by adding every images of the gif to an NSCache object.
      */
     fileprivate func prepareCache() {
+        guard let cache = self.cache else { return }
+        
         cache.removeAllObjects()
         
-        if let gif = self.gifImage {
-            for i in 0 ..< gif.displayOrder!.count {
-                let image = UIImage(cgImage: CGImageSourceCreateImageAtIndex(gif.imageSource!, gif.displayOrder![i],nil)!)
-                self.cache.setObject(image,forKey:i as AnyObject)
-            }
+        guard let gif = self.gifImage,
+            let displayOrder = gif.displayOrder,
+            let imageSource = gif.imageSource else { return }
+        
+        for (i, order) in displayOrder.enumerated() {
+            guard let cgImage = CGImageSourceCreateImageAtIndex(imageSource, order, nil) else { continue }
+            
+            cache.setObject(UIImage(cgImage: cgImage), forKey: i as AnyObject)
         }
     }
     
@@ -315,10 +328,7 @@ public extension UIImageView {
 
     fileprivate func possiblyNil<T>(_ key:UnsafeMutableRawPointer?) -> T? {
         let result = objc_getAssociatedObject(self, key)
-        if result == nil {
-            return nil
-        }
-        return (result as! T)
+        return (result as? T)
     }
 
     public var gifImage: UIImage? {
@@ -376,7 +386,7 @@ public extension UIImageView {
     
     public var delegate: SwiftyGifDelegate? {
         get {
-            return (objc_getAssociatedObject(self, _delegateKey) as! SwiftyGifDelegate?)
+            return (objc_getAssociatedObject(self, _delegateKey) as? SwiftyGifDelegate)
         }
         set {
             objc_setAssociatedObject(self, _delegateKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN);
@@ -417,9 +427,9 @@ public extension UIImageView {
         }
     }
     
-    fileprivate var cache: NSCache<AnyObject, AnyObject> {
+    fileprivate var cache: NSCache<AnyObject, AnyObject>? {
         get {
-            return (objc_getAssociatedObject(self, _cacheKey) as! NSCache)
+            return (objc_getAssociatedObject(self, _cacheKey) as? NSCache)
         }
         set {
             objc_setAssociatedObject(self, _cacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
