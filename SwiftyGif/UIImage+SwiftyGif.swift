@@ -36,6 +36,7 @@ let defaultLevelOfIntegrity: Float = 0.8
 
 
 fileprivate enum GifParseError:Error {
+    case noImages
     case noProperties
     case noGifDictionary
     case noTimingInfo
@@ -167,6 +168,9 @@ public extension UIImage {
     fileprivate func delayTimes(_ imageSource:CGImageSource) throws ->[Float] {
         
         let imageCount = CGImageSourceGetCount(imageSource)
+        guard imageCount > 0 else {
+            throw GifParseError.noImages
+        }
         var imageProperties = [CFDictionary]()
         for i in 0..<imageCount{
             if let dict = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) {
