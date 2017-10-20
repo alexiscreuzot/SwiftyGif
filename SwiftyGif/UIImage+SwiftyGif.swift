@@ -294,7 +294,7 @@ public extension UIImage {
             if result == nil {
                 return nil
             }
-            return (result as! CGImageSource)
+            return (result as? CGImageSource)
         }
         set {
             objc_setAssociatedObject(self, _imageSourceKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
