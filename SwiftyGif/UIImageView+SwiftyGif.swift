@@ -331,7 +331,7 @@ public extension UIImageView {
         if result == nil {
             return nil
         }
-        return (result as! T)
+        return (result as? T)
     }
 
     public var gifImage: UIImage? {
@@ -389,7 +389,7 @@ public extension UIImageView {
     
     public var delegate: SwiftyGifDelegate? {
         get {
-            return (objc_getAssociatedObject(self, _delegateKey!) as! SwiftyGifDelegate?)
+            return (objc_getAssociatedObject(self, _delegateKey!) as? SwiftyGifDelegate)
         }
         set {
             objc_setAssociatedObject(self, _delegateKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN);
@@ -432,7 +432,7 @@ public extension UIImageView {
     
     fileprivate var cache: NSCache<AnyObject, AnyObject>? {
         get {
-            return (objc_getAssociatedObject(self, _cacheKey!) as! NSCache)
+            return (objc_getAssociatedObject(self, _cacheKey!) as? NSCache)
         }
         set {
             objc_setAssociatedObject(self, _cacheKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
