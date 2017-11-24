@@ -114,7 +114,9 @@ open class SwiftyGifManager {
         for imageView in displayViews {
 
             DispatchQueue.main.async{
-                imageView.image = imageView.currentImage
+                if imageView.isAnimatingGif() {
+                    imageView.image = imageView.currentImage
+                }
             }
             if imageView.isAnimatingGif() {
                 DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
