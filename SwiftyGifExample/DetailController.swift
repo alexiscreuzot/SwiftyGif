@@ -41,11 +41,11 @@ class DetailController: UIViewController {
 
     // PRAGMA - Logic
 
-    func rewind(){
+    @objc func rewind(){
         self.imageView.showFrameForIndexDelta(-1)
     }
 
-    func forward(){
+    @objc func forward(){
         self.imageView.showFrameForIndexDelta(1)
     }
 
@@ -91,7 +91,7 @@ class DetailController: UIViewController {
 
     // PRAGMA - Gestures
 
-    func panGesture(sender:UIPanGestureRecognizer){
+    @objc func panGesture(sender:UIPanGestureRecognizer){
 
         switch sender.state {
         case .began:
