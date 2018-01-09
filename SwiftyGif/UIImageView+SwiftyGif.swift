@@ -293,12 +293,15 @@ public extension UIImageView {
             
             displayOrderIndex = (displayOrderIndex+1) % imageCount
             if displayOrderIndex == 0 {
-                if loopCount > 1 {
+                if loopCount == -1 {
                     delegate?.gifDidLoop?(sender: self)
+                } else if loopCount > 1 {
+                    delegate?.gifDidLoop?(sender: self)
+                    loopCount -= 1
                 } else {
                     delegate?.gifDidStop?(sender: self)
+                    loopCount -= 1
                 }
-                loopCount -= 1
             }
         }
     }
