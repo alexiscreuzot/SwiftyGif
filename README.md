@@ -40,12 +40,15 @@ let imageview = UIImageView(gifImage: gif, loopCount: 3) // Use -1 for infinite 
 imageview.frame = view.bounds
 view.addSubview(imageview)
 ```
-In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can directly set its Gif.
-You can do this multiple times, new parameters overwrite old ones.
+
+In case your `UIImageView` is already created (via Nib or Storyboards for instance), it's even easier.
 
 ```swift
-let gifmanager = SwiftyGifManager(memoryLimit:20)
-self.myImageView.setGifImage(gif, manager: gifManager) 
+self.myImageView.setGifImage(gif) 
+
+// You can also set it with an URL pointing to your gif
+let url = URL(string: "...")
+self.myImageView.setGifFromURL(url) 
 ```
 
 #### Performances
