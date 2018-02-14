@@ -26,6 +26,7 @@ class RemoteGifController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imageView.delegate = self
         self.fetchGifFromURLString(gifs[currentIndex])
     }
     

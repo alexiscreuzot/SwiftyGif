@@ -10,6 +10,7 @@ High performance & easy to use Gif engine
 
 ## Features
 - [x] UIImage and UIImageView extension based
+- [x] Remote Gifs
 - [x] Great CPU/Memory performances
 - [x] Control playback
 - [x] Allow control of  display quality by using 'levelOfIntegrity'
@@ -28,36 +29,36 @@ pod 'SwiftyGif'
 #### Project files
 As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
 
-#### Init
-To use SwiftyGif you need 3 components:
-- An `UIImage` which backs the gif data and cache it for efficient use.
-- An `UIImageView` which hold to the `UIImage` gif and provide utility methods.
-- A `SwiftyGifManager` which can hold one or several `UIImageView` using the same memory pool.
+#### Quick Start
+SwiftyGif uses familiar `UIImage` and `UIImageView`  to display gifs. 
 
 ```swift
 import SwiftyGif
 
-let gifManager = SwiftyGifManager(memoryLimit:20)
 let gif = UIImage(gifName: "MyImage.gif")
-let imageview = UIImageView(gifImage: gif, manager: gifManager)
-imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
+let imageview = UIImageView(gifImage: gif)
+imageview.frame = view.bounds
 view.addSubview(imageview)
 ```
-#### Set
-In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can also set its Gif.
+In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can directly set its Gif.
 You can do this multiple times, new parameters overwrite old ones.
 
 ```swift
 let gifmanager = SwiftyGifManager(memoryLimit:20)
 self.myImageView.setGifImage(gif, manager: gifManager) 
 ```
-#### Level of integrity
+
+#### Performances
+A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to you convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
+
+
+##### Level of integrity
 Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a godd option if you need to preview a lot of gifs at the same time.
 
 ```swift
 let gif = UIImage(gifName: "MyImage.gif", levelOfIntegrity:0.5)
 ```
-#### LoopCount
+##### LoopCount
 You can furthermore set a specific number of loops to your gif via `loopCount`. Default is `-1`, which translate to infinite.
 
 ```swift
@@ -96,6 +97,14 @@ Then simply add an extension:
 ```swift
 extension MyController : SwiftyGifDelegate {
 
+    func gifURLDidFinish(sender: UIImageView) {
+        print("gifURLDidFinish")
+    }
+
+    func gifURLDidFail(sender: UIImageView) {
+        print("gifURLDidFail")
+    }
+
     func gifDidStart(sender: UIImageView) {
         print("gifDidStart")
     }
@@ -109,9 +118,6 @@ extension MyController : SwiftyGifDelegate {
     }
 }
 ```
-
-#### Default Manager	
-If you only need to display one gif here and there, you can use the `SwiftyGifManager.defaultManager` which will use a SwiftyGifManager singleton with a default memory pool of 50Mb. 
 
 ## Benchmark
 #### Display 1 Image
