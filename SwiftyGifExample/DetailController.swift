@@ -26,7 +26,7 @@ class DetailController: UIViewController {
         
         if let imgName = self.gifName {
             let gifImage = UIImage(gifName: imgName)
-            self.imageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
+            self.imageView.setGifImage(gifImage, manager: gifManager)
         }
 
         // Gestures for gif control

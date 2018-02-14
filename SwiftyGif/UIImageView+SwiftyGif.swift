@@ -32,6 +32,8 @@ let _delegateKey = malloc(4)
     @objc optional func gifDidStart(sender: UIImageView)
     @objc optional func gifDidLoop(sender: UIImageView)
     @objc optional func gifDidStop(sender: UIImageView)
+    @objc optional func gifURLDidFinish(sender: UIImageView)
+    @objc optional func gifURLDidFail(sender: UIImageView)
 }
 
 public extension UIImageView {
@@ -43,30 +45,20 @@ public extension UIImageView {
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
-        self.init()
-        setGifImage(gifImage,manager: manager, loopCount: -1);
-    }
-    
-    /**
-     Convenience initializer. Creates a gif holder.
-     - Parameter gifImage: The UIImage containing the gif backing data
-     - Parameter manager: The manager to handle the gif display
-     - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
-     */
-    public convenience init(gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount:Int) {
+    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         self.init()
         setGifImage(gifImage,manager: manager, loopCount: loopCount);
     }
     
     /**
-     Set a gif image and a manager to an existing UIImageView. The gif will default to infinite loop.
-     WARNING : this overwrite any previous gif.
+     Convenience initializer. Creates a gif holder (defaulted to infinite loop).
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
-    public func setGifImage(_ gifImage: UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager) {
-        setGifImage(gifImage, manager: manager, loopCount: -1)
+    public convenience init(gifURL: URL?, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
+        self.init()
+        
+        setGifFromURL(gifURL, manager: manager, loopCount: loopCount)
     }
     
     /**
@@ -76,7 +68,7 @@ public extension UIImageView {
      - Parameter manager: The manager to handle the gif display
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      */
-    public func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int) {
+    public func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         if let imageData = gifImage.imageData, gifImage.imageCount < 1 {
             image = UIImage(data: imageData as Data)
             return
@@ -99,6 +91,52 @@ public extension UIImageView {
                 startAnimatingGif()
             }
         }
+    }
+    
+    /**
+     Download gif image and sets it
+     - Parameter url: The URL pointing to the gif data
+     - Parameter manager: The manager to handle the gif display
+     - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
+     - Parameter showLoader: Show UIActivityIndicatorView or not
+     */
+    public func setGifFromURL(_ url: URL?, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1, showLoader: Bool = true) {
+        
+        guard let url = url else {
+            print("Invalid Gif URL")
+            return
+        }
+        
+        let loader = UIActivityIndicatorView()
+        
+        if showLoader {
+            self.addSubview(loader)
+            loader.translatesAutoresizingMaskIntoConstraints = false
+            self.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-0-[subview]-0-|",
+                options: .directionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": loader]))
+            self.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-0-[subview]-0-|",
+                options: .directionLeadingToTrailing,
+                metrics: nil,
+                views: ["subview": loader]))
+            loader.startAnimating()
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, _ , _) in
+            DispatchQueue.main.async {
+                loader.removeFromSuperview()
+                if let data = data {
+                    self.delegate?.gifURLDidFinish?(sender: self)
+                    self.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
+                } else {
+                    self.delegate?.gifURLDidFail?(sender: self)
+                }
+            }
+        }
+        task.resume()
     }
 
     // MARK: Logic
@@ -224,7 +262,7 @@ public extension UIImageView {
     }
 
     /**
-     Get frame at specifi index
+     Get frame at specific index
      */
     public func frameAtIndex(index: Int) -> UIImage {
         guard let gifImage = gifImage,
