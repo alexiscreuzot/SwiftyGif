@@ -129,8 +129,8 @@ public extension UIImageView {
             DispatchQueue.main.async {
                 loader.removeFromSuperview()
                 if let data = data {
-                    self.delegate?.gifURLDidFinish?(sender: self)
                     self.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
+                    self.delegate?.gifURLDidFinish?(sender: self)
                 } else {
                     self.delegate?.gifURLDidFail?(sender: self)
                 }
