@@ -382,7 +382,7 @@ public extension UIImageView {
             return possiblyNil(_gifImageKey)
         }
         set {
-            objc_setAssociatedObject(self, _gifImageKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _gifImageKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     public var currentImage: UIImage? {
@@ -390,7 +390,7 @@ public extension UIImageView {
             return possiblyNil(_currentImageKey)
         }
         set {
-            objc_setAssociatedObject(self, _currentImageKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _currentImageKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -399,7 +399,7 @@ public extension UIImageView {
             return value(_displayOrderIndexKey, 0)
         }
         set {
-            objc_setAssociatedObject(self, _displayOrderIndexKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayOrderIndexKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -408,7 +408,7 @@ public extension UIImageView {
             return value(_syncFactorKey, 0)
         }
         set {
-            objc_setAssociatedObject(self, _syncFactorKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _syncFactorKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -417,7 +417,7 @@ public extension UIImageView {
             return value(_loopCountKey, 0)
         }
         set {
-            objc_setAssociatedObject(self, _loopCountKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _loopCountKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -426,7 +426,7 @@ public extension UIImageView {
             return (objc_getAssociatedObject(self, _animationManagerKey!) as? SwiftyGifManager)
         }
         set {
-            objc_setAssociatedObject(self, _animationManagerKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _animationManagerKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -435,7 +435,7 @@ public extension UIImageView {
             return (objc_getAssociatedObject(self, _delegateKey!) as? SwiftyGifDelegate)
         }
         set {
-            objc_setAssociatedObject(self, _delegateKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN);
+            objc_setAssociatedObject(self, _delegateKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -444,7 +444,7 @@ public extension UIImageView {
             return value(_haveCacheKey, false)
         }
         set {
-            objc_setAssociatedObject(self, _haveCacheKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _haveCacheKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -453,7 +453,7 @@ public extension UIImageView {
             return value(_displayingKey, false)
         }
         set {
-            objc_setAssociatedObject(self, _displayingKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayingKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -463,7 +463,7 @@ public extension UIImageView {
         }
         set {
             
-            objc_setAssociatedObject(self, _isPlayingKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _isPlayingKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             
             if newValue {
                 self.delegate?.gifDidStart?(sender: self)
@@ -478,7 +478,7 @@ public extension UIImageView {
             return (objc_getAssociatedObject(self, _cacheKey!) as? NSCache)
         }
         set {
-            objc_setAssociatedObject(self, _cacheKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _cacheKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
 }

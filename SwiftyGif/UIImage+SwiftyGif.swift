@@ -277,7 +277,7 @@ public extension UIImage {
             return (result as! CGImageSource)
         }
         set {
-            objc_setAssociatedObject(self, _imageSourceKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageSourceKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -286,7 +286,7 @@ public extension UIImage {
             return objc_getAssociatedObject(self, _displayRefreshFactorKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _displayRefreshFactorKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayRefreshFactorKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -295,7 +295,7 @@ public extension UIImage {
             return objc_getAssociatedObject(self, _imageSizeKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _imageSizeKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageSizeKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -304,7 +304,7 @@ public extension UIImage {
             return objc_getAssociatedObject(self, _imageCountKey!) as? Int
         }
         set {
-            objc_setAssociatedObject(self, _imageCountKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageCountKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -313,7 +313,7 @@ public extension UIImage {
             return objc_getAssociatedObject(self, _displayOrderKey!) as? [Int]
         }
         set {
-            objc_setAssociatedObject(self, _displayOrderKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _displayOrderKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
     
@@ -326,7 +326,7 @@ public extension UIImage {
             return (result as? Data)
         }
         set {
-            objc_setAssociatedObject(self, _imageDataKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+            objc_setAssociatedObject(self, _imageDataKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
 }
