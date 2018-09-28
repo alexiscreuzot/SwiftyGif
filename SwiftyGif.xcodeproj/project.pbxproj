@@ -13,7 +13,6 @@
 		3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
 		3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
 		3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
-		FA29E94B1CA9340F00E579D5 /* SwiftyGifTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */; };
 		FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */; };
 		FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC881CB3EDAA000F3476 /* Assets.xcassets */; };
 		FA57CC9A1CB3EDAA000F3476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC8A1CB3EDAA000F3476 /* LaunchScreen.storyboard */; };
@@ -37,13 +36,6 @@
 			remoteGlobalIDString = 3B18BAF31E289899009C125A;
 			remoteInfo = SwiftyGif;
 		};
-		FA29E9471CA9340F00E579D5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA29E92A1CA9340E00E579D5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FA29E9311CA9340E00E579D5;
-			remoteInfo = SwiftyGif;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,7 +57,6 @@
 		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
 		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyGifExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyGifTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifTests.swift; sourceTree = "<group>"; };
 		FA29E94C1CA9340F00E579D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,13 +94,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA29E9431CA9340F00E579D5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -137,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */,
-				FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */,
 				3B18BAF41E289899009C125A /* SwiftyGif.framework */,
 			);
 			name = Products;
@@ -242,24 +225,6 @@
 			productReference = FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FA29E9451CA9340F00E579D5 /* SwiftyGifTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FA29E9521CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGifTests" */;
-			buildPhases = (
-				FA29E9421CA9340F00E579D5 /* Sources */,
-				FA29E9431CA9340F00E579D5 /* Frameworks */,
-				FA29E9441CA9340F00E579D5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FA29E9481CA9340F00E579D5 /* PBXTargetDependency */,
-			);
-			name = SwiftyGifTests;
-			productName = SwiftyGifTests;
-			productReference = FA29E9461CA9340F00E579D5 /* SwiftyGifTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -267,23 +232,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = alexiscreuzot;
 				TargetAttributes = {
 					3B18BAF31E289899009C125A = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					FA29E9311CA9340E00E579D5 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = ZAMD7Q9KYY;
-						LastSwiftMigration = 0800;
-					};
-					FA29E9451CA9340F00E579D5 = {
-						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
-						TestTargetID = FA29E9311CA9340E00E579D5;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -301,7 +261,6 @@
 			projectRoot = "";
 			targets = (
 				FA29E9311CA9340E00E579D5 /* SwiftyGifExample */,
-				FA29E9451CA9340F00E579D5 /* SwiftyGifTests */,
 				3B18BAF31E289899009C125A /* SwiftyGif */,
 			);
 		};
@@ -330,13 +289,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA29E9441CA9340F00E579D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -362,14 +314,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FA29E9421CA9340F00E579D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FA29E94B1CA9340F00E579D5 /* SwiftyGifTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -377,11 +321,6 @@
 			isa = PBXTargetDependency;
 			target = 3B18BAF31E289899009C125A /* SwiftyGif */;
 			targetProxy = 3B18BAF91E289899009C125A /* PBXContainerItemProxy */;
-		};
-		FA29E9481CA9340F00E579D5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FA29E9311CA9340E00E579D5 /* SwiftyGifExample */;
-			targetProxy = FA29E9471CA9340F00E579D5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -423,8 +362,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -447,8 +385,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif.SwiftyGif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -467,12 +404,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -522,12 +461,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -569,7 +510,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -584,33 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGif;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		FA29E9531CA9340F00E579D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SwiftyGifTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGifTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyGif.app/SwiftyGif";
-			};
-			name = Debug;
-		};
-		FA29E9541CA9340F00E579D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SwiftyGifTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexiscreuzot.SwiftyGifTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftyGif.app/SwiftyGif";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -640,15 +555,6 @@
 			buildConfigurations = (
 				FA29E9501CA9340F00E579D5 /* Debug */,
 				FA29E9511CA9340F00E579D5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FA29E9521CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGifTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FA29E9531CA9340F00E579D5 /* Debug */,
-				FA29E9541CA9340F00E579D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

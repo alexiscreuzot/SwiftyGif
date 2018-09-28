@@ -30,7 +30,7 @@ open class SwiftyGifManager {
         #if swift(>=4.2)
         timer?.add(to: .main, forMode: .common)
         #else
-        timer?.add(to: .main, forMode: .commonModes)
+        timer?.add(to: .main, forMode: RunLoop.Mode.common)
         #endif
     }
     
