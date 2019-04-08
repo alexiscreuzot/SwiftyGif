@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftyGif'
-  s.version          =  '4.2.0'
+  s.version          =  '5.0.0'
   s.summary          = 'High performance Gif engine in Swift. Add and control Gif images easily!'
   s.homepage         = 'https://github.com/kirualex/SwiftyGif'
   s.license          = { :type => "MIT", :file => "LICENSE" }
@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
   s.source_files = 'SwiftyGif/*{.h,.swift}'
-  s.swift_version = '4.2'
+  s.swift_version = '5.0'
 end

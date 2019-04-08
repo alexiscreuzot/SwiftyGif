@@ -45,7 +45,7 @@ public extension UIImageView {
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
-    public convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
+    convenience init(gifImage:UIImage, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         self.init()
         setGifImage(gifImage,manager: manager, loopCount: loopCount);
     }
@@ -55,7 +55,7 @@ public extension UIImageView {
      - Parameter gifImage: The UIImage containing the gif backing data
      - Parameter manager: The manager to handle the gif display
      */
-    public convenience init(gifURL: URL?, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
+    convenience init(gifURL: URL?, manager:SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         self.init()
         
         setGifFromURL(gifURL, manager: manager, loopCount: loopCount)
@@ -68,7 +68,7 @@ public extension UIImageView {
      - Parameter manager: The manager to handle the gif display
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      */
-    public func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
+    func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1) {
         if let imageData = gifImage.imageData, gifImage.imageCount < 1 {
             image = UIImage(data: imageData as Data)
             return
@@ -100,7 +100,7 @@ public extension UIImageView {
      - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
      - Parameter showLoader: Show UIActivityIndicatorView or not
      */
-    public func setGifFromURL(_ url: URL?, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1, showLoader: Bool = true) {
+    func setGifFromURL(_ url: URL?, manager: SwiftyGifManager = SwiftyGifManager.defaultManager, loopCount: Int = -1, showLoader: Bool = true) {
         
         guard let url = url else {
             print("Invalid Gif URL")
@@ -128,8 +128,8 @@ public extension UIImageView {
         let task = URLSession.shared.dataTask(with: url) { (data, _ , _) in
             DispatchQueue.main.async {
                 loader.removeFromSuperview()
-                if let data = data {
-                    self.setGifImage(UIImage.init(gifData: data), manager: manager, loopCount: loopCount)
+                if let data = data, let image = try? UIImage(gifData: data) {
+                    self.setGifImage(image, manager: manager, loopCount: loopCount)
                     self.delegate?.gifURLDidFinish?(sender: self)
                 } else {
                     self.delegate?.gifURLDidFail?(sender: self)
@@ -161,14 +161,14 @@ public extension UIImageView {
     /**
      Start displaying the gif for this UIImageView.
      */
-    public func startAnimatingGif() {
+    func startAnimatingGif() {
         self.isPlaying = true
     }
     
     /**
      Stop displaying the gif for this UIImageView.
      */
-    public func stopAnimatingGif() {
+    func stopAnimatingGif() {
         self.isPlaying = false
     }
     
@@ -176,7 +176,7 @@ public extension UIImageView {
      Check if this imageView is currently playing a gif
      - Returns wether the gif is currently playing
      */
-    public func isAnimatingGif() -> Bool{
+    func isAnimatingGif() -> Bool{
         return self.isPlaying
     }
     
@@ -184,7 +184,7 @@ public extension UIImageView {
      Show a specific frame based on a delta from current frame
      - Parameter delta: The delsta from current frame we want
      */
-    public func showFrameForIndexDelta(_ delta: Int) {
+    func showFrameForIndexDelta(_ delta: Int) {
         guard let gifImage = gifImage else { return }
         var nextIndex = self.displayOrderIndex + delta
         
@@ -203,7 +203,7 @@ public extension UIImageView {
      Show a specific frame
      - Parameter index: The index of frame to show
      */
-    public func showFrameAtIndex(_ index: Int) {
+    func showFrameAtIndex(_ index: Int) {
         displayOrderIndex = index
         updateFrame()
     }
@@ -211,7 +211,7 @@ public extension UIImageView {
     /**
      Update cache for the current imageView.
      */
-    public func updateCache() {
+    func updateCache() {
         guard let animationManager = animationManager else { return }
         if animationManager.hasCache(self) && !self.haveCache {
             prepareCache()
@@ -225,7 +225,7 @@ public extension UIImageView {
     /**
      Update current image displayed. This method is called by the manager.
      */
-    public func updateCurrentImage() {
+    func updateCurrentImage() {
         
         if displaying {
             updateFrame()
@@ -257,14 +257,14 @@ public extension UIImageView {
     /**
      Get current frame index
      */
-    public func currentFrameIndex() -> Int{
+    func currentFrameIndex() -> Int{
         return displayOrderIndex
     }
 
     /**
      Get frame at specific index
      */
-    public func frameAtIndex(index: Int) -> UIImage {
+    func frameAtIndex(index: Int) -> UIImage {
         guard let gifImage = gifImage,
             let imageSource = gifImage.imageSource,
             let displayOrder = gifImage.displayOrder, index < displayOrder.count,
@@ -278,7 +278,7 @@ public extension UIImageView {
      Check if the imageView has been discarded and is not in the view hierarchy anymore.
      - Returns : A boolean for weather the imageView was discarded
      */
-    public func isDiscarded(_ imageView: UIView?) -> Bool{
+    func isDiscarded(_ imageView: UIView?) -> Bool{
         return imageView?.superview == nil
     }
     
@@ -287,7 +287,7 @@ public extension UIImageView {
      - Returns : A boolean for weather the imageView is displayed
      */
     
-    public func isDisplayedInScreen(_ imageView: UIView?) ->Bool{
+    func isDisplayedInScreen(_ imageView: UIView?) ->Bool{
         guard !self.isHidden, let imageView = imageView else  {
             return false
         }
@@ -302,7 +302,7 @@ public extension UIImageView {
         return (self.window != nil)
     }
     
-    public func clear() {
+    func clear() {
         if let gifImage = gifImage {
             gifImage.clear()
             
@@ -377,7 +377,7 @@ public extension UIImageView {
         return (result as? T)
     }
 
-    public var gifImage: UIImage? {
+    var gifImage: UIImage? {
         get {
             return possiblyNil(_gifImageKey)
         }
@@ -385,7 +385,7 @@ public extension UIImageView {
             objc_setAssociatedObject(self, _gifImageKey!, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
     }
-    public var currentImage: UIImage? {
+    var currentImage: UIImage? {
         get {
             return possiblyNil(_currentImageKey)
         }
@@ -412,7 +412,7 @@ public extension UIImageView {
         }
     }
     
-    public var loopCount: Int {
+    var loopCount: Int {
         get {
             return value(_loopCountKey, 0)
         }
@@ -421,7 +421,7 @@ public extension UIImageView {
         }
     }
     
-    public var animationManager: SwiftyGifManager? {
+    var animationManager: SwiftyGifManager? {
         get {
             return (objc_getAssociatedObject(self, _animationManagerKey!) as? SwiftyGifManager)
         }
@@ -430,7 +430,7 @@ public extension UIImageView {
         }
     }
     
-    public var delegate: SwiftyGifDelegate? {
+    var delegate: SwiftyGifDelegate? {
         get {
             return (objc_getAssociatedObject(self, _delegateKey!) as? SwiftyGifDelegate)
         }
@@ -448,7 +448,7 @@ public extension UIImageView {
         }
     }
     
-    public var displaying: Bool {
+    var displaying: Bool {
         get {
             return value(_displayingKey, false)
         }

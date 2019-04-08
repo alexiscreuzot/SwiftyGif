@@ -69,7 +69,7 @@ open class SwiftyGifManager {
      */
     open func deleteImageView(_ imageView: UIImageView){
         
-        if let index = self.displayViews.index(of: imageView){
+        if let index = self.displayViews.firstIndex(of: imageView){
             if index >= 0 && index < self.displayViews.count {
                 displayViews.remove(at: index)
                 totalGifSize -= imageView.gifImage?.imageSize ?? 0

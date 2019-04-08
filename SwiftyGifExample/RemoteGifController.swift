@@ -16,7 +16,7 @@ class RemoteGifController: UIViewController {
     var gifName: String?
     let gifManager = SwiftyGifManager(memoryLimit:60)
     
-    let gifs = ["https://i.imgur.com/bGmrLYl.gif",
+    let gifs = ["https://i.imgur.com/bGmrLYl_.gif",
                 "https://i.imgur.com/vuDul3q.gif",
                 "https://i.imgur.com/IEUz0rh.gif",
                 "https://i.imgur.com/IhKa7F5.gif",

@@ -25,8 +25,12 @@ class DetailController: UIViewController {
         super.viewDidLoad()
         
         if let imgName = self.gifName {
-            let gifImage = UIImage(gifName: imgName)
-            self.imageView.setGifImage(gifImage, manager: gifManager)
+            do {
+                let gifImage = try UIImage(gifName: imgName)
+                self.imageView.setGifImage(gifImage, manager: gifManager)
+            } catch let error {
+                print("Error : \(error.localizedDescription)")
+            }
         }
 
         // Gestures for gif control

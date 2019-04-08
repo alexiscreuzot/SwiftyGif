@@ -29,8 +29,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as! Cell
-        let gifImage = UIImage(gifName: images[indexPath.row])
-        cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
+        
+        do {
+            let gifImage = try UIImage(gifName: images[indexPath.row])
+            cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
+        } catch let error { 
+            print("Error : \(error.localizedDescription)")
+        }
+
         return cell
     }
 
