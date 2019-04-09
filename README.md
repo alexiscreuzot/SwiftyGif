@@ -36,7 +36,7 @@ SwiftyGif uses familiar `UIImage` and `UIImageView`  to display gifs.
 import SwiftyGif
 
 do {
-    let gif = UIImage(gifName: "MyImage.gif")
+    let gif = try UIImage(gifName: "MyImage.gif")
     let imageview = UIImageView(gifImage: gif, loopCount: 3) // Use -1 for infinite loop
     imageview.frame = view.bounds
     view.addSubview(imageview)
@@ -64,7 +64,7 @@ Setting a lower level of integrity will allow for frame skipping, lowering both 
 
 ```swift
 do {
-    let gif = UIImage(gifName: "MyImage.gif", levelOfIntegrity:0.5)
+    let gif = try UIImage(gifName: "MyImage.gif", levelOfIntegrity:0.5)
 } catch error {
     print(error)
 }
