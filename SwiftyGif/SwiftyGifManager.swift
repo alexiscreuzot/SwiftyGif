@@ -61,6 +61,8 @@ open class SwiftyGifManager {
         while !displayViews.isEmpty {
             displayViews.removeFirst().clear()
         }
+        timer?.invalidate()
+        timer = nil
     }
     
     /**
@@ -116,6 +118,13 @@ open class SwiftyGifManager {
      This is what create the animation.
      */
     @objc func updateImageView(){
+        
+        guard !displayViews.isEmpty else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
         for imageView in displayViews {
 
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
