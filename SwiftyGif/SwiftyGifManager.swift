@@ -17,14 +17,24 @@ open class SwiftyGifManager {
     fileprivate var memoryLimit: Int
     open var  haveCache: Bool
     
-    /**
-     Initialize a manager
-     - Parameter memoryLimit: The number of Mb max for this manager
-     */
+    /// Initialize a manager
+    ///
+    /// - Parameter memoryLimit: The number of Mb max for this manager
     public init(memoryLimit: Int) {
         self.memoryLimit = memoryLimit
         totalGifSize = 0
         haveCache = true
+    }
+    
+    deinit {
+        stopTimer()
+    }
+    
+    public func startTimerIfNeeded() {
+        guard timer == nil else {
+            return
+        }
+        
         timer = CADisplayLink(target: self, selector: #selector(updateImageView))
         
         #if swift(>=4.2)
@@ -34,109 +44,82 @@ open class SwiftyGifManager {
         #endif
     }
     
-    /**
-     Add a new imageView to this manager if it doesn't exist
-     - Parameter imageView: The UIImageView we're adding to this manager
-     */
-    open func addImageView(_ imageView: UIImageView) -> Bool {
-        if containsImageView(imageView) {
-            return false
-        }
-        
-        totalGifSize += imageView.gifImage?.imageSize ?? 0
-        
-        if totalGifSize > memoryLimit && haveCache {
-            haveCache = false
-            for imageView in displayViews{
-                DispatchQueue.global(qos: .userInteractive).sync{
-                    imageView.updateCache()
-                }
-            }
-        }
-        displayViews.append(imageView)
-        return true
-    }
-    
-    open func clear() {
-        while !displayViews.isEmpty {
-            displayViews.removeFirst().clear()
-        }
+    public func stopTimer() {
         timer?.invalidate()
         timer = nil
     }
     
-    /**
-     Delete an imageView from this manager if it exists
-     - Parameter imageView: The UIImageView we want to delete
-     */
-    open func deleteImageView(_ imageView: UIImageView){
+    /// Add a new imageView to this manager if it doesn't exist
+    /// - Parameter imageView: The UIImageView we're adding to this manager
+    open func addImageView(_ imageView: UIImageView) -> Bool {
+        if containsImageView(imageView) {
+            startTimerIfNeeded()
+            return false
+        }
         
-        if let index = self.displayViews.firstIndex(of: imageView){
-            if index >= 0 && index < self.displayViews.count {
-                displayViews.remove(at: index)
-                totalGifSize -= imageView.gifImage?.imageSize ?? 0
-                if totalGifSize < memoryLimit && !haveCache {
-                    haveCache = true
-                    for imageView in displayViews {
-                        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
-                            imageView.updateCache()
-                        }
-                    }
-                }
-            }
+        updateCacheSize(for: imageView, add: true)
+        displayViews.append(imageView)
+        startTimerIfNeeded()
+        
+        return true
+    }
+    
+    /// Delete an imageView from this manager if it exists
+    /// - Parameter imageView: The UIImageView we want to delete
+    open func deleteImageView(_ imageView: UIImageView) {
+        guard let index = displayViews.firstIndex(of: imageView) else {
+            return
+        }
+        
+        displayViews.remove(at: index)
+        updateCacheSize(for: imageView, add: false)
+    }
+    
+    open func updateCacheSize(for imageView: UIImageView, add: Bool) {
+        totalGifSize += (add ? 1 : -1) * (imageView.gifImage?.imageSize ?? 0)
+        haveCache = totalGifSize <= memoryLimit
+        
+        for imageView in displayViews {
+            DispatchQueue.global(qos: .userInteractive).sync(execute: imageView.updateCache)
         }
     }
     
-    /**
-     Check if an imageView is already managed by this manager
-     - Parameter imageView: The UIImageView we're searching
-     - Returns : a boolean for wether the imageView was found
-     */
+    open func clear() {
+        displayViews.forEach { $0.clear() }
+        displayViews = []
+        stopTimer()
+    }
+    
+    /// Check if an imageView is already managed by this manager
+    /// - Parameter imageView: The UIImageView we're searching
+    /// - Returns : a boolean for wether the imageView was found
     open func containsImageView(_ imageView: UIImageView) -> Bool{
         return displayViews.contains(imageView)
     }
     
-    /**
-     Check if this manager has cache for an imageView
-     - Parameter imageView: The UIImageView we're searching cache for
-     - Returns : a boolean for wether we have cache for the imageView
-     */
+    /// Check if this manager has cache for an imageView
+    /// - Parameter imageView: The UIImageView we're searching cache for
+    /// - Returns : a boolean for wether we have cache for the imageView
     open func hasCache(_ imageView: UIImageView) -> Bool{
-        if imageView.displaying == false {
-            return false
-        }
-        
-        if imageView.loopCount == -1 || imageView.loopCount >= 5 {
-            return haveCache
-        }else{
-            return false
-        }
+        return imageView.displaying && (imageView.loopCount == -1 || imageView.loopCount >= 5) ? haveCache : false
     }
     
-    /**
-     Update imageView current image. This method is called by the main loop.
-     This is what create the animation.
-     */
+    /// Update imageView current image. This method is called by the main loop.
+    /// This is what create the animation.
     @objc func updateImageView(){
-        
         guard !displayViews.isEmpty else {
-            timer?.invalidate()
-            timer = nil
+            stopTimer()
             return
         }
         
         for imageView in displayViews {
-
-            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync {
                 imageView.image = imageView.currentImage
             }
+            
             if imageView.isAnimatingGif() {
-                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync{
-                    imageView.updateCurrentImage()
-                }
+                DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).sync(execute: imageView.updateCurrentImage)
             }
-
         }
     }
-    
 }

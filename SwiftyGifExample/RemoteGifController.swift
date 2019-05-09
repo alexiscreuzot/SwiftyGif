@@ -14,13 +14,10 @@ class RemoteGifController: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
     
     var gifName: String?
-    let gifManager = SwiftyGifManager(memoryLimit:60)
+    let gifManager = SwiftyGifManager(memoryLimit: 60)
     
-    let gifs = ["https://i.imgur.com/bGmrLYl_.gif",
-                "https://i.imgur.com/vuDul3q.gif",
-                "https://i.imgur.com/IEUz0rh.gif",
-                "https://i.imgur.com/IhKa7F5.gif",
-                "https://i.imgur.com/I3YiUBA.gif"]
+    let gifs = ["https://i.giphy.com/media/fSvqyvXn1M3btN8sDh/giphy.gif",
+                "https://i.imgur.com/eZcQvpc.gif"]
     
     var currentIndex = 0
 
@@ -31,11 +28,11 @@ class RemoteGifController: UIViewController {
     }
     
     func fetchGifFromURLString(_ string: String?) {
-        guard let string = string else {
+        guard let string = string, let url = URL(string: string) else {
             return
         }
-        let url = URL(string: string)
-        self.imageView.setGifFromURL(url)
+        
+        self.imageView.setGifFromURL(url, manager: gifManager, levelOfIntegrity: .highestNoFrameSkipping)
     }
     
     @IBAction func selectNext() {
@@ -51,8 +48,12 @@ extension RemoteGifController : SwiftyGifDelegate {
         print("gifURLDidFinish")
     }
     
-    func gifURLDidFail(sender: UIImageView) {
-        print("gifURLDidFail")
+    func gifURLDidFail(sender: UIImageView, url: URL, error: Error?) {
+        print("gifURLDidFail", url)
+        
+        if let error = error {
+            print(error)
+        }
     }
     
     func gifDidStart(sender: UIImageView) {
