@@ -8,13 +8,6 @@
 
 import UIKit
 
-class Cell: UITableViewCell {
-
+final class Cell: UITableViewCell {
     @IBOutlet weak var gifImageView: UIImageView!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }

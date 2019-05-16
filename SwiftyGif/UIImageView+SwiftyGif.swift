@@ -2,7 +2,6 @@
 //  UIImageView+SwiftyGif.swift
 //
 
-import ImageIO
 import UIKit
 
 @objc public protocol SwiftyGifDelegate {
@@ -21,18 +20,18 @@ public extension UIImageView {
     ///
     /// - Parameter gifImage: The UIImage containing the gif backing data
     /// - Parameter manager: The manager to handle the gif display
-    convenience init(gifImage: UIImage, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+    convenience init(gifImage: UIImage, config: Config = .default, loopCount: Int = -1) {
         self.init()
-        setGifImage(gifImage,manager: manager, loopCount: loopCount)
+        setGifImage(gifImage, config: config, loopCount: loopCount)
     }
     
     /// Convenience initializer. Creates a gif holder (defaulted to infinite loop).
     ///
     /// - Parameter gifImage: The UIImage containing the gif backing data
     /// - Parameter manager: The manager to handle the gif display
-    convenience init(gifURL: URL, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+    convenience init(gifURL: URL, config: Config = .default, loopCount: Int = -1) {
         self.init()
-        setGifFromURL(gifURL, manager: manager, loopCount: loopCount)
+        setGifFromURL(gifURL, config: config, loopCount: loopCount)
     }
     
     /// Set a gif image and a manager to an existing UIImageView.
@@ -41,7 +40,7 @@ public extension UIImageView {
     /// - Parameter gifImage: The UIImage containing the gif backing data
     /// - Parameter manager: The manager to handle the gif display
     /// - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
-    func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+    func setGifImage(_ gifImage: UIImage, config: Config = .default, loopCount: Int = -1) {
         if let imageData = gifImage.imageData, (gifImage.imageCount ?? 0) < 1 {
             image = UIImage(data: imageData)
             return
@@ -49,7 +48,6 @@ public extension UIImageView {
         
         self.loopCount = loopCount
         self.gifImage = gifImage
-        animationManager = manager
         syncFactor = 0
         displayOrderIndex = 0
         cache = NSCache()
@@ -58,10 +56,12 @@ public extension UIImageView {
         if let source = gifImage.imageSource, let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) {
             currentImage = UIImage(cgImage: cgImage)
             
-            if manager.addImageView(self) {
+            if config.addImageView(self) {
                 startDisplay()
                 startAnimatingGif()
             }
+            
+            Manager.shared.manage(config)
         }
     }
 }
@@ -80,7 +80,7 @@ public extension UIImageView {
     /// - Returns: An URL session task. Note: You can cancel the downloading task if it needed.
     @discardableResult
     func setGifFromURL(_ url: URL,
-                       manager: SwiftyGifManager = .defaultManager,
+                       config: Config = .default,
                        loopCount: Int = -1,
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
                        showLoader: Bool = true) -> URLSessionDataTask {
@@ -93,7 +93,7 @@ public extension UIImageView {
                 self.parseDownloadedGif(url: url,
                                         data: data,
                                         error: error,
-                                        manager: manager,
+                                        config: config,
                                         loopCount: loopCount,
                                         levelOfIntegrity: levelOfIntegrity)
             }
@@ -129,7 +129,7 @@ public extension UIImageView {
     private func parseDownloadedGif(url: URL,
                                     data: Data?,
                                     error: Error?,
-                                    manager: SwiftyGifManager,
+                                    config: Config,
                                     loopCount: Int,
                                     levelOfIntegrity: GifLevelOfIntegrity) {
         guard let data = data else {
@@ -139,7 +139,7 @@ public extension UIImageView {
         
         do {
             let image = try UIImage(gifData: data, levelOfIntegrity: levelOfIntegrity)
-            setGifImage(image, manager: manager, loopCount: loopCount)
+            setGifImage(image, config: config, loopCount: loopCount)
             startAnimatingGif()
             delegate?.gifURLDidFinish?(sender: self)
         } catch {
@@ -213,12 +213,14 @@ public extension UIImageView {
     
     /// Update cache for the current imageView.
     func updateCache() {
-        guard let animationManager = animationManager else { return }
+        guard let config = animationConfig else {
+            return
+        }
         
-        if animationManager.hasCache(self) && !haveCache {
+        if config.hasCache(self) && !haveCache {
             prepareCache()
             haveCache = true
-        } else if !animationManager.hasCache(self) && haveCache {
+        } else if !config.hasCache(self) && haveCache {
             cache?.removeAllObjects()
             haveCache = false
         }
@@ -239,7 +241,7 @@ public extension UIImageView {
             }
             
             if isDiscarded(self) {
-                animationManager?.deleteImageView(self)
+                animationConfig?.deleteImageView(self)
             }
         }
     }
@@ -300,7 +302,7 @@ public extension UIImageView {
         gifImage = nil
         currentImage = nil
         cache?.removeAllObjects()
-        animationManager = nil
+        animationConfig = nil
         image = nil
     }
     
@@ -360,7 +362,7 @@ private let _haveCacheKey = malloc(4)
 private let _loopCountKey = malloc(4)
 private let _displayingKey = malloc(4)
 private let _isPlayingKey = malloc(4)
-private let _animationManagerKey = malloc(4)
+private let _animationConfigKey = malloc(4)
 private let _delegateKey = malloc(4)
 
 public extension UIImageView {
@@ -390,9 +392,9 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, _loopCountKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    var animationManager: SwiftyGifManager? {
-        get { return (objc_getAssociatedObject(self, _animationManagerKey!) as? SwiftyGifManager) }
-        set { objc_setAssociatedObject(self, _animationManagerKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    var animationConfig: Config? {
+        get { return (objc_getAssociatedObject(self, _animationConfigKey!) as? Config) }
+        set { objc_setAssociatedObject(self, _animationConfigKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
     var delegate: SwiftyGifDelegate? {

@@ -14,7 +14,7 @@ class RemoteGifController: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
     
     var gifName: String?
-    let gifManager = SwiftyGifManager(memoryLimit: 60)
+    let gifConfig = Config(memoryLimit: 60)
     
     let gifs = ["https://i.giphy.com/media/fSvqyvXn1M3btN8sDh/giphy.gif",
                 "https://i.imgur.com/eZcQvpc.gif"]
@@ -32,7 +32,7 @@ class RemoteGifController: UIViewController {
             return
         }
         
-        self.imageView.setGifFromURL(url, manager: gifManager, levelOfIntegrity: .highestNoFrameSkipping)
+        self.imageView.setGifFromURL(url, config: gifConfig, levelOfIntegrity: .highestNoFrameSkipping)
     }
     
     @IBAction func selectNext() {

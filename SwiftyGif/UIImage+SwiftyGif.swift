@@ -2,7 +2,6 @@
 //  UIImage+SwiftyGif.swift
 //
 
-import ImageIO
 import UIKit
 
 public typealias GifLevelOfIntegrity = Float

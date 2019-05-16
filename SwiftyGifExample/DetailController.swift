@@ -17,7 +17,7 @@ class DetailController: UIViewController {
     @IBOutlet private weak var rewindButton: UIButton!
 
     var gifName: String?
-    let gifManager = SwiftyGifManager(memoryLimit: 60)
+    let gifConfig = Config(memoryLimit: 60)
     var _rewindTimer: Timer?
     var _forwardTimer: Timer?
 
@@ -27,7 +27,7 @@ class DetailController: UIViewController {
         if let imgName = self.gifName {
             do {
                 let gifImage = try UIImage(gifName: imgName, levelOfIntegrity: .highestNoFrameSkipping)
-                self.imageView.setGifImage(gifImage, manager: gifManager)
+                self.imageView.setGifImage(gifImage, config: gifConfig)
             } catch let error {
                 print("Error : \(error.localizedDescription)")
             }

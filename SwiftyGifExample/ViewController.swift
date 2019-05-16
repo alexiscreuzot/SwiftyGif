@@ -10,7 +10,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
 
-    let gifManager = SwiftyGifManager(memoryLimit:100)
+    let gifConfig = Config(memoryLimit: 100)
     let images = ["1", "2", "3", "5", "4"]
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         do {
             let gifImage = try UIImage(gifName: images[indexPath.row])
-            cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
+            cell.gifImageView.setGifImage(gifImage, config: gifConfig)
         } catch let error { 
             print("Error : \(error.localizedDescription)")
         }
