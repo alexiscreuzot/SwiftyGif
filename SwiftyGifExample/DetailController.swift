@@ -30,6 +30,10 @@ class DetailController: UIViewController {
                 self.imageView.setGifImage(gifImage, manager: gifManager)
             } catch let error {
                 print("Error : \(error.localizedDescription)")
+
+                if let nonGifImage = UIImage(named: "\(imgName).gif") {
+                    self.imageView.image = nonGifImage
+                }
             }
         }
 
