@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA29E9451CA9340F00E579D5"
+               BlueprintIdentifier = "EF34CB4922A51591002A6C92"
                BuildableName = "SwiftyGifTests.xctest"
                BlueprintName = "SwiftyGifTests"
                ReferencedContainer = "container:SwiftyGif.xcodeproj">

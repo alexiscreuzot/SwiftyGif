@@ -14,6 +14,23 @@ import UIKit
 }
 
 public extension UIImageView {
+    /// Set an image and a manager to an existing UIImageView. If the image is not an GIF image, set it in normal way and remove self form SwiftyGifManager
+    ///
+    /// WARNING : this overwrite any previous gif.
+    /// - Parameter gifImage: The UIImage containing the gif backing data
+    /// - Parameter manager: The manager to handle the gif display
+    /// - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
+    func setImage(_ image: UIImage, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+        if let _ = image.imageData {
+            setGifImage(image, manager: manager, loopCount: loopCount)
+        } else {
+            manager.deleteImageView(self)
+            self.image = image
+        }
+    }
+}
+
+public extension UIImageView {
     
     // MARK: - Inits
     
