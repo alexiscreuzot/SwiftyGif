@@ -132,7 +132,6 @@ final class SwiftyGifTests: XCTestCase {
         assertSnapshot(matching: imageView, as: .image)
     }
 
-    ///TODO:
     func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
         asset(gifName: "no_property_dictionary.gif")
     }

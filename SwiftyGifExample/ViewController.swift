@@ -12,8 +12,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     let gifManager = SwiftyGifManager(memoryLimit:100)
     let images = ["single_frame_Zt2012",
-                  "no_property_dictionary",
-                  "1", "2", "3", "5", "4"]
+        "no_property_dictionary.gif",
+        "sample.jpg",
+                  "1", "2", "3", "5", "4"
+    ]
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailController = segue.destination as? DetailController {
@@ -32,10 +34,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as! Cell
 
-        do {
-            try cell.gifImageView.setGif(gifName: images[indexPath.row], gifManager: gifManager)
-        } catch let error {
-            print("Error : \(error.localizedDescription)")
+
+        if let image = try? UIImage(imageName: images[indexPath.row]) {
+            cell.gifImageView.setImage(image, manager: gifManager, loopCount: -1)
+        } else {
+            cell.gifImageView.clear()
         }
 
         return cell
@@ -49,27 +52,3 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 }
 
-
-extension UIImageView {
-    func setGif(gifName: String, gifManager: SwiftyGifManager) throws {
-
-        do {
-            //            gifManager.deleteImageView(self)
-            let gifImage = try UIImage(gifName: gifName)
-            setGifImage(gifImage, manager: gifManager, loopCount: -1)
-        } catch {
-            // necessary for recycling, otherwise still shows the GIF
-            gifManager.deleteImageView(self)
-
-            if let gifImage = UIImage(named: "\(gifName).gif") {
-                image = gifImage
-            } else {
-                throw MyGifParseError.retryUIImageInitFail
-            }
-        }
-    }
-}
-
-enum MyGifParseError: Error {
-    case retryUIImageInitFail
-}

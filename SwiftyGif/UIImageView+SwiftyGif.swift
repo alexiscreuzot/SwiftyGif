@@ -18,6 +18,7 @@ public extension UIImageView {
         if let _ = image.imageData {
             setGifImage(image, manager: manager, loopCount: loopCount)
         } else {
+            manager.deleteImageView(self)
             self.image = image
         }
     }
