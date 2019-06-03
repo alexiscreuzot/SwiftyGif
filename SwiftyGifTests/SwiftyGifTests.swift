@@ -11,9 +11,6 @@ import SwiftyGif
 import SnapshotTesting
 
 extension XCTestCase {
-//    func image(inTestBundleNamed name: String) -> UIImage {
-//        return UIImage(contentsOfFile: urlForResource(inTestBundleNamed: name).path)!
-//    }
 
     func data(filename: String) -> Data? {
         let data = try? Data(contentsOf: url(for: filename))
@@ -51,18 +48,30 @@ final class SwiftyGifTests: XCTestCase {
     }
 
 
-    private func createImageView(gifName: String, gifManager: SwiftyGifManager = .defaultManager) -> UIImageView! {
+    @discardableResult
+    private func createImage(gifName: String, file: StaticString = #file, testName: String = #function, line: UInt = #line) -> UIImage! {
         let data = self.data(filename: gifName)!
 
         do {
-            sut = try UIImage(gifData: data)
+            sut = try UIImage(imageData: data)
         } catch let error {
             XCTFail(error.localizedDescription)
             return nil
         }
 
+        return sut
+    }
+
+    private func createImageView(gifName: String, gifManager: SwiftyGifManager = .defaultManager, file: StaticString = #file, testName: String = #function, line: UInt = #line) -> UIImageView! {
+
+        createImage(gifName: gifName)
+
+        if sut == nil {
+            return nil
+        }
+
         let imageView = UIImageView()
-        imageView.setGifImage(sut)
+        imageView.setImage(sut, manager: gifManager)
 
         return imageView
     }
@@ -71,8 +80,13 @@ final class SwiftyGifTests: XCTestCase {
         let imageView = createImageView(gifName: gifName)
 
         // can not snapshot the UIImageView directly since it would produce nil image. Snapshot imageView.currentImage instead
-        let gifImage = imageView!.currentImage!
-        assertSnapshot(matching: gifImage, as: .image, file: file, testName: testName, line: line)
+        let image: UIImage
+        if let gifImage = imageView?.currentImage {
+            image = gifImage
+        } else {
+            image = imageView!.image!
+        }
+        assertSnapshot(matching: image, as: .image, file: file, testName: testName, line: line)
     }
 
 //    public func assertSnapshot<Value, Format>(matching value: @autoclosure () throws -> Value, as snapshotting: SnapshotTesting.Snapshotting<Value, Format>, named name: String? = nil, record recording: Bool = false, timeout: TimeInterval = 5, file: StaticString = #file, testName: String = #function, line: UInt = #line) {
@@ -119,15 +133,46 @@ final class SwiftyGifTests: XCTestCase {
     }
 
     ///TODO:
-//    func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
-//        asset(gifName: "no_property_dictionary.gif")
-//    }
+    func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
+        asset(gifName: "no_property_dictionary.gif")
+    }
+
+    func testThatNonGifImageCanBeLoaded() {
+        asset(gifName: "sample.jpg")
+    }
 
     func testThat15MBGIFCanBeLoaded() {
         asset(gifName: "15MB_Einstein_rings_zoom.gif")
     }
 
-    func testThatImageViewCanBeRecycled() {
+    func testThatImageViewCanBeRecycledForGIF() {
+        let data = self.data(filename: "sample.jpg")!
+
+        let imageView = UIImageView()
+
+        let normalImage = UIImage(data: data)!
+        imageView.image = normalImage
+        imageView.frame = CGRect(origin: .zero, size: normalImage.size)
+
+
+        ///snapshot of the normal image
+        assertSnapshot(matching: imageView, as: .image)
+
+        createImage(gifName: "15MB_Einstein_rings_zoom.gif")
+        imageView.setGifImage(sut, manager: gifManager)
+
+        ///snapshot of the GIF
+        assertSnapshot(matching: imageView.currentImage!, as: .image)
+
+        ///snapshot of the normal image
+        gifManager.deleteImageView(imageView)
+
+        imageView.image = normalImage
+        assertSnapshot(matching: imageView, as: .image)
+    }
+
+    /// GIF -> normal image recycling
+    func testThatImageViewCanBeRecycledForNormalImage() {
         // GIVEN
         let imageView = createImageView(gifName: "15MB_Einstein_rings_zoom.gif", gifManager: gifManager)!
 
@@ -143,8 +188,19 @@ final class SwiftyGifTests: XCTestCase {
         imageView.image = updateImage
         imageView.frame = CGRect(origin: .zero, size: updateImage.size)
 
+        // THEN
+
         ///snapshot of the updated JPG
         assertSnapshot(matching: imageView, as: .image)
+
+//        // WHEN
+//        sut = try? UIImage(gifData: self.data(filename: "15MB_Einstein_rings_zoom.gif")!)
+//        imageView.setGifImage(sut)
+//
+//        // THEN
+//
+//        ///snapshot of the GIF
+//        assertSnapshot(matching: imageView.currentImage!, as: .image)
     }
 
     /*

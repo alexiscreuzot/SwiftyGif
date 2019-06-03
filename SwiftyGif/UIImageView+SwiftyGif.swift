@@ -14,6 +14,16 @@ import UIKit
 }
 
 public extension UIImageView {
+    func setImage(_ image: UIImage, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+        if let _ = image.imageData {
+            setGifImage(image, manager: manager, loopCount: loopCount)
+        } else {
+            self.image = image
+        }
+    }
+}
+
+public extension UIImageView {
     
     // MARK: - Inits
     

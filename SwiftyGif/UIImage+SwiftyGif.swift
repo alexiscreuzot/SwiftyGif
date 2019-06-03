@@ -34,6 +34,20 @@ extension GifParseError: LocalizedError {
     }
 }
 
+public extension UIImage {
+    /// Convenience initializer. Creates a gif with its backing data.
+    ///
+    /// - Parameter gifData: The actual gif data
+    /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+    convenience init?(imageData:Data, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
+        do {
+            try self.init(gifData: imageData, levelOfIntegrity: levelOfIntegrity)
+        } catch {
+            self.init(data: imageData)
+        }
+    }
+}
+
 // MARK: - Inits
 
 public extension UIImage {
