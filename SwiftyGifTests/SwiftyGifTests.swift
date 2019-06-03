@@ -39,6 +39,7 @@ extension XCTestCase {
 final class SwiftyGifTests: XCTestCase {
 
     var sut: UIImage!
+    let gifManager = SwiftyGifManager(memoryLimit:100)
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -49,24 +50,28 @@ final class SwiftyGifTests: XCTestCase {
         sut = nil
     }
 
-    private func asset(gifName: String, file: StaticString = #file, testName: String = #function, line: UInt = #line) {
-        // GIVEN
+
+    private func createImageView(gifName: String, gifManager: SwiftyGifManager = .defaultManager) -> UIImageView! {
         let data = self.data(filename: gifName)!
 
-        // WHEN
         do {
             sut = try UIImage(gifData: data)
         } catch let error {
             XCTFail(error.localizedDescription)
-            return
+            return nil
         }
 
-        // THEN
         let imageView = UIImageView()
         imageView.setGifImage(sut)
 
+        return imageView
+    }
+
+    private func asset(gifName: String, file: StaticString = #file, testName: String = #function, line: UInt = #line) {
+        let imageView = createImageView(gifName: gifName)
+
         // can not snapshot the UIImageView directly since it would produce nil image. Snapshot imageView.currentImage instead
-        let gifImage = imageView.currentImage!
+        let gifImage = imageView!.currentImage!
         assertSnapshot(matching: gifImage, as: .image, file: file, testName: testName, line: line)
     }
 
@@ -113,12 +118,33 @@ final class SwiftyGifTests: XCTestCase {
         assertSnapshot(matching: imageView, as: .image)
     }
 
-    func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
-        asset(gifName: "no_property_dictionary.gif")
-    }
+    ///TODO:
+//    func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
+//        asset(gifName: "no_property_dictionary.gif")
+//    }
 
     func testThat15MBGIFCanBeLoaded() {
         asset(gifName: "15MB_Einstein_rings_zoom.gif")
+    }
+
+    func testThatImageViewCanBeRecycled() {
+        // GIVEN
+        let imageView = createImageView(gifName: "15MB_Einstein_rings_zoom.gif", gifManager: gifManager)!
+
+        ///snapshot of the GIF
+        assertSnapshot(matching: imageView.currentImage!, as: .image)
+
+        // WHEN
+//        gifManager.deleteImageView(imageView)
+
+        let data = self.data(filename: "sample.jpg")!
+
+        let updateImage = UIImage(data: data)!
+        imageView.image = updateImage
+        imageView.frame = CGRect(origin: .zero, size: updateImage.size)
+
+        ///snapshot of the updated JPG
+        assertSnapshot(matching: imageView, as: .image)
     }
 
     /*
