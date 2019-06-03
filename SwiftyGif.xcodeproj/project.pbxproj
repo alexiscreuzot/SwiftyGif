@@ -17,10 +17,11 @@
 		EF34CB4F22A51591002A6C92 /* SwiftyGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18BAF41E289899009C125A /* SwiftyGif.framework */; };
 		EF34CB5522A524F6002A6C92 /* single_frame_Zt2012.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */; };
 		EF34CB5622A524FA002A6C92 /* 20000x20000.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8C22A16DB900E92383 /* 20000x20000.gif */; };
-		EF34CB5722A524FE002A6C92 /* not_animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8822A166E400E92383 /* not_animated.gif */; };
+		EF34CB5722A524FE002A6C92 /* no_property_dictionary.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8822A166E400E92383 /* no_property_dictionary.gif */; };
 		EF34CB5822A52506002A6C92 /* unsplash_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8E22A1796800E92383 /* unsplash_square.jpg */; };
 		EF34CB5F22A52909002A6C92 /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */; };
 		EF34CB6122A52929002A6C92 /* SnapshotTesting.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF34CB6322A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF34CB6222A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif */; };
 		FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */; };
 		FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC881CB3EDAA000F3476 /* Assets.xcassets */; };
 		FA57CC9A1CB3EDAA000F3476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC8A1CB3EDAA000F3476 /* LaunchScreen.storyboard */; };
@@ -81,7 +82,7 @@
 		3B18BAF41E289899009C125A /* SwiftyGif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
 		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF26CB8822A166E400E92383 /* not_animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = not_animated.gif; sourceTree = "<group>"; };
+		EF26CB8822A166E400E92383 /* no_property_dictionary.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = no_property_dictionary.gif; sourceTree = "<group>"; };
 		EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = single_frame_Zt2012.gif; sourceTree = "<group>"; };
 		EF26CB8C22A16DB900E92383 /* 20000x20000.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 20000x20000.gif; sourceTree = "<group>"; };
 		EF26CB8E22A1796800E92383 /* unsplash_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unsplash_square.jpg; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		EF34CB5922A52876002A6C92 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
 		EF34CB5A22A52876002A6C92 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
+		EF34CB6222A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = 15MB_Einstein_rings_zoom.gif; path = ../../../../../Downloads/15MB_Einstein_rings_zoom.gif; sourceTree = "<group>"; };
 		FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyGifExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifTests.swift; sourceTree = "<group>"; };
 		FA29E94C1CA9340F00E579D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,7 +155,8 @@
 		EF34CB4422A514E7002A6C92 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				EF26CB8822A166E400E92383 /* not_animated.gif */,
+				EF34CB6222A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif */,
+				EF26CB8822A166E400E92383 /* no_property_dictionary.gif */,
 				EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */,
 				EF26CB8C22A16DB900E92383 /* 20000x20000.gif */,
 				EF26CB8E22A1796800E92383 /* unsplash_square.jpg */,
@@ -382,7 +385,8 @@
 				EF34CB5822A52506002A6C92 /* unsplash_square.jpg in Resources */,
 				EF34CB5522A524F6002A6C92 /* single_frame_Zt2012.gif in Resources */,
 				EF34CB5622A524FA002A6C92 /* 20000x20000.gif in Resources */,
-				EF34CB5722A524FE002A6C92 /* not_animated.gif in Resources */,
+				EF34CB5722A524FE002A6C92 /* no_property_dictionary.gif in Resources */,
+				EF34CB6322A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

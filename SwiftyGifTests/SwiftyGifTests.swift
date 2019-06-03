@@ -38,71 +38,87 @@ extension XCTestCase {
 
 final class SwiftyGifTests: XCTestCase {
 
+    var sut: UIImage!
+
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sut = nil
     }
 
-    func testThatNonAnimatedGIFCanBeLoaded() {
+    private func asset(gifName: String, file: StaticString = #file, testName: String = #function, line: UInt = #line) {
         // GIVEN
-        let gifName = "single_frame_Zt2012.gif"
-        var sut: UIImage!
         let data = self.data(filename: gifName)!
 
         // WHEN
         do {
-            sut = try UIImage(gifData: data, levelOfIntegrity: 1)
+            sut = try UIImage(gifData: data)
         } catch let error {
             XCTFail(error.localizedDescription)
+            return
         }
 
         // THEN
-        let reference = UIImage(data: data)
-
-        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 640, height: 640)))
+        let imageView = UIImageView()
         imageView.setGifImage(sut)
 
+        // can not snapshot the UIImageView directly since it would produce nil image. Snapshot imageView.currentImage instead
         let gifImage = imageView.currentImage!
-//        XCTAssertEqual(gifImage, reference)
+        assertSnapshot(matching: gifImage, as: .image, file: file, testName: testName, line: line)
+    }
 
-        assertSnapshot(matching: gifImage, as: .image)
+//    public func assertSnapshot<Value, Format>(matching value: @autoclosure () throws -> Value, as snapshotting: SnapshotTesting.Snapshotting<Value, Format>, named name: String? = nil, record recording: Bool = false, timeout: TimeInterval = 5, file: StaticString = #file, testName: String = #function, line: UInt = #line) {
+//
+//    }
+
+
+    func testThatNonAnimatedGIFCanBeLoadedWithUIImage() {
+        // GIVEN
+        let gifName = "single_frame_Zt2012.gif"
+        let data = self.data(filename: gifName)!
+
+        // WHEN
+        sut = UIImage(data: data)
+
+        // THEN
+
+        let imageView = UIImageView(image: sut)
+
+        assertSnapshot(matching: imageView, as: .image)
+    }
+
+    func testThatNonAnimatedGIFCanBeLoaded() {
+        asset(gifName: "single_frame_Zt2012.gif")
     }
 
     func testThatVeryBigGIFCanBeLoaded() {
+        asset(gifName: "20000x20000.gif")
+    }
+
+    func DISABLE_testThatVeryBigGIFCanBeLoaded() { ///TODO: used 18GB of memory and the output snapshot PNG is 31 MB
         // GIVEN
-        let gifName = "20000x20000"
-        var sut: UIImage!
+        let gifName = "20000x20000.gif"
+        let data = self.data(filename: gifName)!
 
         // WHEN
-        do {
-            sut = try UIImage(gifName: gifName)
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
+        sut = UIImage(data: data)
 
         // THEN
-        let reference = UIImage(named: "20000x20000.gif")
-        XCTAssertEqual(sut, reference)
+
+        let imageView = UIImageView(image: sut)
+
+        assertSnapshot(matching: imageView, as: .image)
     }
 
     func testThatGIFWithoutkCGImagePropertyGIFDictionaryCanBeLoaded() {
-        // GIVEN
-        let gifName = "not_animated"
-        var sut: UIImage!
+        asset(gifName: "no_property_dictionary.gif")
+    }
 
-        // WHEN
-        do {
-            sut = try UIImage(gifName: gifName)
-        } catch let error {
-            XCTFail(error.localizedDescription)
-        }
-
-        // THEN
-        let reference = UIImage(named: "not_animated.gif")
-        XCTAssertEqual(sut, reference)
+    func testThat15MBGIFCanBeLoaded() {
+        asset(gifName: "15MB_Einstein_rings_zoom.gif")
     }
 
     /*
