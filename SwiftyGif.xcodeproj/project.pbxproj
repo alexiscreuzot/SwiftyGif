@@ -13,10 +13,14 @@
 		3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
 		3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
 		3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
-		EF26CB8922A166E400E92383 /* not_animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8822A166E400E92383 /* not_animated.gif */; };
-		EF26CB8B22A167B100E92383 /* Zt2012.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8A22A167B100E92383 /* Zt2012.gif */; };
-		EF26CB8D22A16DB900E92383 /* 20000x20000.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8C22A16DB900E92383 /* 20000x20000.gif */; };
-		EF26CB8F22A1796800E92383 /* unsplash_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8E22A1796800E92383 /* unsplash_square.jpg */; };
+		EF34CB4D22A51591002A6C92 /* SwiftyGifTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF34CB4C22A51591002A6C92 /* SwiftyGifTests.swift */; };
+		EF34CB4F22A51591002A6C92 /* SwiftyGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18BAF41E289899009C125A /* SwiftyGif.framework */; };
+		EF34CB5522A524F6002A6C92 /* single_frame_Zt2012.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */; };
+		EF34CB5622A524FA002A6C92 /* 20000x20000.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8C22A16DB900E92383 /* 20000x20000.gif */; };
+		EF34CB5722A524FE002A6C92 /* not_animated.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8822A166E400E92383 /* not_animated.gif */; };
+		EF34CB5822A52506002A6C92 /* unsplash_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8E22A1796800E92383 /* unsplash_square.jpg */; };
+		EF34CB5F22A52909002A6C92 /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */; };
+		EF34CB6122A52929002A6C92 /* SnapshotTesting.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */; };
 		FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC881CB3EDAA000F3476 /* Assets.xcassets */; };
 		FA57CC9A1CB3EDAA000F3476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC8A1CB3EDAA000F3476 /* LaunchScreen.storyboard */; };
@@ -40,6 +44,13 @@
 			remoteGlobalIDString = 3B18BAF31E289899009C125A;
 			remoteInfo = SwiftyGif;
 		};
+		EF34CB5022A51591002A6C92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA29E92A1CA9340E00E579D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B18BAF31E289899009C125A;
+			remoteInfo = SwiftyGif;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +65,16 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF34CB6022A52914002A6C92 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EF34CB6122A52929002A6C92 /* SnapshotTesting.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -61,9 +82,15 @@
 		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
 		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF26CB8822A166E400E92383 /* not_animated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = not_animated.gif; sourceTree = "<group>"; };
-		EF26CB8A22A167B100E92383 /* Zt2012.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Zt2012.gif; sourceTree = "<group>"; };
+		EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = single_frame_Zt2012.gif; sourceTree = "<group>"; };
 		EF26CB8C22A16DB900E92383 /* 20000x20000.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 20000x20000.gif; sourceTree = "<group>"; };
 		EF26CB8E22A1796800E92383 /* unsplash_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unsplash_square.jpg; sourceTree = "<group>"; };
+		EF34CB4A22A51591002A6C92 /* SwiftyGifTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyGifTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF34CB4C22A51591002A6C92 /* SwiftyGifTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifTests.swift; sourceTree = "<group>"; };
+		EF34CB4E22A51591002A6C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF34CB5922A52876002A6C92 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = SOURCE_ROOT; };
+		EF34CB5A22A52876002A6C92 /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
+		EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapshotTesting.framework; path = Carthage/Build/iOS/SnapshotTesting.framework; sourceTree = "<group>"; };
 		FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyGifExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifTests.swift; sourceTree = "<group>"; };
 		FA29E94C1CA9340F00E579D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +121,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF34CB4722A51591002A6C92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF34CB5F22A52909002A6C92 /* SnapshotTesting.framework in Frameworks */,
+				EF34CB4F22A51591002A6C92 /* SwiftyGif.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA29E92F1CA9340E00E579D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +150,34 @@
 			path = SwiftyGif;
 			sourceTree = "<group>";
 		};
+		EF34CB4422A514E7002A6C92 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EF26CB8822A166E400E92383 /* not_animated.gif */,
+				EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */,
+				EF26CB8C22A16DB900E92383 /* 20000x20000.gif */,
+				EF26CB8E22A1796800E92383 /* unsplash_square.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		EF34CB4B22A51591002A6C92 /* SwiftyGifTests */ = {
+			isa = PBXGroup;
+			children = (
+				EF34CB4C22A51591002A6C92 /* SwiftyGifTests.swift */,
+				EF34CB4E22A51591002A6C92 /* Info.plist */,
+			);
+			path = SwiftyGifTests;
+			sourceTree = "<group>";
+		};
+		EF34CB5D22A52909002A6C92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF34CB5E22A52909002A6C92 /* SnapshotTesting.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA29E9291CA9340E00E579D5 = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +185,9 @@
 				FA29E9341CA9340E00E579D5 /* SwiftyGifExample */,
 				FA29E9491CA9340F00E579D5 /* SwiftyGifTests */,
 				3B18BAF51E289899009C125A /* SwiftyGif */,
+				EF34CB4B22A51591002A6C92 /* SwiftyGifTests */,
 				FA29E9331CA9340E00E579D5 /* Products */,
+				EF34CB5D22A52909002A6C92 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +196,7 @@
 			children = (
 				FA29E9321CA9340E00E579D5 /* SwiftyGifExample.app */,
 				3B18BAF41E289899009C125A /* SwiftyGif.framework */,
+				EF34CB4A22A51591002A6C92 /* SwiftyGifTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,10 +216,6 @@
 				FAC7163A1CCA26AE0018A0CF /* 2.gif */,
 				FAC7163B1CCA26AE0018A0CF /* 4.gif */,
 				FA57CC951CB3EDAA000F3476 /* 5.gif */,
-				EF26CB8822A166E400E92383 /* not_animated.gif */,
-				EF26CB8A22A167B100E92383 /* Zt2012.gif */,
-				EF26CB8C22A16DB900E92383 /* 20000x20000.gif */,
-				EF26CB8E22A1796800E92383 /* unsplash_square.jpg */,
 				FA57CC961CB3EDAA000F3476 /* Info.plist */,
 			);
 			path = SwiftyGifExample;
@@ -161,6 +224,9 @@
 		FA29E9491CA9340F00E579D5 /* SwiftyGifTests */ = {
 			isa = PBXGroup;
 			children = (
+				EF34CB5A22A52876002A6C92 /* Cartfile.private */,
+				EF34CB5922A52876002A6C92 /* Cartfile.resolved */,
+				EF34CB4422A514E7002A6C92 /* Images */,
 				FA29E94A1CA9340F00E579D5 /* SwiftyGifTests.swift */,
 				FA29E94C1CA9340F00E579D5 /* Info.plist */,
 			);
@@ -218,6 +284,25 @@
 			productReference = 3B18BAF41E289899009C125A /* SwiftyGif.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		EF34CB4922A51591002A6C92 /* SwiftyGifTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF34CB5222A51591002A6C92 /* Build configuration list for PBXNativeTarget "SwiftyGifTests" */;
+			buildPhases = (
+				EF34CB4622A51591002A6C92 /* Sources */,
+				EF34CB4722A51591002A6C92 /* Frameworks */,
+				EF34CB4822A51591002A6C92 /* Resources */,
+				EF34CB6022A52914002A6C92 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EF34CB5122A51591002A6C92 /* PBXTargetDependency */,
+			);
+			name = SwiftyGifTests;
+			productName = SwiftyGifTests;
+			productReference = EF34CB4A22A51591002A6C92 /* SwiftyGifTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FA29E9311CA9340E00E579D5 /* SwiftyGifExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA29E94F1CA9340F00E579D5 /* Build configuration list for PBXNativeTarget "SwiftyGifExample" */;
@@ -243,13 +328,17 @@
 		FA29E92A1CA9340E00E579D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = alexiscreuzot;
 				TargetAttributes = {
 					3B18BAF31E289899009C125A = {
 						CreatedOnToolsVersion = 8.2.1;
 						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					EF34CB4922A51591002A6C92 = {
+						CreatedOnToolsVersion = 10.2.1;
 						ProvisioningStyle = Automatic;
 					};
 					FA29E9311CA9340E00E579D5 = {
@@ -273,6 +362,7 @@
 			targets = (
 				FA29E9311CA9340E00E579D5 /* SwiftyGifExample */,
 				3B18BAF31E289899009C125A /* SwiftyGif */,
+				EF34CB4922A51591002A6C92 /* SwiftyGifTests */,
 			);
 		};
 /* End PBXProject section */
@@ -285,6 +375,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF34CB4822A51591002A6C92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF34CB5822A52506002A6C92 /* unsplash_square.jpg in Resources */,
+				EF34CB5522A524F6002A6C92 /* single_frame_Zt2012.gif in Resources */,
+				EF34CB5622A524FA002A6C92 /* 20000x20000.gif in Resources */,
+				EF34CB5722A524FE002A6C92 /* not_animated.gif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA29E9301CA9340E00E579D5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,13 +395,9 @@
 				FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */,
 				FAC7163C1CCA26AE0018A0CF /* 2.gif in Resources */,
 				FAF19DE11CC90F9200454324 /* 3.gif in Resources */,
-				EF26CB8922A166E400E92383 /* not_animated.gif in Resources */,
 				FA57CCA31CB3EDAA000F3476 /* 5.gif in Resources */,
 				FAC7163D1CCA26AE0018A0CF /* 4.gif in Resources */,
-				EF26CB8F22A1796800E92383 /* unsplash_square.jpg in Resources */,
 				FA57CC9A1CB3EDAA000F3476 /* LaunchScreen.storyboard in Resources */,
-				EF26CB8B22A167B100E92383 /* Zt2012.gif in Resources */,
-				EF26CB8D22A16DB900E92383 /* 20000x20000.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +411,14 @@
 				3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */,
 				3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */,
 				3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF34CB4622A51591002A6C92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF34CB4D22A51591002A6C92 /* SwiftyGifTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +441,11 @@
 			isa = PBXTargetDependency;
 			target = 3B18BAF31E289899009C125A /* SwiftyGif */;
 			targetProxy = 3B18BAF91E289899009C125A /* PBXContainerItemProxy */;
+		};
+		EF34CB5122A51591002A6C92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B18BAF31E289899009C125A /* SwiftyGif */;
+			targetProxy = EF34CB5022A51591002A6C92 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -403,6 +513,60 @@
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EF34CB5322A51591002A6C92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwiftyGifTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = BillChan.SwiftyGifTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EF34CB5422A51591002A6C92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SwiftyGifTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = BillChan.SwiftyGifTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -552,6 +716,15 @@
 			buildConfigurations = (
 				3B18BAFE1E289899009C125A /* Debug */,
 				3B18BAFF1E289899009C125A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF34CB5222A51591002A6C92 /* Build configuration list for PBXNativeTarget "SwiftyGifTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF34CB5322A51591002A6C92 /* Debug */,
+				EF34CB5422A51591002A6C92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
