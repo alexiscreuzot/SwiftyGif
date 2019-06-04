@@ -11,7 +11,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
 
     let gifManager = SwiftyGifManager(memoryLimit:100)
-    let images = ["1", "2", "3", "5", "4"]
+    let images = ["single_frame_Zt2012",
+                  "no_property_dictionary.gif",
+                  "sample.jpg",
+                  "1", "2", "3", "5", "4"
+    ]
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailController = segue.destination as? DetailController {
@@ -29,12 +33,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath as IndexPath) as! Cell
-        
-        do {
-            let gifImage = try UIImage(gifName: images[indexPath.row])
-            cell.gifImageView.setGifImage(gifImage, manager: gifManager, loopCount: -1)
-        } catch let error { 
-            print("Error : \(error.localizedDescription)")
+
+
+        if let image = try? UIImage(imageName: images[indexPath.row]) {
+            cell.gifImageView.setImage(image, manager: gifManager, loopCount: -1)
+        } else {
+            cell.gifImageView.clear()
         }
 
         return cell
@@ -47,3 +51,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 }
+
