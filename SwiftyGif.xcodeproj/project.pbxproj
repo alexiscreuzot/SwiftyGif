@@ -24,7 +24,6 @@
 		EF34CB6322A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF34CB6222A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif */; };
 		EF34CB6422A54ABC002A6C92 /* no_property_dictionary.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8822A166E400E92383 /* no_property_dictionary.gif */; };
 		EF34CB6522A54AC0002A6C92 /* single_frame_Zt2012.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */; };
-		EF34CB6622A54AC5002A6C92 /* 15MB_Einstein_rings_zoom.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF34CB6222A54271002A6C92 /* 15MB_Einstein_rings_zoom.gif */; };
 		EF34CB6722A54ACE002A6C92 /* 20000x20000.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8C22A16DB900E92383 /* 20000x20000.gif */; };
 		EF34CB6822A54AD3002A6C92 /* sample.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8E22A1796800E92383 /* sample.jpg */; };
 		FA57CC981CB3EDAA000F3476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC871CB3EDAA000F3476 /* AppDelegate.swift */; };
@@ -400,7 +399,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAF19DDF1CC90F9200454324 /* 1.gif in Resources */,
-				EF34CB6622A54AC5002A6C92 /* 15MB_Einstein_rings_zoom.gif in Resources */,
 				EF34CB6522A54AC0002A6C92 /* single_frame_Zt2012.gif in Resources */,
 				FA57CC9B1CB3EDAA000F3476 /* Main.storyboard in Resources */,
 				FA57CC991CB3EDAA000F3476 /* Assets.xcassets in Resources */,
