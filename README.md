@@ -17,11 +17,19 @@ High performance & easy to use Gif engine
 - [x] Allow control CPU/memory tradeoff via 'memoryLimit' 
 
 ## Installation
+
 #### With CocoaPods
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 pod 'SwiftyGif'
+```
+
+#### With Carthage
+Follow the usual Carthage instructions on how to [add a framework to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application). When adding SwiftyGif among the frameworks listed in `Cartfile`, apply its syntax for [GitHub repositories](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#github-repositories):
+
+```
+github "kirualex/SwiftyGif"
 ```
 
 ## How to Use
