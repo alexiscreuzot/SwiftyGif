@@ -48,7 +48,7 @@ do {
     let imageview = UIImageView(gifImage: gif, loopCount: 3) // Use -1 for infinite loop
     imageview.frame = view.bounds
     view.addSubview(imageview)
-} catch error {
+} catch {
     print(error)
 }
 ```
@@ -73,7 +73,7 @@ Setting a lower level of integrity will allow for frame skipping, lowering both 
 ```swift
 do {
     let gif = try UIImage(gifName: "MyImage.gif", levelOfIntegrity:0.5)
-} catch error {
+} catch {
     print(error)
 }
 ```
