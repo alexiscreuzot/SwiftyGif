@@ -32,6 +32,11 @@ Follow the usual Carthage instructions on how to [add a framework to an applicat
 github "kirualex/SwiftyGif"
 ```
 
+#### With Swift Package Manager
+```ruby
+https://github.com/kirualex/SwiftyGif.git
+```
+
 ## How to Use
 
 #### Project files
