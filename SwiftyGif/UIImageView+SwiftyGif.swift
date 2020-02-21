@@ -100,9 +100,10 @@ public extension UIImageView {
                        manager: SwiftyGifManager = .defaultManager,
                        loopCount: Int = -1,
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
-                       showLoader: Bool = true) -> URLSessionDataTask {
+                       showLoader: Bool = true,
+                       customLoader: UIView? = nil) -> URLSessionDataTask {
         stopAnimatingGif()
-        let loader: UIActivityIndicatorView? = showLoader ? createLoader() : nil
+        let loader: UIView? = showLoader ? createLoader(from: customLoader) : nil
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
@@ -121,8 +122,8 @@ public extension UIImageView {
         return task
     }
     
-    private func createLoader() -> UIActivityIndicatorView {
-        let loader = UIActivityIndicatorView()
+    private func createLoader(from view: UIView? = nil) -> UIView {
+        let loader = view ?? UIActivityIndicatorView()
         addSubview(loader)
         loader.translatesAutoresizingMaskIntoConstraints = false
         
@@ -138,7 +139,7 @@ public extension UIImageView {
             metrics: nil,
             views: ["subview": loader]))
         
-        loader.startAnimating()
+        (loader as? UIActivityIndicatorView)?.startAnimating()
         
         return loader
     }
