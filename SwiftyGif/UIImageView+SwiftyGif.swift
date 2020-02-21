@@ -127,17 +127,23 @@ public extension UIImageView {
         addSubview(loader)
         loader.translatesAutoresizingMaskIntoConstraints = false
         
-        addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[subview]-0-|",
-            options: .directionLeadingToTrailing,
-            metrics: nil,
-            views: ["subview": loader]))
+        addConstraint(NSLayoutConstraint(
+            item: loader,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0))
         
-        addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[subview]-0-|",
-            options: .directionLeadingToTrailing,
-            metrics: nil,
-            views: ["subview": loader]))
+        addConstraint(NSLayoutConstraint(
+            item: loader,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0))
         
         (loader as? UIActivityIndicatorView)?.startAnimating()
         
