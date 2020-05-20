@@ -31,8 +31,8 @@ class RemoteGifController: UIViewController {
         guard let string = string, let url = URL(string: string) else {
             return
         }
-        
-        self.imageView.setGifFromURL(url, manager: gifManager, levelOfIntegrity: .highestNoFrameSkipping)
+        let loader = UIActivityIndicatorView.init(style: .white)
+        self.imageView.setGifFromURL(url, manager: gifManager, levelOfIntegrity: .highestNoFrameSkipping, customLoader: loader)
     }
     
     @IBAction func selectNext() {
