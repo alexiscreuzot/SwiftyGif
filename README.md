@@ -14,7 +14,7 @@ High performance & easy to use Gif engine
 
 ## Features
 - [x] UIImage and UIImageView extension based
-- [x] Remote Gifs
+- [x] Remote GIFs with customizable loader
 - [x] Great CPU/Memory performances
 - [x] Control playback
 - [x] Allow control of  display quality by using 'levelOfIntegrity'
@@ -22,39 +22,42 @@ High performance & easy to use Gif engine
 
 ## Installation
 
-#### With CocoaPods
+### With CocoaPods
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 pod 'SwiftyGif'
 ```
 
-#### With Carthage
+### With Carthage
 Follow the usual Carthage instructions on how to [add a framework to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application). When adding SwiftyGif among the frameworks listed in `Cartfile`, apply its syntax for [GitHub repositories](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#github-repositories):
 
 ```
 github "kirualex/SwiftyGif"
 ```
 
-#### With Swift Package Manager
+### With Swift Package Manager
 ```ruby
 https://github.com/kirualex/SwiftyGif.git
 ```
 
 ## How to Use
 
-#### Project files
+### Project files
 As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
 
-#### Quick Start
+### Quick Start
+
 SwiftyGif uses familiar `UIImage` and `UIImageView`  to display gifs. 
+
+#### Programmaticaly
 
 ```swift
 import SwiftyGif
 
 do {
     let gif = try UIImage(gifName: "MyImage.gif")
-    let imageview = UIImageView(gifImage: gif, loopCount: 3) // Use -1 for infinite loop
+    let imageview = UIImageView(gifImage: gif, loopCount: 3) // Will loop 3 times
     imageview.frame = view.bounds
     view.addSubview(imageview)
 } catch {
@@ -62,21 +65,29 @@ do {
 }
 ```
 
-In case your `UIImageView` is already created (via Nib or Storyboards for instance), it's even easier.
+#### Directly from nib/storyboard
 
 ```swift
-self.myImageView.setGifImage(gif) 
+@IBOutlet var myImageView : UIImageView!
+...
 
-// You can also set it with an URL pointing to your gif
-let url = URL(string: "...")
-self.myImageView.setGifFromURL(url) 
+let gif = try UIImage(gifName: "MyImage.gif")
+self.myImageView.setGifImage(gif, loopCount: -1) // Will loop forever
 ```
 
-#### Performances
+#### Remote GIFs
+
+```swift
+// You can also set it with an URL pointing to your gif
+let url = URL(string: "...")
+let loader = UIActivityIndicatorView(style: .white)
+cell.gifImageView.setGifFromURL(url, customLoader: loader)
+```
+
+### Performances
 A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to you convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
 
-
-##### Level of integrity
+#### Level of integrity
 Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a godd option if you need to preview a lot of gifs at the same time.
 
 ```swift
@@ -87,7 +98,7 @@ do {
 }
 ```
 
-#### Controls
+### Controls
 SwiftyGif offer various controls on the current `UIImageView` playing your gif file. 
 
 ```swift
@@ -104,7 +115,7 @@ self.myImageView.isAnimatingGif() // Returns wether the gif is currently playing
 self.myImageView.gifImage!.framesCount() // Returns number of frames for this gif
 ```
 
-#### Delegate
+### Delegate
 You can declare a SwiftyGifDelegate to receive updates on the gif lifecycle.
 For instance, if you want your controller `MyController` to act as the delegate:
 ```swift
@@ -142,14 +153,14 @@ extension MyController : SwiftyGifDelegate {
 ```
 
 ## Benchmark
-#### Display 1 Image
+### Display 1 Image
 |               |CPU Usage(average) |Memory Usage(average) |
 |:-------------:|:-----------------:|:-----------------------:|
 |FLAnimatedImage|35%                |9,5Mb                    |
 |SwiftyGif      |2%                 |18,4Mb                   |
 |SwiftyGif(memoryLimit:10)|34%      |9,5Mb                    |
 
-#### Display 6 Images
+### Display 6 Images
 |               |CPU Usage(average) |Memory Usage(average) |
 |:-------------:|:-----------------:|:-----------------------:|
 |FLAnimatedImage|65%                |25,1Mb                   |
