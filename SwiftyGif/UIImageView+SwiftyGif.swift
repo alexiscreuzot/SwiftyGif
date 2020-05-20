@@ -100,11 +100,12 @@ public extension UIImageView {
                        manager: SwiftyGifManager = .defaultManager,
                        loopCount: Int = -1,
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
+                       session: URLSession = URLSession.shared,
                        showLoader: Bool = true) -> URLSessionDataTask {
         stopAnimatingGif()
         let loader: UIActivityIndicatorView? = showLoader ? createLoader() : nil
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let task = session.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
                 loader?.removeFromSuperview()
                 self.parseDownloadedGif(url: url,
