@@ -102,8 +102,20 @@ public extension UIImageView {
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
                        session: URLSession = URLSession.shared,
                        showLoader: Bool = true,
-                       customLoader: UIView? = nil) -> URLSessionDataTask {
+                       customLoader: UIView? = nil) -> URLSessionDataTask? {
+        
+        if let data =  manager.remoteCache[url] {
+            self.parseDownloadedGif(url: url,
+                    data: data,
+                    error: nil,
+                    manager: manager,
+                    loopCount: loopCount,
+                    levelOfIntegrity: levelOfIntegrity)
+            return nil
+        }
+        
         stopAnimatingGif()
+        
         let loader: UIView? = showLoader ? createLoader(from: customLoader) : nil
         
         let task = session.dataTask(with: url) { data, _, error in
@@ -164,6 +176,7 @@ public extension UIImageView {
         
         do {
             let image = try UIImage(gifData: data, levelOfIntegrity: levelOfIntegrity)
+            manager.remoteCache[url] = data
             setGifImage(image, manager: manager, loopCount: loopCount)
             startAnimatingGif()
             delegate?.gifURLDidFinish?(sender: self)

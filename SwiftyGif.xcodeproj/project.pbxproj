@@ -34,7 +34,6 @@
 		FA57CC9D1CB3EDAA000F3476 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC8F1CB3EDAA000F3476 /* DetailController.swift */; };
 		FA57CCA31CB3EDAA000F3476 /* 5.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA57CC951CB3EDAA000F3476 /* 5.gif */; };
 		FA57CCA51CB3EDAA000F3476 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57CC971CB3EDAA000F3476 /* ViewController.swift */; };
-		FAB6692020346B0B00AD71AD /* RemoteGifController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB6691F20346B0B00AD71AD /* RemoteGifController.swift */; };
 		FAC7163C1CCA26AE0018A0CF /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163A1CCA26AE0018A0CF /* 2.gif */; };
 		FAC7163D1CCA26AE0018A0CF /* 4.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAC7163B1CCA26AE0018A0CF /* 4.gif */; };
 		FAF19DDF1CC90F9200454324 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FAF19DDA1CC90F9200454324 /* 1.gif */; };
@@ -109,7 +108,6 @@
 		FA57CC951CB3EDAA000F3476 /* 5.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 5.gif; sourceTree = "<group>"; };
 		FA57CC961CB3EDAA000F3476 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA57CC971CB3EDAA000F3476 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FAB6691F20346B0B00AD71AD /* RemoteGifController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGifController.swift; sourceTree = "<group>"; };
 		FAC7163A1CCA26AE0018A0CF /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
 		FAC7163B1CCA26AE0018A0CF /* 4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 4.gif; sourceTree = "<group>"; };
 		FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyGifManager.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 				FA57CC881CB3EDAA000F3476 /* Assets.xcassets */,
 				FA57CC891CB3EDAA000F3476 /* Base.lproj */,
 				FA57CC8E1CB3EDAA000F3476 /* Cell.swift */,
-				FAB6691F20346B0B00AD71AD /* RemoteGifController.swift */,
 				FA57CC8F1CB3EDAA000F3476 /* DetailController.swift */,
 				FA57CC971CB3EDAA000F3476 /* ViewController.swift */,
 				FAF19DDA1CC90F9200454324 /* 1.gif */,
@@ -442,7 +439,6 @@
 				FA57CC9C1CB3EDAA000F3476 /* Cell.swift in Sources */,
 				FA57CCA51CB3EDAA000F3476 /* ViewController.swift in Sources */,
 				FA57CC9D1CB3EDAA000F3476 /* DetailController.swift in Sources */,
-				FAB6692020346B0B00AD71AD /* RemoteGifController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

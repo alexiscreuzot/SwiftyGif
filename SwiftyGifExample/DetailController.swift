@@ -16,7 +16,7 @@ class DetailController: UIViewController {
     @IBOutlet private weak var forwardButton: UIButton!
     @IBOutlet private weak var rewindButton: UIButton!
 
-    var gifName: String?
+    var path: String?
     let gifManager = SwiftyGifManager(memoryLimit: 60)
     var _rewindTimer: Timer?
     var _forwardTimer: Timer?
@@ -24,9 +24,12 @@ class DetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let imgName = self.gifName {
-            if let image = try? UIImage(imageName: imgName) {
-                self.imageView.setImage(image, manager: gifManager)
+        if let path = self.path {
+            if let image = try? UIImage(imageName: path) {
+                self.imageView.setImage(image, manager: gifManager, loopCount: -1)
+            } else if let url = URL.init(string: path) {
+                let loader = UIActivityIndicatorView.init(style: .white)
+                self.imageView.setGifFromURL(url, customLoader: loader)
             } else {
                 self.imageView.clear()
             }
