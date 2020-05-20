@@ -11,15 +11,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
 
     let gifManager = SwiftyGifManager(memoryLimit:100)
-    let images = ["single_frame_Zt2012",
+    let images = [
+//                  "single_frame_Zt2012",
 //                  "no_property_dictionary.gif",
                   "https://media.giphy.com/media/l2QEdvfq7bCCk6qOI/giphy.gif",
                   "1.gif",
+                  "https://media.giphy.com/media/5tkEiBCurffluctzB7/giphy.gif",
                   "2.gif",
+                  "https://media.giphy.com/media/5xtDarmOIekHPQSZEpq/giphy.gif",
                   "3.gif",
                   "https://media.giphy.com/media/3oEjHM2xehrp0lv6bC/giphy.gif",
                   "5.gif",
-                  "4.gif"
+                  "https://media.giphy.com/media/l1J9qg0MqSZcQTuGk/giphy.gif",
+                  "4.gif",
     ]
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
