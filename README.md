@@ -4,9 +4,13 @@
 [![Build Status](https://travis-ci.org/kirualex/SwiftyGif.svg?branch=master)](https://travis-ci.org/kirualex/SwiftyGif)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://raw.githubusercontent.com/kirualex/SwiftyGif/master/LICENSE)
 
+# SwiftyGif
 High performance & easy to use Gif engine
 
-<img src="https://github.com/kirualex/SwiftyGif/blob/master/example.gif" align="center" />
+<p align="center">
+    </br>
+    <img src="https://github.com/kirualex/SwiftyGif/blob/master/example.gif" align="center" />
+</p>
 
 ## Features
 - [x] UIImage and UIImageView extension based
