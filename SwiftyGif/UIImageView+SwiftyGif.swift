@@ -101,9 +101,10 @@ public extension UIImageView {
                        loopCount: Int = -1,
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
                        session: URLSession = URLSession.shared,
-                       showLoader: Bool = true) -> URLSessionDataTask {
+                       showLoader: Bool = true,
+                       customLoader: UIView? = nil) -> URLSessionDataTask {
         stopAnimatingGif()
-        let loader: UIActivityIndicatorView? = showLoader ? createLoader() : nil
+        let loader: UIView? = showLoader ? createLoader(from: customLoader) : nil
         
         let task = session.dataTask(with: url) { data, _, error in
             DispatchQueue.main.async {
@@ -122,24 +123,30 @@ public extension UIImageView {
         return task
     }
     
-    private func createLoader() -> UIActivityIndicatorView {
-        let loader = UIActivityIndicatorView()
+    private func createLoader(from view: UIView? = nil) -> UIView {
+        let loader = view ?? UIActivityIndicatorView()
         addSubview(loader)
         loader.translatesAutoresizingMaskIntoConstraints = false
         
-        addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[subview]-0-|",
-            options: .directionLeadingToTrailing,
-            metrics: nil,
-            views: ["subview": loader]))
+        addConstraint(NSLayoutConstraint(
+            item: loader,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0))
         
-        addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[subview]-0-|",
-            options: .directionLeadingToTrailing,
-            metrics: nil,
-            views: ["subview": loader]))
+        addConstraint(NSLayoutConstraint(
+            item: loader,
+            attribute: .centerY,
+            relatedBy: .equal,
+            toItem: self,
+            attribute: .centerY,
+            multiplier: 1,
+            constant: 0))
         
-        loader.startAnimating()
+        (loader as? UIActivityIndicatorView)?.startAnimating()
         
         return loader
     }
