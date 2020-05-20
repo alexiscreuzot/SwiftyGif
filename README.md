@@ -6,7 +6,7 @@
 
 High performance & easy to use Gif engine
 
-<img src="http://i.imgur.com/p8A6jJh.gif" width="280" />
+<img src="https://github.com/kirualex/SwiftyGif/blob/master/example.gif" align="center" />
 
 ## Features
 - [x] UIImage and UIImageView extension based
