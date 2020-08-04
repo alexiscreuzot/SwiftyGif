@@ -2,6 +2,8 @@
 //  UIImageView+SwiftyGif.swift
 //
 
+#if !os(macOS)
+
 import ImageIO
 import UIKit
 
@@ -482,3 +484,5 @@ public extension UIImageView {
         return (result as? T)
     }
 }
+
+#endif

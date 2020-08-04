@@ -2,6 +2,8 @@
 //  NSImage+SwiftyGif.swift
 //
 
+#if os(macOS)
+
 import ImageIO
 import AppKit
 
@@ -331,3 +333,5 @@ extension String {
         return (self as NSString).pathExtension
     }
 }
+
+#endif
