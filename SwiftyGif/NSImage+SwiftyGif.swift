@@ -1,11 +1,11 @@
 //
-//  UIImage+SwiftyGif.swift
+//  NSImage+SwiftyGif.swift
 //
 
-#if !os(macOS)
+#if os(macOS)
 
 import ImageIO
-import UIKit
+import AppKit
 
 public typealias GifLevelOfIntegrity = Float
 
@@ -36,7 +36,7 @@ extension GifParseError: LocalizedError {
     }
 }
 
-public extension UIImage {
+public extension NSImage {
     /// Convenience initializer. Creates a gif with its backing data.
     ///
     /// - Parameter imageData: The actual image data, can be GIF or some other format
@@ -66,7 +66,7 @@ public extension UIImage {
 
 // MARK: - Inits
 
-public extension UIImage {
+public extension NSImage {
     
     /// Convenience initializer. Creates a gif with its backing data.
     ///
@@ -270,7 +270,8 @@ public extension UIImage {
                 return
         }
         
-        let image = UIImage(cgImage: cgImage)
+        
+        let image = NSImage(cgImage: cgImage, size: .zero)
         imageSize = Int(image.size.height * image.size.width * 4) * imageCount / 1_000_000
     }
 }
@@ -284,7 +285,7 @@ private let _imageCountKey = malloc(4)
 private let _displayOrderKey = malloc(4)
 private let _imageDataKey = malloc(4)
 
-public extension UIImage {
+public extension NSImage {
     
     var imageSource: CGImageSource? {
         get {
