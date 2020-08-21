@@ -88,7 +88,7 @@ cell.gifImageView.setGifFromURL(url, customLoader: loader)
 A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to you convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
 
 #### Level of integrity
-Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a godd option if you need to preview a lot of gifs at the same time.
+Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a good option if you need to preview a lot of gifs at the same time.
 
 ```swift
 do {
