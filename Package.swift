@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftyGif",
     platforms: [
-        .iOS("8.0"), .macOS(.v10_14),
+        .iOS("9.0"), .macOS(.v10_14),
     ],
     products: [
         .library(
