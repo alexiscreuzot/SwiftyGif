@@ -459,8 +459,6 @@ public extension UIImageView {
             
             if newValue {
                 delegate?.gifDidStart?(sender: self)
-            } else {
-                delegate?.gifDidStop?(sender: self)
             }
         }
     }
