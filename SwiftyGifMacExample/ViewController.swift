@@ -15,8 +15,6 @@ class ViewController: NSViewController {
     
     let gifManager = SwiftyGifManager(memoryLimit:100)
     let images = [
-        "https://media.giphy.com/media/l2QEdvfq7bCCk6qOI/giphy.gif",
-        "1.gif",
         "https://media.giphy.com/media/5tkEiBCurffluctzB7/giphy.gif",
         "2.gif",
         "https://media.giphy.com/media/5xtDarmOIekHPQSZEpq/giphy.gif",
