@@ -8,9 +8,8 @@ let package = Package(
         .iOS("9.0"), .macOS(.v10_14),
     ],
     products: [
-        .library(
-            name: "SwiftyGif",
-            targets: ["SwiftyGif"]),
+        .library(name: "SwiftyGif", targets: ["SwiftyGif"]),
+        .library(name: "SwiftyGif-Dynamic", type: .dynamic, targets: ["SwiftyGif"]),
     ],
     dependencies: [],
     targets: [
