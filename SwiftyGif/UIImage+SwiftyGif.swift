@@ -217,7 +217,7 @@ public extension UIImage {
           displayRefreshFactors.append(UIScreen.main.maximumFramesPerSecond)
         }
 
-        if displayRefreshFactors[0] != 60 {
+        if let first = displayRefreshFactors.first, first != 60 {
           // Append 60 if needed.
           displayRefreshFactors.append(60)
         }
