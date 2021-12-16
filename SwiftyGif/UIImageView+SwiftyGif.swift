@@ -436,8 +436,8 @@ public extension UIImageView {
     }
     
     var delegate: SwiftyGifDelegate? {
-        get { return (objc_getAssociatedObject(self, _delegateKey!) as? SwiftyGifDelegate) }
-        set { objc_setAssociatedObject(self, _delegateKey!, newValue, .OBJC_ASSOCIATION_ASSIGN) }
+        get { return (objc_getAssociatedWeakObject(self, _delegateKey!) as? SwiftyGifDelegate) }
+        set { objc_setAssociatedWeakObject(self, _delegateKey!, newValue) }
     }
     
     private var haveCache: Bool {

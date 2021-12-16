@@ -25,6 +25,8 @@
 		3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
 		3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
 		3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
+		AD938875276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */; };
+		AD938876276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */; };
 		EF34CB4D22A51591002A6C92 /* SwiftyGifTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF34CB4C22A51591002A6C92 /* SwiftyGifTests.swift */; };
 		EF34CB4F22A51591002A6C92 /* SwiftyGif.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B18BAF41E289899009C125A /* SwiftyGif.framework */; };
 		EF34CB5522A524F6002A6C92 /* single_frame_Zt2012.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */; };
@@ -113,6 +115,7 @@
 		3B18BAF41E289899009C125A /* SwiftyGif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
 		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
 		EF26CB8822A166E400E92383 /* no_property_dictionary.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = no_property_dictionary.gif; sourceTree = "<group>"; };
 		EF26CB8A22A167B100E92383 /* single_frame_Zt2012.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = single_frame_Zt2012.gif; sourceTree = "<group>"; };
 		EF26CB8C22A16DB900E92383 /* 20000x20000.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 20000x20000.gif; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 				FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */,
 				230188A424D961CD00EFE1BC /* NSImage+SwiftyGif.swift */,
 				230188A224D9614900EFE1BC /* NSImageView+SwiftyGif.swift */,
+				AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
@@ -544,6 +548,7 @@
 			files = (
 				230188A124D95CB800EFE1BC /* SwiftyGifManager.swift in Sources */,
 				230188A524D961D800EFE1BC /* NSImage+SwiftyGif.swift in Sources */,
+				AD938876276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */,
 				230188A324D9615700EFE1BC /* NSImageView+SwiftyGif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,6 +568,7 @@
 			files = (
 				3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */,
 				3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */,
+				AD938875276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */,
 				3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
