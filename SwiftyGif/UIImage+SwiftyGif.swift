@@ -212,24 +212,21 @@ public extension UIImage {
 
         var displayRefreshFactors = [Int]()
 
-        if #available(iOS 10.3, tvOS 10.3, *) {
-          // Will be 120 on devices with ProMotion display, 60 otherwise.
-          displayRefreshFactors.append(UIScreen.main.maximumFramesPerSecond)
-        }
-
-        if let first = displayRefreshFactors.first, first != 60 {
-          // Append 60 if needed.
-          displayRefreshFactors.append(60)
-        }
-
-        displayRefreshFactors.append(contentsOf: [30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1])
-
+        displayRefreshFactors.append(contentsOf: [60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1])
+        
         // maxFramePerSecond,default is 60
         let maxFramePerSecond = displayRefreshFactors[0]
-        
+
         // frame numbers per second
-        let displayRefreshRates = displayRefreshFactors.map { maxFramePerSecond / $0 }
+        var displayRefreshRates = displayRefreshFactors.map { maxFramePerSecond / $0 }
         
+        if #available(iOS 10.3, *) {
+          // Will be 120 on devices with ProMotion display, 60 otherwise.
+            let maximumFramesPerSecond = UIScreen.main.maximumFramesPerSecond
+            if maximumFramesPerSecond == 120 {
+                displayRefreshRates.append(UIScreen.main.maximumFramesPerSecond)
+            }
+        }
         // time interval per frame
         let displayRefreshDelayTime = displayRefreshRates.map { 1 / Float($0) }
         
@@ -241,6 +238,7 @@ public extension UIImage {
         //find the appropriate Factors then BREAK
         for (i, delayTime) in displayRefreshDelayTime.enumerated() {
             let displayPosition = delays.map { Int($0 / delayTime) }
+           
             var frameLoseCount: Float = 0
             
             for j in displayPosition.indices.dropFirst() where displayPosition[j] == displayPosition[j - 1] {
@@ -267,7 +265,6 @@ public extension UIImage {
                         oldIndex += 1
                     }
                 }
-                
                 break
             }
         }
