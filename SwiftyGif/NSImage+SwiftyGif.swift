@@ -211,7 +211,7 @@ public extension NSImage {
         var delays = delaysArray
         
         // Factors send to CADisplayLink.frameInterval
-        let displayRefreshFactors = [60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1]
+        let displayRefreshFactors = [120, 60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1]
         
         // maxFramePerSecond,default is 60
         let maxFramePerSecond = displayRefreshFactors[0]
