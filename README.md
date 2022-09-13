@@ -44,7 +44,7 @@ https://github.com/kirualex/SwiftyGif.git
 ## How to Use
 
 ### Project files
-As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` oustide of the assets. I recommend creating a group `gif` for instance. 
+As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` outside of the assets. I recommend creating a group `gif` for instance. 
 
 ### Quick Start
 
@@ -85,7 +85,7 @@ cell.gifImageView.setGifFromURL(url, customLoader: loader)
 ```
 
 ### Performances
-A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to you convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
+A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to your convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
 
 #### Level of integrity
 Setting a lower level of integrity will allow for frame skipping, lowering both CPU and memory usage. This can be a good option if you need to preview a lot of gifs at the same time.
@@ -99,7 +99,7 @@ do {
 ```
 
 ### Controls
-SwiftyGif offer various controls on the current `UIImageView` playing your gif file. 
+SwiftyGif offers various controls on the current `UIImageView` playing your gif file. 
 
 ```swift
 self.myImageView.startAnimatingGif()
