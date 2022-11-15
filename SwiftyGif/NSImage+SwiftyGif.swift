@@ -222,7 +222,7 @@ public extension NSImage {
         // time interval per frame
         let displayRefreshDelayTime = displayRefreshRates.map { 1 / Float($0) }
         
-        // caclulate the time when each frame should be displayed at(start at 0)
+        // calculate the time when each frame should be displayed at(start at 0)
         for i in delays.indices.dropFirst() {
             delays[i] += delays[i - 1]
         }
