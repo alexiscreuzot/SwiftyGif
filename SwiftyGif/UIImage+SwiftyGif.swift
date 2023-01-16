@@ -53,7 +53,7 @@ public extension UIImage {
     ///
     /// - Parameter imageName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
+    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle = Bundle.main) throws {
         self.init()
 
         do {
@@ -81,7 +81,7 @@ public extension UIImage {
     ///
     /// - Parameter gifName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init(gifName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
+    convenience init(gifName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle = Bundle.main) throws {
         self.init()
         try setGif(gifName, levelOfIntegrity: levelOfIntegrity, bundle: bundle)
     }
@@ -102,7 +102,7 @@ public extension UIImage {
     /// Set backing data for this gif. Overwrites any existing data.
     ///
     /// - Parameter name: Filename
-    func setGif(_ name: String, bundle: Bundle) throws {
+    func setGif(_ name: String, bundle: Bundle = Bundle.main) throws {
         try setGif(name, levelOfIntegrity: .default, bundle: bundle)
     }
     
@@ -121,7 +121,7 @@ public extension UIImage {
     ///
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle) throws {
+    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle = Bundle.main) throws {
         giflog(bundle.debugDescription)
         if let url = bundle.url(forResource: name, withExtension: name.pathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {

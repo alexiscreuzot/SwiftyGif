@@ -53,7 +53,7 @@ public extension NSImage {
     ///
     /// - Parameter imageName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
+    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle = Bundle.main) throws {
         self.init()
 
         do {
@@ -121,9 +121,8 @@ public extension NSImage {
     ///
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle) throws {
-        giflog(bundle)
-
+    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle = Bundle.main) throws {
+        
         if let url = bundle.url(forResource: name,
                                      withExtension: name.pathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
