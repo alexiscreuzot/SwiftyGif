@@ -53,11 +53,11 @@ public extension UIImage {
     ///
     /// - Parameter imageName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
+    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
         self.init()
 
         do {
-            try setGif(imageName, levelOfIntegrity: levelOfIntegrity)
+            try setGif(imageName, levelOfIntegrity: levelOfIntegrity, bundle: bundle)
         } catch {
             self.init(named: imageName)
         }
@@ -81,9 +81,9 @@ public extension UIImage {
     ///
     /// - Parameter gifName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init(gifName: String, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
+    convenience init(gifName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
         self.init()
-        try setGif(gifName, levelOfIntegrity: levelOfIntegrity)
+        try setGif(gifName, levelOfIntegrity: levelOfIntegrity, bundle: bundle)
     }
     
     /// Set backing data for this gif. Overwrites any existing data.
@@ -102,8 +102,8 @@ public extension UIImage {
     /// Set backing data for this gif. Overwrites any existing data.
     ///
     /// - Parameter name: Filename
-    func setGif(_ name: String) throws {
-        try setGif(name, levelOfIntegrity: .default)
+    func setGif(_ name: String, bundle: Bundle) throws {
+        try setGif(name, levelOfIntegrity: .default, bundle: bundle)
     }
     
     /// Check the number of frame for this gif
@@ -112,14 +112,18 @@ public extension UIImage {
     func framesCount() -> Int {
         return displayOrder?.count ?? 0
     }
+
+    private func giflog(_ msg: String) {
+        print("SwiftyGIF: \(msg)")
+    }
     
     /// Set backing data for this gif. Overwrites any existing data.
     ///
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity) throws {
-        if let url = Bundle.main.url(forResource: name,
-                                     withExtension: name.pathExtension() == "gif" ? "" : "gif") {
+    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle) throws {
+        giflog(bundle.debugDescription)
+        if let url = bundle.url(forResource: name, withExtension: name.pathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
                 try setGifFromData(data, levelOfIntegrity: levelOfIntegrity)
             }

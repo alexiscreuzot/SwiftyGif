@@ -11,7 +11,7 @@ public typealias GifLevelOfIntegrity = Float
 
 extension GifLevelOfIntegrity {
     public static let highestNoFrameSkipping: GifLevelOfIntegrity = 1
-    public static let `default`: GifLevelOfIntegrity = 0.8
+    public static let `default`: GifLevelOfIntegrity = 1
     public static let lowForManyGifs: GifLevelOfIntegrity = 0.5
     public static let lowForTooManyGifs: GifLevelOfIntegrity = 0.2
     public static let superLowForSlideShow: GifLevelOfIntegrity = 0.1
@@ -53,11 +53,11 @@ public extension NSImage {
     ///
     /// - Parameter imageName: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
+    convenience init?(imageName: String, levelOfIntegrity: GifLevelOfIntegrity = .default, bundle: Bundle) throws {
         self.init()
 
         do {
-            try setGif(imageName, levelOfIntegrity: levelOfIntegrity)
+            try setGif(imageName, levelOfIntegrity: levelOfIntegrity, bundle: bundle)
         } catch {
             self.init(named: imageName)
         }
@@ -112,13 +112,19 @@ public extension NSImage {
     func framesCount() -> Int {
         return displayOrder?.count ?? 0
     }
+
+    private func giflog(_ msg: String) {
+        print("SwiftyGIF: \(msg)")
+    }
     
     /// Set backing data for this gif. Overwrites any existing data.
     ///
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity) throws {
-        if let url = Bundle.main.url(forResource: name,
+    func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle) throws {
+        giflog(bundle)
+
+        if let url = bundle.url(forResource: name,
                                      withExtension: name.pathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
                 try setGifFromData(data, levelOfIntegrity: levelOfIntegrity)
