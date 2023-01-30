@@ -112,17 +112,12 @@ public extension UIImage {
     func framesCount() -> Int {
         return displayOrder?.count ?? 0
     }
-
-    private func giflog(_ msg: String) {
-        print("SwiftyGIF: \(msg)")
-    }
     
     /// Set backing data for this gif. Overwrites any existing data.
     ///
     /// - Parameter name: Filename
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
     func setGif(_ name: String, levelOfIntegrity: GifLevelOfIntegrity, bundle: Bundle = Bundle.main) throws {
-        giflog(bundle.debugDescription)
         if let url = bundle.url(forResource: name, withExtension: name.pathExtension() == "gif" ? "" : "gif") {
             if let data = try? Data(contentsOf: url) {
                 try setGifFromData(data, levelOfIntegrity: levelOfIntegrity)
