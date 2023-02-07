@@ -43,7 +43,9 @@ https://github.com/kirualex/SwiftyGif.git
 
 ## How to Use
 
-### Project files
+### Project files  
+![SwiftyGif-projec-file-explain-01](https://user-images.githubusercontent.com/71776532/217253981-af6ffca3-12d7-4978-8487-44779b59324a.png)  
+
 As of now, Xcode `xcassets` folders do not recognize `.gif` as images. This means you need to put your `.gif` outside of the assets. I recommend creating a group `gif` for instance. 
 
 ### Quick Start
@@ -111,7 +113,7 @@ self.myImageView.showFrameAtIndex(index: Int)
 To allow easy use of those controls, some utility methods are provided :
 
 ```swift
-self.myImageView.isAnimatingGif() // Returns wether the gif is currently playing
+self.myImageView.isAnimatingGif() // Returns whether the gif is currently playing
 self.myImageView.gifImage!.framesCount() // Returns number of frames for this gif
 ```
 
