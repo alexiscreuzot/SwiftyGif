@@ -88,6 +88,33 @@ let loader = UIActivityIndicatorView(style: .white)
 cell.gifImageView.setGifFromURL(url, customLoader: loader)
 ```
 
+
+#### SwiftUI
+
+Add this `UIViewRepresentable` to your code.
+
+```swift
+struct AnimatedGifView: UIViewRepresentable {
+    @Binding var url: URL
+
+    func makeUIView(context: Context) -> UIImageView {
+        let imageView = UIImageView(gifURL: self.url)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }
+
+    func updateUIView(_ uiView: UIImageView, context: Context) {
+        uiView.setGifFromURL(self.url)
+    }
+}
+```
+
+Then to use it: 
+
+```swift
+AnimatedGifView(url: Binding(get: { myModel.gif.url }, set: { _ in }))
+```
+
 ### Performances
 A  `SwiftyGifManager`  can hold one or several UIImageView using the same memory pool. This allows you to tune the memory limits to your convenience. If no manager is declared, SwiftyGif will just use the `SwiftyGifManager.defaultManager`.
 
