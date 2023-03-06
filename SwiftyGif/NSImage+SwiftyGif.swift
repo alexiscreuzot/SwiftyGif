@@ -216,10 +216,22 @@ public extension NSImage {
         var delays = delaysArray
         
         // Factors send to CADisplayLink.frameInterval
-        let displayRefreshFactors = [60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1]
+        var displayRefreshFactors = [Int]()
+
+        if #available(macOS 12.0, *), let screen = NSScreen.main {
+          // Will be 120 on devices with ProMotion display, 60 otherwise.
+          displayRefreshFactors.append(screen.maximumFramesPerSecond)
+        }
+
+        if displayRefreshFactors[0] != 60 {
+          // Append 60 if needed.
+          displayRefreshFactors.append(60)
+        }
         
         // maxFramePerSecond,default is 60
         let maxFramePerSecond = displayRefreshFactors[0]
+        
+        displayRefreshFactors.append(contentsOf: [30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1])
         
         // frame numbers per second
         let displayRefreshRates = displayRefreshFactors.map { maxFramePerSecond / $0 }
