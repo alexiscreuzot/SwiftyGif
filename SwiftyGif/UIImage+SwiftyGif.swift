@@ -209,21 +209,27 @@ public extension UIImage {
         let levelOfIntegrity = max(0, min(1, levelOfIntegrity))
         var delays = delaysArray
 
-        var displayRefreshFactors = [60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1]
+        var displayRefreshFactors = [Int]()
+
+        displayRefreshFactors.append(contentsOf: [60, 30, 20, 15, 12, 10, 6, 5, 4, 3, 2, 1])
         
-        if #available(iOS 10.3, tvOS 10.3, *) {
+        // maxFramePerSecond,default is 60
+        let maxFramePerSecond = displayRefreshFactors[0]
+
+        // frame numbers per second
+        var displayRefreshRates = displayRefreshFactors.map { maxFramePerSecond / $0 }
+
+        if #available(iOS 10.3, *) {
             // Will be 120 on devices with ProMotion display, 60 otherwise.
-            // TODO: Use CADisplayLink to get current framerate. This is still 120 on ProMotion dispays even in low power mode.
             let maximumFramesPerSecond = UIScreen.main.maximumFramesPerSecond
             if maximumFramesPerSecond == 120 {
+                displayRefreshRates.append(maximumFramesPerSecond)
                 displayRefreshFactors.insert(maximumFramesPerSecond, at: 0)
             }
         }
-        
-        let maxFramePerSecond = displayRefreshFactors[0]
-        
+
         // time interval per frame
-        let displayRefreshDelayTime = displayRefreshFactors.map { Float($0) / Float(maxFramePerSecond) }
+        let displayRefreshDelayTime = displayRefreshRates.map { 1 / Float($0) }
         
         // calculate the time when each frame should be displayed at(start at 0)
         for i in delays.indices.dropFirst() {
