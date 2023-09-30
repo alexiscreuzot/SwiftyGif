@@ -33,6 +33,12 @@ open class SwiftyGifManager {
     fileprivate var memoryLimit: Int
     open var haveCache: Bool
     open var remoteCache : [URL : Data] = [:]
+#if swift(>=4.2)
+    public var mode: RunLoop.Mode = .common
+#else
+    public var mode: RunLoopMode = RunLoopMode.commonModes
+#endif
+    
     
     /// Initialize a manager
     ///
@@ -72,11 +78,7 @@ open class SwiftyGifManager {
         
         timer = CADisplayLink(target: self, selector: #selector(updateImageView))
         
-        #if swift(>=4.2)
-        timer?.add(to: .main, forMode: .common)
-        #else
-        timer?.add(to: .main, forMode: RunLoopMode.commonModes)
-        #endif
+        timer?.add(to: .main, forMode: mode)
         
         #endif
     }
