@@ -89,6 +89,16 @@ public extension UIImageView {
 
 public extension UIImageView {
     
+    private static var fileURLKey: UInt8 = 0
+
+     var giffileURL: URL? {
+         get {
+             return objc_getAssociatedObject(self, &UIImageView.fileURLKey) as? URL
+         }
+         set {
+             objc_setAssociatedObject(self, &UIImageView.fileURLKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+         }
+     }
     /// Download gif image and sets it.
     ///
     /// - Parameters:
@@ -177,11 +187,13 @@ public extension UIImageView {
         }
         
         do {
-            let image = try UIImage(gifData: data, levelOfIntegrity: levelOfIntegrity)
-            manager.remoteCache[url] = data
-            setGifImage(image, manager: manager, loopCount: loopCount)
-            startAnimatingGif()
-            delegate?.gifURLDidFinish?(sender: self)
+            if self.giffileURL?.absoluteString == url.absoluteString {
+                let image = try UIImage(gifData: data, levelOfIntegrity: levelOfIntegrity)
+                manager.remoteCache[url] = data
+                setGifImage(image, manager: manager, loopCount: loopCount)
+                startAnimatingGif()
+                delegate?.gifURLDidFinish?(sender: self)
+            }
         } catch {
             report(url: url, error: error)
         }
