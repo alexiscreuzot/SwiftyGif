@@ -16,6 +16,8 @@ let package = Package(
         .target(
             name: "SwiftyGif",
             dependencies: [],
-            path: "SwiftyGif"),
+            path: "SwiftyGif",
+            resources: [.copy("PrivacyInfo.xcprivacy")]
+        ),
     ]
 )
