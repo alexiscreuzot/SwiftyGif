@@ -72,7 +72,16 @@ public extension UIImage {
     ///
     /// - Parameter gifData: The actual gif data
     /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
-    convenience init(gifData:Data, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
+    @objc convenience init(gifData:Data, floatLevelOfIntegrity: Float = GifLevelOfIntegrity.highestNoFrameSkipping) throws {
+        self.init()
+        try setGifFromData(gifData, levelOfIntegrity: floatLevelOfIntegrity)
+    }
+    
+    /// Convenience initializer. Creates a gif with its backing data.
+    ///
+    /// - Parameter gifData: The actual gif data
+    /// - Parameter levelOfIntegrity: 0 to 1, 1 meaning no frame skipping
+    @objc convenience init(gifData:Data, levelOfIntegrity: GifLevelOfIntegrity = .default) throws {
         self.init()
         try setGifFromData(gifData, levelOfIntegrity: levelOfIntegrity)
     }

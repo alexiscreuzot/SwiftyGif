@@ -58,6 +58,37 @@ public extension UIImageView {
     ///
     /// WARNING : this overwrite any previous gif.
     /// - Parameter gifImage: The UIImage containing the gif backing data
+    /// - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
+    @objc func setGifImage(_ gifImage: UIImage, loopCount: Int = -1) {
+        if let imageData = gifImage.imageData, (gifImage.imageCount ?? 0) < 1 {
+            image = UIImage(data: imageData)
+            return
+        }
+        
+        let manager: SwiftyGifManager = .defaultManager
+        
+        self.loopCount = loopCount
+        self.gifImage = gifImage
+        animationManager = manager
+        syncFactor = 0
+        displayOrderIndex = 0
+        cache = NSCache()
+        haveCache = false
+        
+        if let source = gifImage.imageSource, let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil) {
+            currentImage = UIImage(cgImage: cgImage)
+            
+            if manager.addImageView(self) {
+                startDisplay()
+                startAnimatingGif()
+            }
+        }
+    }
+    
+    /// Set a gif image and a manager to an existing UIImageView.
+    ///
+    /// WARNING : this overwrite any previous gif.
+    /// - Parameter gifImage: The UIImage containing the gif backing data
     /// - Parameter manager: The manager to handle the gif display
     /// - Parameter loopCount: The number of loops we want for this gif. -1 means infinite.
     func setGifImage(_ gifImage: UIImage, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
@@ -209,26 +240,26 @@ public extension UIImageView {
     }
     
     /// Start displaying the gif for this UIImageView.
-    func startAnimatingGif() {
+    @objc func startAnimatingGif() {
         isPlaying = true
     }
     
     /// Stop displaying the gif for this UIImageView.
-    func stopAnimatingGif() {
+    @objc func stopAnimatingGif() {
         isPlaying = false
     }
     
     /// Check if this imageView is currently playing a gif
     ///
     /// - Returns wether the gif is currently playing
-    func isAnimatingGif() -> Bool{
+    @objc func isAnimatingGif() -> Bool{
         return isPlaying
     }
     
     /// Show a specific frame based on a delta from current frame
     ///
     /// - Parameter delta: The delsta from current frame we want
-    func showFrameForIndexDelta(_ delta: Int) {
+    @objc func showFrameForIndexDelta(_ delta: Int) {
         guard let gifImage = gifImage else { return }
         var nextIndex = displayOrderIndex + delta
         
@@ -246,7 +277,7 @@ public extension UIImageView {
     /// Show a specific frame
     ///
     /// - Parameter index: The index of frame to show
-    func showFrameAtIndex(_ index: Int) {
+    @objc func showFrameAtIndex(_ index: Int) {
         displayOrderIndex = index
         updateFrame()
     }
@@ -332,7 +363,7 @@ public extension UIImageView {
         return window != nil && !intersectionRect.isEmpty && !intersectionRect.isNull
     }
     
-    func clear() {
+    @objc func clear() {
         if let gifImage = gifImage {
             gifImage.clear()
         }
@@ -410,7 +441,7 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, _gifImageKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    var currentImage: UIImage? {
+    @objc var currentImage: UIImage? {
         get { return possiblyNil(_currentImageKey) }
         set { objc_setAssociatedObject(self, _currentImageKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
@@ -425,7 +456,7 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, _syncFactorKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    var loopCount: Int {
+    @objc var loopCount: Int {
         get { return value(_loopCountKey, 0) }
         set { objc_setAssociatedObject(self, _loopCountKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
@@ -435,7 +466,7 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, _animationManagerKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    var delegate: SwiftyGifDelegate? {
+    @objc var delegate: SwiftyGifDelegate? {
         get { return (objc_getAssociatedWeakObject(self, _delegateKey!) as? SwiftyGifDelegate) }
         set { objc_setAssociatedWeakObject(self, _delegateKey!, newValue) }
     }
@@ -445,7 +476,7 @@ public extension UIImageView {
         set { objc_setAssociatedObject(self, _haveCacheKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
     
-    var displaying: Bool {
+    @objc var displaying: Bool {
         get { return value(_displayingKey, false) }
         set { objc_setAssociatedObject(self, _displayingKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
@@ -459,6 +490,8 @@ public extension UIImageView {
             
             if newValue {
                 delegate?.gifDidStart?(sender: self)
+            } else {
+                delegate?.gifDidStop?(sender: self)
             }
         }
     }
