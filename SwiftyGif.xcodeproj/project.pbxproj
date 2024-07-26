@@ -25,6 +25,8 @@
 		3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E11CB2A3DD00960D00 /* SwiftyGifManager.swift */; };
 		3B18BB021E2898A5009C125A /* UIImage+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E21CB2A3DD00960D00 /* UIImage+SwiftyGif.swift */; };
 		3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE121E31CB2A3DD00960D00 /* UIImageView+SwiftyGif.swift */; };
+		6F2FA2CF2C5417B600971497 /* SwiftyGifError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2FA2CE2C5417B600971497 /* SwiftyGifError.swift */; };
+		6F2FA2D02C5417BA00971497 /* SwiftyGifError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2FA2CE2C5417B600971497 /* SwiftyGifError.swift */; };
 		7A6E2EDC2B2278AE00A3ABF1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7A6E2EDB2B2278AE00A3ABF1 /* PrivacyInfo.xcprivacy */; };
 		AD938875276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */; };
 		AD938876276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */; };
@@ -114,6 +116,7 @@
 		3B18BAF41E289899009C125A /* SwiftyGif.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyGif.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B18BAF61E289899009C125A /* SwiftyGif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyGif.h; sourceTree = "<group>"; };
 		3B18BAF71E289899009C125A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F2FA2CE2C5417B600971497 /* SwiftyGifError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyGifError.swift; sourceTree = "<group>"; };
 		7A6E2EDB2B2278AE00A3ABF1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjcAssociatedWeakObject.swift; sourceTree = "<group>"; };
 		EF26CB8822A166E400E92383 /* no_property_dictionary.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = no_property_dictionary.gif; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 				230188A224D9614900EFE1BC /* NSImageView+SwiftyGif.swift */,
 				AD938874276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift */,
 				7A6E2EDB2B2278AE00A3ABF1 /* PrivacyInfo.xcprivacy */,
+				6F2FA2CE2C5417B600971497 /* SwiftyGifError.swift */,
 			);
 			path = SwiftyGif;
 			sourceTree = "<group>";
@@ -548,6 +552,7 @@
 				230188A524D961D800EFE1BC /* NSImage+SwiftyGif.swift in Sources */,
 				AD938876276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */,
 				230188A324D9615700EFE1BC /* NSImageView+SwiftyGif.swift in Sources */,
+				6F2FA2D02C5417BA00971497 /* SwiftyGifError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +573,7 @@
 				3B18BB031E2898A9009C125A /* UIImageView+SwiftyGif.swift in Sources */,
 				AD938875276BBDBD00013AB1 /* ObjcAssociatedWeakObject.swift in Sources */,
 				3B18BB011E2898A1009C125A /* SwiftyGifManager.swift in Sources */,
+				6F2FA2CF2C5417B600971497 /* SwiftyGifError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
