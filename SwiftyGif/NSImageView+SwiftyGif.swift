@@ -49,9 +49,14 @@ public extension NSImageView {
     ///
     /// - Parameter gifImage: The NSImage containing the gif backing data
     /// - Parameter manager: The manager to handle the gif display
-    convenience init(gifURL: URL, manager: SwiftyGifManager = .defaultManager, loopCount: Int = -1) {
+    convenience init(
+        gifURL: URL,
+        manager: SwiftyGifManager = .defaultManager,
+        loopCount: Int = -1,
+        callback: @escaping (Result<Data, Error>) -> Void = { _ in }
+    ) {
         self.init()
-        setGifFromURL(gifURL, manager: manager, loopCount: loopCount)
+        setGifFromURL(gifURL, manager: manager, loopCount: loopCount, callback: callback)
     }
     
     /// Set a gif image and a manager to an existing NSImageView.
@@ -104,7 +109,9 @@ public extension NSImageView {
                        levelOfIntegrity: GifLevelOfIntegrity = .default,
                        session: URLSession = URLSession.shared,
                        showLoader: Bool = true,
-                       customLoader: NSView? = nil) -> URLSessionDataTask? {
+                       customLoader: NSView? = nil,
+                       callback: @escaping (Result<Data, Error>) -> Void = {_ in }
+    ) -> URLSessionDataTask? {
         
         if let data =  manager.remoteCache[url] {
             self.parseDownloadedGif(url: url,
@@ -112,7 +119,9 @@ public extension NSImageView {
                     error: nil,
                     manager: manager,
                     loopCount: loopCount,
-                    levelOfIntegrity: levelOfIntegrity)
+                    levelOfIntegrity: levelOfIntegrity,
+                    callback: callback
+            )
             return nil
         }
         
@@ -128,7 +137,8 @@ public extension NSImageView {
                                         error: error,
                                         manager: manager,
                                         loopCount: loopCount,
-                                        levelOfIntegrity: levelOfIntegrity)
+                                        levelOfIntegrity: levelOfIntegrity,
+                                        callback: callback)
             }
         }
         
@@ -175,9 +185,11 @@ public extension NSImageView {
                                     error: Error?,
                                     manager: SwiftyGifManager,
                                     loopCount: Int,
-                                    levelOfIntegrity: GifLevelOfIntegrity) {
+                                    levelOfIntegrity: GifLevelOfIntegrity,
+                                    callback: (Result<Data, Error>) -> Void) {
         guard let data = data else {
             report(url: url, error: error)
+            callback(.failure(error ?? SwiftyGifError.noGifData))
             return
         }
         
@@ -187,8 +199,10 @@ public extension NSImageView {
             setGifImage(image, manager: manager, loopCount: loopCount)
             startAnimatingGif()
             delegate?.gifURLDidFinish?(sender: self)
+            callback(.success(data))
         } catch {
             report(url: url, error: error)
+            callback(.failure(error))
         }
     }
     
